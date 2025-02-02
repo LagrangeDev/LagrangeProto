@@ -1,0 +1,15 @@
+# ignore all files
+**/*
+!/**/
+
+# porotobuf files
+!**/*.proto
+
+# repo
+!README.md
+!LICENSE
+!.gitignore
+
+# editor files
+.idea/
+.vscode/
