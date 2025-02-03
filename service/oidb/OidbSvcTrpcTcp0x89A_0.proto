@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "LagrangeProto.service.oidb";
+option java_multiple_files = true;
+option java_package = "dev.lagrangecore.LagrangeProto.service.oidb";
+option go_package = "LagrangeProto/system/service/oidb";
+
+// Group Global Mute
+message OidbSvcTrpcTcp0x89A_0 {
+  uint32 GroupUin = 1;
+  OidbSvcTrpcTcp0x89A_0State State = 2;
+}
+
+message OidbSvcTrpcTcp0x89A_0State {
+  uint32 S = 17;
+}
+
+message OidbSvcTrpcTcp0x89A_0Response {
+  uint32 GroupUin = 1;
+  optional string ErorMsg = 2;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "LagrangeProto.service.oidb";
+option java_multiple_files = true;
+option java_package = "dev.lagrangecore.LagrangeProto.service.oidb";
+option go_package = "LagrangeProto/system/service/oidb";
+
+import "service/oidb/generics.proto";
+
+// Get Cookie
+message OidbSvcTrpcTcp0x102A_0 {
+  repeated string Domain = 1;
+}
+
+message OidbSvcTrpcTcp0x102A_0Response {
+  repeated OidbProperty Urls = 1;
+}
+

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option csharp_namespace = "LagrangeProto.service.oidb";
+option java_multiple_files = true;
+option java_package = "dev.lagrangecore.LagrangeProto.service.oidb";
+option go_package = "LagrangeProto/system/service/oidb";
+
+// RequestFriendSearch
+message OidbSvcTrpcTcp0x972_6 {
+  string TargetUin = 1;
+    OidbSvcTrpcTcp0x972_6Settings Settings = 3;
+}
+
+message OidbSvcTrpcTcp0x972_6Settings {
+  uint32 Field4 = 4; // 25
+  string Field11 = 11; // ""
+  string Setting = 55; // {"search_by_uid":true, "scenario":"related_people_and_groups_panel"}
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option csharp_namespace = "LagrangeProto.service.oidb";
+option java_multiple_files = true;
+option java_package = "dev.lagrangecore.LagrangeProto.service.oidb";
+option go_package = "LagrangeProto/system/service/oidb";
+
+// Group Remark
+message OidbSvcTrpcTcp0xF16_1 {
+  OidbSvcTrpcTcp0xF16_1Body Body = 1;
+}
+
+message OidbSvcTrpcTcp0xF16_1Body {
+  uint32 GroupUin = 1;
+  string TargetRemark = 3;
+}
