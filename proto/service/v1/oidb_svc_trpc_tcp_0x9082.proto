@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Group Set Reaction
+message OidbSvcTrpcTcp0x9082 {
+  uint32 group_uin = 2;
+  uint32 sequence = 3;
+  optional string code = 4;
+  uint32 type = 5; // 1 face 2 emoji
+  bool field6 = 6;
+  bool field7 = 7;
+}

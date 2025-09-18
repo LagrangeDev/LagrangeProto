@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package service.v1;
+
+// GroupSetAdmin
+message OidbSvcTrpcTcp0x10961 {
+  uint32 group_uin = 1;
+  string uid = 2;
+  bool is_admin = 3;
+}
+
+message OidbSvcTrpcTcp0x10961Response {
+  optional string success = 1;
+}

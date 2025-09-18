@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package service.v1;
+
+message OidbSvcTrpcTcp0x929D0Req {
+	uint32 group_uin = 1;
+	uint32 chat_type = 2; // 1 voice, 2 song
+}
+
+message OidbSvcTrpcTcp0x929D0Rsp {
+	repeated Key property = 1;
+	message Key {
+		string            type  = 1;
+		repeated Property value = 2;
+	}
+	message Property {
+		string character_id       = 1;
+		string character_name     = 2;
+		string character_voice_url = 3;
+	}
+}

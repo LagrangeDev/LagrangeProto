@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package service.v1;
+
+message FaceRoamRequest {
+  optional PlatInfo comm = 1;
+  uint32 self_uin = 2;
+  uint32 sub_cmd = 3; // 1
+  uint32 field6 = 6; // 1
+}
+
+message PlatInfo {
+  uint32 im_plat = 1;
+  optional string os_version = 2;
+  optional string q_version = 3;
+}
+
+message FaceRoamResponse {
+  uint32 ret_code = 1;
+  string err_msg = 2;
+  uint32 sub_cmd = 3;
+  FaceRoamUserInfo user_info = 6;
+}
+
+message FaceRoamUserInfo {
+  repeated string file_name = 1;
+  repeated string delete_file = 2;
+  string bid = 3;
+  uint32 max_roam_size = 4;
+  repeated uint32 emoji_type = 5;
+}
+
+
+
+message SendMessageResponse {
+  int32 result = 1;
+  optional string err_msg = 2;
+  uint32 timestamp1 = 3;
+  uint32 field10 = 10;
+  optional uint32 group_sequence = 11;
+  uint32 timestamp2 = 12;
+  uint32 private_sequence = 14;
+}
+
+message SetStatus {
+  uint32 status = 1;
+  uint32 ext_status = 2;
+  uint32 battery_status = 3; // 电量百分比
+  optional SetStatusCustomExt custom_ext = 4;
+}
+
+message SetStatusCustomExt {
+  uint32 face_id = 1;
+  optional string text = 2;
+  uint32 field3 = 3;
+}
+
+message SetStatusResponse {
+  string message = 2;
+}
+
+// http conn start
+
+message HttpConn {
+  int32 field1 = 1; // 0
+  int32 field2 = 2; // 0
+  int32 field3 = 3; // 16
+  int32 field4 = 4; // 1
+  string tgt = 5; // tgt lower hex
+  int32 field6 = 6; // 3
+  repeated int32 service_types = 7; // 1, 5, 10, 21 for image
+  int32 field9 = 9; // 2
+  int32 field10 = 10; // 9
+  int32 field11 = 11; // 8
+  string ver = 15; // 1.0.1
+}
+
+message HttpConn0x6ff501 {
+  HttpConn http_conn = 0x501;
+}
+
+message HttpConn0x6ff501Response {
+  HttpConnResponse http_conn = 0x501;
+}
+
+message HttpConnResponse {
+  bytes sig_session = 1;
+  bytes session_key = 2;
+  repeated ServerInfo server_infos = 3;
+}
+
+message ServerAddr {
+  uint32 type = 1;
+  fixed32 ip = 2;
+  uint32 port = 3;
+  uint32 area = 4;
+}
+
+message ServerInfo {
+  uint32 service_type = 1;
+  repeated ServerAddr server_addrs = 2;
+}

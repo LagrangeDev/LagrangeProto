@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package login.v1;
+
+message SsoKeyExchange {
+  bytes pub_key = 1;
+  int32 type = 2;
+  bytes gcm_calc1 = 3;
+  uint32 timestamp = 4;
+  bytes gcm_calc2 = 5;
+}
+
+message SsoKeyExchangeResponse {
+  bytes gcm_encrypted = 1;
+  bytes body = 2;
+  bytes public_key = 3;
+}
+
+message SsoKeyExchangeDecrypted {
+  bytes gcm_key = 1;
+  bytes sign = 2;
+  uint32 expiration = 3;
+}
+
+message SsoKeyExchangePlain {
+  optional string uin = 1;
+  optional bytes guid = 2;
+}
+
+
+message SsoNTLoginEncryptedData {
+  optional bytes sign = 1;
+  optional bytes gcm_calc = 3;
+  int32 type = 4;
+}
+
+message SsoNTLoginBase {
+  optional SsoNTLoginHeader header = 1;
+  optional bytes body = 2;
+}
+
+message SsoNTLoginHeader {
+  optional SsoNTLoginUin uin = 1;
+  optional SsoNTLoginSystem system = 2;
+  optional SsoNTLoginVersion version = 3;
+  optional SsoNTLoginError error = 4;
+  optional SsoNTLoginCookie cookie = 5;
+}
+
+message SsoNTLoginResponse {
+  optional SsoNTLoginCredentials credentials = 1;
+  optional SsoNTLoginCaptchaUrl captcha = 2;
+  optional SsoNTLoginUnusual unusual = 3;
+  optional SsoNTLoginUid uid = 4;
+}
+
+message SsoNTLoginEasyLogin {
+  optional bytes temp_password = 1;
+  optional SsoNTLoginCaptchaSubmit captcha = 2;
+}
+
+message SsoNTLoginCaptchaSubmit {
+  string ticket = 1;
+  string rand_str = 2;
+  string aid = 3;
+}
+
+message SsoNTLoginCaptchaUrl {
+  string url = 3;
+}
+
+message SsoNTLoginCookie {
+  optional string cookie = 1;
+}
+
+message SsoNTLoginCredentials {
+  bytes temp_password = 3;
+  bytes tgt = 4;
+  bytes d2 = 5;
+  bytes d2_key = 6;
+}
+
+message SsoNTLoginError {
+  uint32 error_code = 1;
+  string tag = 2;
+  string message = 3;
+  optional string new_device_verify_url = 5;
+}
+
+message SsoNTLoginSystem {
+  optional string os = 1;
+  optional string device_name = 2;
+  int32 type = 3;
+  optional bytes guid = 4;
+}
+
+message SsoNTLoginUid {
+  string uid = 2;
+}
+
+message SsoNTLoginUin {
+  optional string uin = 1;
+}
+
+message SsoNTLoginUnusual {
+  optional bytes sig = 2;
+}
+
+message SsoNTLoginVersion {
+  optional string kernel_version = 1;
+  int32 app_id = 2;
+  optional string package_name = 3;
+}

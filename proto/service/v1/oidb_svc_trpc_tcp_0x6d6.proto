@@ -1,0 +1,102 @@
+syntax = "proto3";
+package service.v1;
+ 
+
+// Group File Upload
+message OidbSvcTrpcTcp0x6D6 {
+  optional OidbSvcTrpcTcp0x6D6Upload file = 1;
+  optional OidbSvcTrpcTcp0x6D6Download download = 3;
+  optional OidbSvcTrpcTcp0x6D6Delete delete = 4;
+  optional OidbSvcTrpcTcp0x6D6Rename rename = 5;
+  optional OidbSvcTrpcTcp0x6D6Move move = 6;
+}
+
+message OidbSvcTrpcTcp0x6D6Upload {
+  uint32 group_uin = 1;
+  uint32 app_id = 2; // 7
+  uint32 bus_id = 3; // 102
+  uint32 entrance = 4; // 6
+  string target_directory = 5;
+  string file_name = 6;
+  string local_directory = 7;
+  uint64 file_size = 8;
+  bytes file_sha1 = 9;
+  bytes file_sha3 = 10;
+  bytes file_md5 = 11;
+  bool field15 = 15;
+}
+
+message OidbSvcTrpcTcp0x6D6Download {
+  uint32 group_uin = 1;
+  uint32 app_id = 2; // 7
+  uint32 bus_id = 3; // 102
+  string file_id = 4;
+}
+
+message OidbSvcTrpcTcp0x6D6Delete {
+  uint32 group_uin = 1;
+  uint32 bus_id = 3;
+  string file_id = 5;
+}
+
+message OidbSvcTrpcTcp0x6D6Rename {
+  uint32 group_uin = 1;
+  uint32 bus_id = 3; // 102
+  string file_id = 4;
+  string parent_folder = 5;
+  string new_file_name = 6;
+}
+
+message OidbSvcTrpcTcp0x6D6Move {
+  uint32 group_uin = 1;
+  uint32 app_id = 2; // 7
+  uint32 bus_id = 3; // 102
+  string file_id = 4;
+  string parent_directory = 5;
+  string target_directory = 6;
+}
+
+message OidbSvcTrpcTcp0x6D6Response {
+  OidbSvcTrpcTcp0x6D60Response upload = 1;
+  OidbSvcTrpcTcp0x6D62Response download = 3;
+  OidbSvcTrpcTcp0x6D6345Response delete = 4;
+  OidbSvcTrpcTcp0x6D6345Response rename = 5;
+  OidbSvcTrpcTcp0x6D6345Response move = 6;
+}
+
+message OidbSvcTrpcTcp0x6D60Response {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+  string client_wording = 3;
+  string upload_ip = 4;
+  string server_dns = 5;
+  int32 bus_id = 6;
+  string file_id = 7;
+  bytes check_key = 8;
+  bytes file_key = 9;
+  bool bool_file_exist = 10;
+  repeated string upload_ip_lan_v4 = 12;
+  repeated string upload_ip_lan_v6 = 13;
+  uint32 upload_port = 14;
+}
+
+message OidbSvcTrpcTcp0x6D62Response {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+  string client_wording = 3;
+  string download_ip = 4;
+  string download_dns = 5;
+  bytes download_url = 6;
+  bytes file_sha1 = 7;
+  bytes file_sha3 = 8;
+  bytes file_md5 = 9;
+  bytes cookie_val = 10;
+  string save_file_name = 11;
+  uint32 preview_port = 12;
+}
+
+message OidbSvcTrpcTcp0x6D6345Response{
+  int32 ret_code = 1;
+  string ret_msg = 2;
+  string client_wording = 3;
+}

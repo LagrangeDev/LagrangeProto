@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package service.v1;
+
+// see https://github.com/LagrangeDev/Lagrange.Core/blob/47b819d43ad101a1a066a3f8afa094d000fe19f5/Lagrange.Core/Internal/Packets/Service/Oidb/Request/OidbSvcTrpcTcp0xEB7_1.cs
+
+message OidbSvcTrpcTcp0xEB71ReqBody {
+  optional StSignInWriteReq sign_in_write_req = 2;
+}
+
+message StSignInWriteReq {
+  string uin        = 1;
+  string group_uin   = 2;
+  string app_version = 3; // 不确定要不要加，测试过没有这个参数也是可以的
+}
+
+message OidbSvcTrpcTcp0xEB71RspBody {
+  optional StSignInWriteRsp sign_in_write_rsp = 2;
+}
+
+message StSignInWriteRsp {
+  optional SignInStatusDoneInfo done_info = 2;
+}
+
+message SignInStatusDoneInfo {
+  string title = 1;                // 今日已成功打卡
+  string keep_day_text = 2;          // 已打卡N天
+  repeated string clock_in_info = 3; // ["群内排名第N位", "[clock in timestamp (second)]"]
+  string detail_url = 4;            // https://qun.qq.com/v2/signin/detail?...
+}

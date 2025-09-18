@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package common.v1;
+
+message Tlv543 {
+  Tlv543Layer1 layer1 = 9;
+}
+
+message Tlv543Layer1 {
+  Tlv543Layer2 layer2 = 11;
+}
+
+message Tlv543Layer2 {
+  string uid = 1;
+}

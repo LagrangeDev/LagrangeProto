@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Fetch Group Member List
+message OidbSvcTrpcTcp0xFE73 {
+  uint32 group_uin = 1;
+  uint32 field2 = 2;
+  uint32 field3 = 3;
+  OidbSvcTrpcScp0xFE73Body body = 4;
+  optional string token = 15;
+}
+
+message OidbSvcTrpcScp0xFE73Body {
+  // all ture
+  bool member_name = 10;
+  bool member_card = 11;
+  bool level = 12;
+  bool special_title = 17;
+  bool field4 = 20;
+  bool field5 = 21;
+  bool join_timestamp = 100;
+  bool last_msg_timestamp = 101;
+  bool shut_up_timestamp = 102;
+  bool field9 = 103;
+  bool field10 = 104;
+  bool field11 = 105;
+  bool field12 = 106;
+  bool permission = 107;
+}
+
+message OidbSvcTrpcTcp0xFE72Response {
+  uint32 group_uin = 1;
+  repeated OidbSvcTrpcTcp0xFE72Member members = 2;
+  uint32 field3 = 3;
+  uint32 member_change_seq = 5;
+  uint32 member_card_change_seq = 6;
+  optional string token = 15; // for the next page
+}
+
+message OidbSvcTrpcTcp0xFE72Member {
+  OidbSvcTrpcTcp0xFE72Uin uin = 1;
+  string member_name = 10;
+  OidbSvcTrpcTcp0xFE72Card member_card = 11;
+  optional OidbSvcTrpcTcp0xFE72Level level = 12;
+  optional string special_title = 17;
+  uint32 join_timestamp = 100;
+  uint32 last_msg_timestamp = 101;
+  optional uint32 shut_up_timestamp = 102;
+  uint32 permission = 107;
+}
+
+message OidbSvcTrpcTcp0xFE72Uin {
+  string uid = 2;
+  uint32 uin = 4;
+}
+
+message OidbSvcTrpcTcp0xFE72Card {
+  optional string member_card = 2;
+}
+
+message OidbSvcTrpcTcp0xFE72Level {
+  repeated uint32 infos = 1;
+  uint32 level = 2;
+}
+
+message OidbSvcTrpcTcp0xFE74 {
+  uint32 group_uin = 1;
+  uint32 field2 = 2;
+  uint32 field3 = 3;
+  OidbSvcTrpcScp0xFE73Body body = 4;
+  OidbSvcTrpcScp0xFE74Params params = 5;
+}
+
+message OidbSvcTrpcScp0xFE74Params {
+  string uid = 2;
+}
+
+message OidbSvcTrpcTcp0xFE74Response {
+  uint32 group_uin = 1;
+  OidbSvcTrpcTcp0xFE72Member member = 2;
+  uint32 field3 = 3;
+}

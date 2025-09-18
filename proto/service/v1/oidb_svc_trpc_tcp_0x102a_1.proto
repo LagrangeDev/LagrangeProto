@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package service.v1;
+
+// // Fetch Client Key lwx: 我也觉得抽象 可是他真的是空的
+message OidbSvcTrpcTcp0x102A1 {
+
+}
+
+message OidbSvcTrpcTcp0x102A1Response {
+  uint32 field1 = 2;
+  string client_key = 3;
+  uint32 expiration = 4;
+}

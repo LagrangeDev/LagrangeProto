@@ -1,0 +1,241 @@
+syntax = "proto3";
+
+package service.highway.v1;
+
+message NTV2RichMediaReq {
+  MultiMediaReqHead req_head = 1;
+  UploadReq upload = 2;
+  DownloadReq download = 3;
+  DownloadRKeyReq download_r_key = 4;
+  DeleteReq delete = 5;
+  UploadCompletedReq upload_completed = 6;
+  MsgInfoAuthReq msg_info_auth = 7;
+  UploadKeyRenewalReq upload_key_renewal = 8;
+  DownloadSafeReq download_safe = 9;
+  optional bytes extension = 99;
+}
+
+message MultiMediaReqHead {
+  CommonHead common = 1;
+  SceneInfo scene = 2;
+  ClientMeta client = 3;
+}
+
+message CommonHead {
+  uint32 request_id = 1; // 1
+  uint32 command = 2; // 200
+}
+
+message SceneInfo {
+  uint32 request_type = 101; // 1
+  uint32 business_type = 102; // 3
+  uint32 scene_type = 200; // 1
+  optional C2CUserInfo c2_c = 201;
+  optional NTGroupInfo group = 202;
+}
+
+message C2CUserInfo {
+  uint32 account_type = 1; // 2
+  string target_uid = 2;
+}
+
+message NTGroupInfo {
+  uint32 group_uin = 1;
+}
+
+message ClientMeta {
+  uint32 agent_type = 1; // 2
+}
+
+message DownloadReq {
+  IndexNode  node = 1;
+  DownloadExt download = 2;
+}
+
+message IndexNode {
+  FileInfo info = 1;
+  string file_uuid = 2;
+  uint32 store_id = 3; // 0旧服务器 1为nt服务器
+  uint32 upload_time = 4; // 0
+  uint32 ttl = 5; // 0
+  uint32 sub_type = 6; // 0
+}
+
+message FileInfo {
+  uint32 file_size = 1; // 0
+  string file_hash = 2;
+  string file_sha1 = 3; // ""
+  string file_name = 4;
+  FileType type = 5;
+  uint32 width = 6; // 0
+  uint32 height = 7;  // 0
+  uint32 time = 8; // 2
+  uint32 original = 9; // 0
+}
+
+message FileType {
+  uint32 type = 1; // 2
+  uint32 pic_format = 2; // 0
+  uint32 video_format = 3; // 0
+  uint32 voice_format = 4; // 1
+}
+
+message DownloadExt {
+  PicDownloadExt pic = 1;
+  VideoDownloadExt video = 2;
+  PttDownloadExt ptt = 3;
+}
+
+message VideoDownloadExt {
+  uint32 busi_type = 1; // 0
+  uint32 scene_type = 2; // 0
+  uint32 sub_busi_type = 3; // 0
+}
+
+message PicDownloadExt {
+
+}
+
+message PttDownloadExt {
+
+}
+
+message PicUrlExtInfo {
+  string original_parameter = 1;
+  string big_parameter = 2;
+  string thumb_parameter = 3;
+}
+
+message VideoExtInfo {
+  uint32 video_codec_format = 1;
+}
+
+message MsgInfo {
+  repeated MsgInfoBody msg_info_body = 1;
+  ExtBizInfo ext_biz_info = 2;
+}
+
+message MsgInfoBody {
+  IndexNode index = 1;
+  PictureInfo picture = 2;
+  VideoInfo video = 3;
+  AudioInfo audio = 4;
+  bool file_exist = 5;
+  HashSum hash_sum = 6;
+}
+
+message HashSum {
+  C2cSource bytes_pb_reserve_c2c = 201;
+  optional TroopSource troop_source = 202;
+}
+
+message C2cSource {
+  string friend_uid = 2;
+}
+
+message TroopSource {
+  uint32 group_uin = 1;
+}
+
+message VideoInfo {
+
+}
+
+message AudioInfo {
+
+}
+
+message PictureInfo {
+  string url_path = 1;
+  PicUrlExtInfo ext = 2;
+  string domain = 3;
+}
+
+message ExtBizInfo {
+  PicExtBizInfo pic = 1;
+  VideoExtBizInfo video = 2;
+  PttExtBizInfo ptt = 3;
+  uint32 busi_type = 10;
+}
+
+message PttExtBizInfo {
+  uint64 src_uin = 1;
+  uint32 ptt_scene = 2;
+  uint32 ptt_type = 3;
+  uint32 change_voice = 4;
+  bytes waveform = 5;
+  uint32 auto_convert_text = 6;
+  bytes bytes_reserve = 11;
+  bytes bytes_pb_reserve = 12;
+  bytes bytes_general_flags = 13;
+}
+
+message VideoExtBizInfo {
+  uint32 from_scene = 1;
+  uint32 to_scene = 2;
+  bytes bytes_pb_reserve = 3;
+}
+
+message PicExtBizInfo {
+  uint32 biz_type = 1;
+  string text_summary = 2;
+  bytes bytes_pb_reserve_c2c = 11;
+  PicExtData ext_data = 12;
+  uint32 from_scene = 1001;
+  uint32 to_scene = 1002;
+  uint32 old_file_id = 1003;
+}
+
+message PicExtData {
+  uint32 sub_type = 1;
+  string text_summary = 9;
+}
+
+message DownloadSafeReq {
+  IndexNode index = 1;
+}
+
+message UploadKeyRenewalReq {
+  string old_u_key = 1;
+  uint32 sub_type = 2;
+}
+
+message MsgInfoAuthReq {
+  bytes msg = 1;
+  uint64 auth_time = 2;
+}
+
+message UploadCompletedReq {
+  bool srv_send_msg = 1;
+  uint64 client_random_id = 2;
+  MsgInfo msg_info = 3;
+  uint32 client_seq = 4;
+}
+
+message DeleteReq {
+  repeated IndexNode index = 1;
+  bool need_recall_msg = 2;
+  uint64 msg_seq = 3;
+  uint64 msg_random = 4;
+  uint64 msg_time = 5;
+}
+
+message DownloadRKeyReq {
+  repeated int32 types = 1;
+}
+
+message UploadInfo {
+  FileInfo file_info = 1;
+  uint32 sub_file_type = 2;
+}
+
+message UploadReq {
+  repeated UploadInfo upload_info = 1;
+  bool try_fast_upload_completed = 2;
+  bool srv_send_msg = 3;
+  uint64 client_random_id = 4;
+  uint32 compat_q_msg_scene_type = 5;
+  ExtBizInfo ext_biz_info = 6;
+  uint32 client_seq = 7;
+  bool no_need_compat_msg = 8;
+}

@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+package service.v1;
+
+message QzoneGetMediaList {
+  uint32 field1 = 1;
+  string field2 = 2;
+  string field3 = 3;
+  QzoneGetMediaListF4 field4 = 4;
+  string uin_time_stamp = 5;
+  QzoneGetMediaListF10 field10 = 10;
+}
+
+message QzoneGetMediaListF4 {
+  string group_id = 1;
+  string album_id = 2;
+  uint32 field3 = 3;
+  string field4 = 4;
+  string page_info = 5;
+}
+
+message QzoneGetMediaListF10 {
+  string app_id_flag = 1;
+  string app_id_value = 2;
+}
+
+message QzoneGetMediaListResponse{
+  optional uint32 field1 = 1;
+  optional uint32 error_code = 2;
+  optional string error_msg = 3;
+  optional QzoneGetMediaListResponseBody body = 4;
+}
+
+message QzoneGetMediaListResponseBody {
+  AlbumInfo album_info = 1;
+  repeated AlbumElemMetaInfo elem_meta_info = 2;
+  repeated AlbumElemInfo elem_info = 3;
+  optional string page_info = 5;
+}
+
+message AlbumInfo {
+  string album_id = 1;
+  string album_name = 3;
+  uint32 create_time = 5;
+  uint32 last_modify_time = 6;
+  uint32 last_upload_time = 7;
+  uint32 count = 8;
+  AlbumThumbInfo thumb_info = 9;
+  UserInfo creator_info = 10;
+}
+
+message AlbumThumbInfo {
+  AlbumThumbImageInfo thumb_image_info = 2;
+}
+
+message AlbumThumbImageInfo {
+  string image_id = 3;
+  repeated AlbumElemImgLinkComplexInfo img_link_infos = 4;
+  AlbumElemImgLinkInfo img_link_info = 5;
+}
+
+message AlbumElemMetaInfo {
+  uint32 upload_time_stamp = 1;
+  string upload_date = 3;
+  UserInfo uploader_info = 4;
+}
+
+message AlbumElemInfo {
+  optional AlbumElemImgInfo img_info = 2;
+  optional AlbumElemVideoInfo video_info = 3;
+  string uploader_uin = 4;
+  uint32 last_modify_time = 7;
+  uint32 last_upload_time = 8;
+  UserInfo uploader_info = 12;
+}
+
+message AlbumElemImgInfo {
+  string file_name = 1;
+  string image_id = 3;
+  repeated AlbumElemImgLinkComplexInfo img_link_infos = 4;
+  AlbumElemImgLinkInfo img_link_info = 5;
+}
+
+message AlbumElemImgLinkComplexInfo {
+  uint32 seq = 1;
+  AlbumElemImgLinkInfo img_link_info = 2;
+}
+
+message AlbumElemImgLinkInfo {
+  string image_url = 1;
+  uint32 height = 2;
+  uint32 width = 3;
+}
+
+message AlbumElemVideoInfo {
+  string video_id = 1;
+  string video_url = 2;
+  AlbumElemVideoMetaInfo video_meta_info = 3;
+  uint32 video_height = 4;
+  uint32 video_width = 5;
+  AlbumElemImgLinkComplexInfo video_thumb_image_info = 7;
+}
+
+message AlbumElemVideoMetaInfo {
+  string video_name = 1;
+  string video_thumb_image_id = 3;
+  repeated AlbumElemImgLinkComplexInfo video_thumb_image_infos = 4;
+  AlbumElemImgLinkInfo video_thumb_image_info = 5;
+}
+
+message UserInfo {
+  string user_nick_name = 2;
+  string user_uin = 13;
+}
+
+

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Poke
+message OidbSvcTrpcTcp0xED31 {
+  uint32 uin = 1;
+  uint32 group_uin = 2; // same when poke type is friend
+  uint32 friend_uin = 5;
+  optional uint32 ext = 6;
+}

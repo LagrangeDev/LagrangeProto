@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package service.v1;
+
+import "service/v1/generics.proto";
+
+// Fetch Friends List
+message OidbSvcTrpcTcp0xFD41 {
+  uint32 field2 = 2; // page count, 300
+  uint32 field4 = 4; // 0
+  OidbSvcTrpcTcp0xFD41Uin next_uin = 5;
+  uint32 field6 = 6; // 1
+  repeated OidbSvcTrpcTcp0xFD41Body body = 10001;
+  repeated uint32 field10002 = 10002; // [13578, 13579, 13573, 13572, 13568]
+  uint32 field10003 = 10003;
+}
+
+message OidbSvcTrpcTcp0xFD41Uin {
+  uint32 uin = 1;
+}
+
+message OidbSvcTrpcTcp0xFD41Body {
+  uint32 type = 1;
+  OidbNumber number = 2;
+}
+
+message OidbSvcTrpcTcp0xFD41Response {
+  OidbSvcTrpcTcp0xFD41Uin next = 2;
+  uint32 display_friend_count = 3;
+  uint32 timestamp = 6;
+  uint32 self_uin = 7;
+  repeated OidbFriend friends = 101;
+}

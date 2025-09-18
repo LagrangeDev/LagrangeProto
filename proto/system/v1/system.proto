@@ -1,0 +1,83 @@
+syntax = "proto3";
+package system.v1;
+message NTDeviceSign {
+  string trace = 15;
+  optional string uid = 16;
+  optional Sign sign = 24;
+}
+
+message Sign {
+  optional bytes signature = 1;
+  optional string token = 2;
+  optional Software s = 3;
+}
+
+message Software {
+  string ver = 2;
+  optional string token = 3;
+}
+
+message NTOS {
+  string os = 1;
+  string name = 2;
+}
+
+message NTPacketUid {
+  optional string uid = 16;
+}
+
+message NTSsoHeartBeat {
+  int32 type = 1;
+}
+
+message NTSysEvent {
+  string ip = 1;
+  int64 sid = 2;
+  NTSysEventSub sub = 3;
+}
+
+message NTSysEventSub {
+  int64 state = 2;
+  int32 field3 = 3;
+  int64 field4 = 4;
+  int64 uin = 5;
+  int32 flag = 6;
+  int32 on = 7;
+  uint32 group_uin = 8;
+}
+
+message OnlineOsInfo {
+  string user = 1;
+  string os = 2;
+  string os_ver = 3;
+  optional string vendor_name = 4;
+  string os_lower = 5;
+}
+
+message ServiceKickNTResponse {
+  uint32 uin = 1;
+  string tips = 3;
+  string title = 4;
+  int32 field5 = 5;
+  int32 field6 = 6;
+  int32 field8 = 8;
+}
+
+message ServiceRegister {
+  optional string guid = 1;
+  optional int32 type = 2;
+  optional string current_version = 3;
+  optional int32 field4 = 4;
+  optional int32 locale_id = 5; // 2052
+  optional OnlineOsInfo online = 6;
+  optional int32 set_mute = 7;
+  optional int32 register_vendor_type = 8;
+  optional int32 reg_type = 9;
+}
+
+message ServiceRegisterResponse {
+  optional string message = 2;
+  uint32 timestamp = 3;
+  int32 field4 = 4;
+  int32 field5 = 5;
+}

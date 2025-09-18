@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package service.v1;
+
+message OidbSvcTrpcTcp0xE070 {
+  uint32 version = 1;
+  uint32 client = 2;
+  uint32 entrance = 3;
+  OcrReqBody ocr_req_body = 10;
+}
+
+message OcrReqBody {
+  string image_url = 1;
+  uint32 language_type = 2;
+  uint32 scene = 3;
+  string origin_md5 = 10;
+  string after_compress_md5 = 11;
+  string after_compress_file_size = 12;
+  string after_compress_weight = 13;
+  string after_compress_height = 14;
+  bool   is_cut = 15;
+}
+
+message OidbSvcTrpcTcp0xE070Response {
+  int32  ret_code = 1;
+  string err_msg = 2;
+  string wording = 3;
+  OcrRspBody ocr_rsp_body = 10;
+}
+
+message OcrRspBody {
+  repeated TextDetection text_detections = 1;
+  string language = 2;
+  string request_id = 3;
+  repeated string ocr_language_list = 101;
+  repeated string dst_translate_language_list = 102;
+  repeated Language language_list = 103;
+  uint32 after_compress_weight = 111;
+  uint32 after_compress_height = 112;
+}
+
+message TextDetection {
+  string detected_text = 1;
+  int32  confidence = 2;
+  Polygon polygon = 3;
+  string advanced_info = 4;
+}
+
+message Polygon {
+  repeated Coordinate coordinates = 1;
+}
+
+message Coordinate {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+message Language {
+  string language_code = 1;
+  string language_desc = 2;
+}

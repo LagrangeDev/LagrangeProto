@@ -1,0 +1,512 @@
+syntax = "proto3";
+import "message/v1/element.proto";
+import "system/v1/system.proto";
+package message.v1;
+
+message ContentHead {
+  uint32 type = 1;
+  optional uint32 sub_type = 2;
+  optional uint32 div_seq = 3;
+  optional uint32 msg_id = 4;
+  optional uint32 sequence = 5;
+  optional uint32 time_stamp = 6;
+  optional uint64 field7 = 7;
+  optional uint32 field8 = 8;
+  optional uint32 field9 = 9;
+  optional uint64 new_id = 12;
+  optional ForwardHead foward = 15;
+}
+
+message MessageBody {
+  optional RichText rich_text = 1;
+  optional bytes msg_content = 2;
+  optional bytes msg_encrypt_content = 3;
+}
+
+message GroupRecallMsg {
+  uint32 type = 1;
+  uint32 group_uin = 2;
+  GroupRecallMsgField3 field3 = 3;
+  GroupRecallMsgField4 field4 = 4;
+}
+
+message GroupRecallMsgField3 {
+  uint32 sequence = 1;
+  uint32 random = 2;
+  uint32 field3 = 3;
+}
+
+message GroupRecallMsgField4 {
+  uint32 field1 = 1;
+}
+
+message Message {
+  optional RoutingHead routing_head = 1;
+  optional ContentHead content_head = 2;
+  optional MessageBody body = 3;
+  optional uint32 client_sequence = 4;
+  optional uint32 random = 5;
+  optional bytes sync_cookie = 6;
+  // optional AppShareInfo app_share = 7;
+  optional uint32 via = 8;
+  optional uint32 data_statist = 9;
+  // optional MultiMsgAssist multi_msg_assist = 10;
+  // optional InputNotifyInfo input_notify_info = 11;
+  optional MessageControl ctrl = 12;
+  // optional ReceiptReq receipt_req = 13;
+  uint32 multi_send_seq = 14;
+}
+
+message MessageControl {
+  int32 msg_flag = 1;
+}
+
+message PushMsg {
+  PushMsgBody message = 1;
+  optional int32 status = 3;
+  optional system.v1.NTSysEvent nt_event = 4;
+  optional int32 ping_f_lag = 5;
+  optional int32 general_flag = 9;
+}
+
+message PushMsgBody {
+  ResponseHead response_head = 1;
+  ContentHead content_head = 2;
+  optional MessageBody body = 3;
+}
+
+message ResponseHead {
+  uint32 from_uin = 1;
+  optional string from_uid = 2;
+  uint32 type = 3;
+  uint32 sig_map = 4;  // 鬼知道是啥
+  uint32 to_uin = 5;
+  optional string to_uid = 6;
+  optional ResponseForward forward = 7;
+  optional ResponseGrp grp = 8;
+}
+
+message RoutingHead {
+  optional C2C c2_c = 1;
+  optional Grp grp = 2;
+  optional GrpTmp grp_tmp = 3;
+  optional WPATmp wpa_tmp = 6;
+  optional Trans0X211 trans0_x211 = 15;
+}
+
+message SsoReadedReport {
+  optional SsoReadedReportGroup group = 1;
+  optional SsoReadedReportC2C c2_c = 2;
+}
+
+message SsoReadedReportC2C {
+  optional string target_uid = 2;
+  uint32 time = 3;
+  uint32 start_sequence = 4;
+}
+
+message SsoReadedReportGroup {
+  uint32 group_uin = 1;
+  uint32 start_sequence = 2;
+}
+
+message SelfRenameMsg {
+  uint32 field1 = 1; // 20
+  SelfRenameBody body = 20;
+}
+
+message SelfRenameBody {
+  uint32 uin = 1;
+  RenameData rename_data = 2;
+}
+
+message FriendRenameMsg {
+  FriendRenameMsgBody body = 1;
+}
+
+message FriendRenameMsgBody {
+  uint32 field2 = 2; // 20
+  FriendRenameMsgData data = 8;
+}
+
+message FriendRenameMsgData {
+  string uid = 1;
+  RenameData rename_data = 2;
+}
+
+message RenameData {
+  uint32 field1 = 1; // 20002
+  string nick_name = 2;
+}
+
+message LongMsgResult {
+  repeated LongMsgAction action = 2;
+}
+
+message LongMsgAction {
+  string action_command = 1;
+  LongMsgContent action_data = 2;
+}
+
+message LongMsgContent {
+  repeated PushMsgBody msg_body = 1;
+}
+
+// trpc.group.long_msg_interface.MsgService.SsoRecvLongMsg Request
+message RecvLongMsgReq {
+  optional RecvLongMsgInfo info = 1;
+  optional LongMsgSettings settings = 15;
+}
+
+message RecvLongMsgInfo {
+  optional LongMsgUid uid = 1;
+  optional string res_id = 2;
+  bool acquire = 3;
+}
+
+message LongMsgUid {
+  optional string uid = 2;
+}
+
+message LongMsgSettings {
+  uint32 field1 = 1; // 4
+  uint32 field2 = 2; // 1
+  uint32 field3 = 3; // 7
+  uint32 field4 = 4; // 0
+}
+
+message RecvLongMsgResp {
+  RecvLongMsgResult result = 1;
+  LongMsgSettings settings = 15;
+}
+
+message RecvLongMsgResult {
+  string res_id = 3;
+  bytes payload = 4;
+}
+
+message SendLongMsgReq {
+  SendLongMsgInfo info = 2;
+  LongMsgSettings settings = 15;
+}
+
+message SendLongMsgInfo {
+  uint32 type = 1; // Group: 3, Friend: 1
+  optional LongMsgUid uid = 2;
+  optional uint32 group_uin = 3;
+  optional bytes payload = 4;
+}
+
+message SendLongMsgResp {
+  SendLongMsgResult result = 2;
+  LongMsgSettings settings = 15;
+}
+
+message SendLongMsgResult {
+  string res_id = 3;
+}
+
+message SsoGetGroupMsg {
+  SsoGetGroupMsgInfo info = 1;
+  bool direction = 2;
+}
+
+message SsoGetGroupMsgInfo {
+  uint32 group_uin = 1;
+  uint32 start_sequence = 2;
+  uint32 end_sequence = 3;
+}
+
+message SsoGetGroupMsgResponse {
+  SsoGetGroupMsgResponseBody body = 3;
+}
+
+message SsoGetGroupMsgResponseBody {
+  uint32 group_uin = 3;
+  uint32 start_sequence = 4;
+  uint32 end_sequence = 5;
+  repeated PushMsgBody messages = 6;
+}
+
+message SsoGetRoamMsg {
+  optional string friend_uid = 1;
+  uint32 time = 2;
+  uint32 random = 3; // 0
+  uint32 count = 4;
+  bool direction = 5; // true
+}
+
+message SsoGetRoamMsgResponse {
+  string friend_uid = 3;
+  uint32 timestamp = 5;
+  uint32 random = 6;
+  repeated PushMsgBody messages = 7;
+}
+
+message SsoGetC2cMsg {
+  optional string friend_uid = 2;
+  uint32 start_sequence = 3;
+  uint32 end_sequence = 4;
+}
+
+message SsoGetC2cMsgResponse {
+  string friend_uid = 4;
+  repeated PushMsgBody messages = 7;
+}
+
+message C2C {
+  optional uint32 uin = 1;
+  optional string uid = 2;
+  optional uint32 field3 = 3;
+  optional uint32 sig = 4;
+  optional uint32 receiver_uin = 5;
+  optional string receiver_uid = 6;
+}
+
+message C2CRecallMsg {
+  uint32 type = 1;
+  string target_uid = 3;
+  C2CRecallMsgInfo info = 4;
+  C2CRecallMsgSettings settings = 5;
+  bool field6 = 6;
+}
+
+message C2CRecallMsgInfo {
+  uint32 client_sequence = 1;
+  uint32 random = 2;
+  uint64 message_id = 3;
+  uint32 timestamp = 4;
+  uint32 field5 = 5;
+  uint32 message_sequence = 6;
+}
+
+message C2CRecallMsgSettings {
+  bool field1 = 1;
+  bool field2 = 2;
+}
+
+message Attr {
+  int32 code_page = 1;
+  int32 time = 2;
+  int32 random = 3;
+  int32 color = 4;
+  int32 size = 5;
+  int32 effect = 6;
+  int32 char_set = 7;
+  int32 pitch_and_family = 8;
+  string font_name = 9;
+  bytes reserve_data = 10;
+}
+
+message GroupInfo {
+  uint64 group_code = 1;
+  int32 group_type = 2;
+  int64 group_info_seq = 3;
+  string group_card = 4;
+  int32 group_level = 5;
+  int32 group_card_type = 6;
+  bytes group_name = 7;
+}
+
+message MutilTransHead {
+  int32 status = 1;
+  int32 msg_id = 2;
+}
+
+message NotOnlineFile {
+  optional int32 file_type = 1;
+  optional bytes sig = 2;
+  optional string file_uuid = 3;
+  optional bytes file_md5 = 4;
+  optional string file_name = 5;
+  optional int64 file_size = 6;
+  optional bytes note = 7;
+  optional int32 reserved = 8;
+  optional int32 subcmd = 9;
+  optional int32 micro_cloud = 10;
+  repeated bytes bytes_file_urls = 11;
+  optional int32 download_flag = 12;
+  optional int32 danger_evel = 50;
+  optional int32 life_time = 51;
+  optional int32 upload_time = 52;
+  optional int32 abs_file_type = 53;
+  optional int32 client_type = 54;
+  optional int32 expire_time = 55;
+  optional bytes pb_reserve = 56;
+  optional string file_hash = 57;
+}
+
+message Ptt {
+  int32 file_type = 1;
+  uint64 src_uin = 2;
+  string file_uuid = 3;
+  bytes file_md5 = 4;
+  string file_name = 5;
+  int32 file_size = 6;
+  bytes reserve = 7;
+  int32 file_id = 8;
+  int32 server_ip = 9;
+  int32 server_port = 10;
+  bool bool_valid = 11;
+  bytes signature = 12;
+  bytes shortcut = 13;
+  bytes file_key = 14;
+  int32 magic_ptt_index = 15;
+  int32 voice_switch = 16;
+  bytes ptt_url = 17;
+  string group_file_key = 18;
+  int32 time = 19;
+  bytes down_para = 20;
+  int32 format = 29;
+  bytes pb_reserve = 30;
+  repeated bytes bytes_ptt_urls = 31;
+  int32 download_flag = 32;
+}
+
+message RichText {
+  optional Attr attr = 1;
+  repeated Elem elems = 2;
+  optional NotOnlineFile not_online_file = 3;
+  optional Ptt ptt = 4;
+}
+
+// extra
+
+// ButtonExtra start
+
+message ButtonExtra {
+  KeyboardData data = 1;
+}
+
+message KeyboardData {
+  repeated Row rows = 1;
+}
+
+message Row {
+  repeated Button buttons = 1;
+}
+
+message Button {
+  string id = 1;
+  RenderData render_data = 2;
+  Action action = 3;
+
+}
+
+message RenderData {
+  string label = 1;
+  string visited_label = 2;
+  int32 style = 3;
+}
+
+message Action {
+  int32 type = 1;
+  Permission permission = 2;
+  // uint64 click_limit = 3;
+  string unsupport_tips = 4;
+  string data = 5;
+  bool reply = 7;
+  bool enter = 8;
+}
+
+message Permission {
+  int32 type = 1;
+  repeated string specify_role_ids = 2;
+  repeated string specify_user_ids = 3;
+}
+
+// ButtonExtra end
+
+message FileExtra {
+  NotOnlineFile file = 1;
+}
+
+// GroupFileExtra start
+
+message GroupFileExtra {
+  uint32 field1 = 1;
+  string file_name = 2;
+  string display = 3;
+  GroupFileExtraInner inner = 7;
+}
+
+message GroupFileExtraInner {
+  GroupFileExtraInfo info = 2;
+}
+
+message GroupFileExtraInfo {
+  uint32 bus_id = 1;
+  string file_id = 2;
+  uint64 file_size = 3;
+  string file_name = 4;
+  uint32 field5 = 5;
+  string field7 = 7;
+  string file_md5 = 8;
+}
+
+// GroupFileExtra end
+
+message ImageExtraUrl {
+  string orig_url = 30;
+}
+
+message PokeExtra {
+  uint32 type = 1;
+  uint32 field7 = 7;
+  uint32  field8 = 8;
+}
+
+message ForwardHead {
+  optional uint32 field1 = 1;
+  optional uint32 field2 = 2;
+  optional uint32 field3 = 3; // for friend: 2, for group: null
+  optional string unknown_base64 = 5;
+  optional string avatar = 6;
+}
+
+message Grp {
+  optional uint32 group_code = 1;
+}
+
+message GrpTmp {
+  optional uint32 group_uin = 1;
+  optional uint32 to_uin = 2;
+}
+
+message ResponseForward {
+  optional string friend_name = 6;
+}
+
+message ResponseGrp {
+  uint32 group_uin = 1;
+  string member_name = 4;
+  uint32 unknown5 = 5;
+  string group_name = 7;
+}
+
+message Trans0X211 {
+  optional uint64 to_uin = 1;
+  optional uint32 cc_cmd = 2;
+  optional string uid = 8;
+}
+
+message WPATmp {
+  uint64 to_uin = 1;
+  bytes sig = 2;
+}
+
+message SendMessageRequest {
+  int32 state = 1;
+  int32 size_cache = 2;
+  bytes unknown_fields = 3;
+  RoutingHead routing_head = 4;
+  ContentHead content_head = 5;
+  MessageBody message_body = 6;
+  int32 msg_seq = 7;
+  int32 msg_rand = 8;
+  bytes sync_cookie = 9;
+  int32 msg_via = 10;
+  int32 data_statist = 11;
+  MessageControl message_control = 12;
+  int32 multi_send_seq = 13;
+}

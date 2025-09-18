@@ -1,0 +1,93 @@
+syntax = "proto3";
+package service.v1;
+
+// GroupFSView
+message OidbSvcTrpcTcp0x6D8 {
+  optional OidbSvcTrpcTcp0x6D8List list = 2;
+  optional OidbSvcTrpcTcp0x6D8Count count = 3;
+  optional OidbSvcTrpcTcp0x6D8Space space = 4;
+}
+
+message OidbSvcTrpcTcp0x6D8List {
+  uint32 group_uin = 1;
+  uint32 app_id = 2; // 7
+  string target_directory = 3;
+  uint32 file_count = 5; // 20
+  uint32 sort_by = 9; // 1
+  uint32 start_index = 13; // default 0
+  uint32 field17 = 17; // 2
+  uint32 field18 = 18; // 0
+}
+
+message OidbSvcTrpcTcp0x6D8Count {
+  uint32 group_uin = 1;
+  uint32 app_id = 2; // 7
+  uint32 bus_id = 3; // 6
+}
+
+message OidbSvcTrpcTcp0x6D8Space {
+  uint32 group_uin = 1;
+  uint32 app_id = 2; // 7
+}
+
+message OidbSvcTrpcTcp0x6D81Response {
+  optional OidbSvcTrpcTcp0x6D81ResponseList list = 2;
+  optional OidbSvcTrpcTcp0x6D81ResponseCount count = 3;
+  optional OidbSvcTrpcTcp0x6D81ResponseSpace space = 4;
+}
+
+message OidbSvcTrpcTcp0x6D81ResponseList {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+  string client_wording = 3;
+  bool is_end = 4;
+  repeated OidbSvcTrpcTcp0x6D81ResponseItem items = 5;
+}
+
+message OidbSvcTrpcTcp0x6D81ResponseCount {
+  uint32 file_count = 4;
+  uint32 limit_count = 6;
+  bool is_full = 7;
+}
+
+message OidbSvcTrpcTcp0x6D81ResponseSpace {
+  uint64 total_space = 4;
+  uint64 used_space = 5;
+  uint32 field6 = 6;
+}
+
+message OidbSvcTrpcTcp0x6D81ResponseItem {
+  uint32 type = 1;
+  OidbSvcTrpcTcp0x6D81ResponseFolderInfo folder_info = 2;
+  OidbSvcTrpcTcp0x6D81ResponseFileInfo file_info = 3;
+}
+
+message OidbSvcTrpcTcp0x6D81ResponseFolderInfo {
+  string folder_id = 1;
+  string parent_directory_id = 2;
+  string folder_name = 3;
+  uint32 create_time = 4;
+  uint32 modified_time = 5;
+  uint32 creator_uin = 6;
+  string creator_name = 7;
+  uint32 total_file_count = 8;
+}
+
+message OidbSvcTrpcTcp0x6D81ResponseFileInfo {
+  string file_id = 1;
+  string file_name = 2;
+  uint64 file_size = 3;
+  uint32 bus_id = 4;
+  uint64 uploaded_size = 5;
+  uint32 uploaded_time = 6;
+  uint32 expire_time = 7;
+  uint32 modified_time = 8;
+  uint32 downloaded_times = 9;
+  bytes file_sha1 = 10;
+  bytes file_md5 = 12;
+  string uploader_name = 14;
+  uint32 uploader_uin = 15;
+  string parent_directory = 16;
+  uint32 field17 = 17;
+  string field22 = 22;
+}

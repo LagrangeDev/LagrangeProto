@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Group Remark
+message OidbSvcTrpcTcp0xF161 {
+  OidbSvcTrpcTcp0xF161Body body = 1;
+}
+
+message OidbSvcTrpcTcp0xF161Body {
+  uint32 group_uin = 1;
+  string target_remark = 3;
+}

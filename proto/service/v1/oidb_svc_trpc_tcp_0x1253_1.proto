@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Group Member Mute
+message OidbSvcTrpcTcp0x12531 {
+  uint32 group_uin = 1;
+  uint32 type = 2;
+  OidbSvcTrpcTcp0x12531Body body = 3;
+}
+
+message OidbSvcTrpcTcp0x12531Body {
+  string target_uid = 1;
+  uint32 duration = 2;
+}
+
+message OidbSvcTrpcTcp0x12531Response {
+  optional string success = 2;
+}

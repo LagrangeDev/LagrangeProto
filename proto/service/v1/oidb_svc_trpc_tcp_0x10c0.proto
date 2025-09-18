@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Fetch Friends & Group Notification List
+message OidbSvcTrpcTcp0x10C0 {
+  uint32 count = 1;
+  uint32 field2 = 2;
+}
+
+message OidbSvcTrpcTcp0x10C0Response {
+  repeated OidbSvcTrpcTcp0x10C0ResponseRequests requests = 1;
+  uint64 field2 = 2;
+  uint64 new_latest_seq = 3;
+  uint32 field4 = 4;
+  uint64 field5 = 5;
+  uint32 field6 = 6;
+}
+
+message OidbSvcTrpcTcp0x10C0ResponseRequests {
+  uint64 sequence = 1;
+  uint32 event_type = 2;
+  uint32 state = 3;
+  OidbSvcTrpcTcp0x10C0ResponseGroup group = 4;
+  OidbSvcTrpcTcp0x10C0ResponseUser target = 5;
+  optional OidbSvcTrpcTcp0x10C0ResponseUser invitor = 6;
+  optional OidbSvcTrpcTcp0x10C0ResponseUser operator = 7;
+  string field9 = 9;
+  string comment = 10;
+}
+
+message OidbSvcTrpcTcp0x10C0ResponseGroup {
+  uint32 group_uin = 1;
+  string group_name = 2;
+}
+
+message OidbSvcTrpcTcp0x10C0ResponseUser {
+  string uid = 1;
+  string name = 2;
+}

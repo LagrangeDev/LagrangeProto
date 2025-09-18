@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package service.v1;
+
+// RemoveEssenceMessage
+message OidbSvcTrpcTcp0xEAC {
+  uint32 group_uin = 1;
+  uint32 sequence = 2;
+  uint32 random = 3;
+}

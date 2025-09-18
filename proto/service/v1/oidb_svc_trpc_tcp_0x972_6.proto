@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package service.v1;
+
+// RequestFriendSearch
+message OidbSvcTrpcTcp0x9726 {
+  string target_uin = 1;
+    OidbSvcTrpcTcp0x9726Settings settings = 3;
+}
+
+message OidbSvcTrpcTcp0x9726Settings {
+  uint32 field4 = 4; // 25
+  string field11 = 11; // ""
+  string setting = 55; // {"search_by_uid":true, "scenario":"related_people_and_groups_panel"}
+}

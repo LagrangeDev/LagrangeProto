@@ -1,0 +1,280 @@
+syntax = "proto2";
+
+package service.v2;
+
+message FetchGroupMembersRequest {
+  optional int64 group_uin = 1;
+  optional uint32 field2 = 2;
+  optional uint32 field3 = 3;
+  optional FetchGroupMembersRequestBody body = 4;
+  optional bytes cookie = 15;
+}
+
+message FetchGroupMembersRequestBody {
+  optional bool member_name = 10;
+  optional bool member_card = 11;
+  optional bool level = 12;
+  optional bool field13 = 13;
+  optional bool field16 = 16;
+  optional bool special_title = 17;
+  optional bool field18 = 18;
+  optional bool field20 = 20;
+  optional bool field21 = 21;
+  optional bool join_timestamp = 100;
+  optional bool last_msg_timestamp = 101;
+  optional bool shut_up_timestamp = 102;
+  optional bool field103 = 103;
+  optional bool field104 = 104;
+  optional bool field105 = 105;
+  optional bool field106 = 106;
+  optional bool permission = 107;
+  optional bool field200 = 200;
+  optional bool field201 = 201;
+}
+
+message FetchGroupMembersResponse {
+  optional int64 group_uin = 1;
+  repeated FetchGroupMembersResponseMember members = 2;
+  optional uint32 member_count = 3;
+  optional uint32 member_list_change_seq = 5;
+  optional uint32 member_card_seq = 6;
+  optional bytes cookie = 15;
+}
+
+message FetchGroupMembersResponseMember {
+  optional FetchGroupMembersResponseId id = 1;
+  optional string member_name = 10;
+  optional string special_title = 17;
+  optional FetchGroupMembersResponseCard member_card = 11;
+  optional FetchGroupMembersResponseLevel level = 12;
+  optional uint32 join_timestamp = 100;
+  optional uint32 last_msg_timestamp = 101;
+  optional uint32 shut_up_timestamp = 102;
+  optional uint32 permission = 107;
+}
+
+message FetchGroupMembersResponseId {
+  optional string uid = 2;
+  optional uint32 uin = 4;
+}
+
+message FetchGroupMembersResponseCard {
+  optional string member_card = 2;
+}
+
+message FetchGroupMembersResponseLevel {
+  repeated uint32 infos = 1;
+  optional uint32 level = 2;
+}
+
+message FetchGroupNotificationsRequest {
+  optional uint64 count = 1;
+  optional uint64 start_sequence = 2;
+}
+
+message FetchGroupNotificationsResponse {
+  repeated FetchGroupNotificationsResponseNotification group_notifications = 1;
+}
+
+message FetchGroupNotificationsResponseNotification {
+  optional uint64 sequence = 1;
+  optional uint64 type = 2;
+  optional uint64 state = 3;
+  optional FetchGroupNotificationsResponseNotificationGroup group = 4;
+  optional FetchGroupNotificationsResponseNotificationUser target = 5;
+  optional FetchGroupNotificationsResponseNotificationUser inviter = 6;
+  optional FetchGroupNotificationsResponseNotificationUser operator = 7;
+  optional string comment = 10;
+}
+
+message FetchGroupNotificationsResponseNotificationGroup {
+  optional int64 group_uin = 1;
+}
+
+message FetchGroupNotificationsResponseNotificationUser {
+  optional string uid = 1;
+}
+
+message FetchGroupsRequest {
+  optional FetchGroupsRequestConfig config = 1;
+}
+
+message FetchGroupsRequestConfig {
+  optional FetchGroupsRequestConfig1 config1 = 1;
+  optional FetchGroupsRequestConfig2 config2 = 2;
+  optional FetchGroupsRequestConfig3 config3 = 3;
+}
+
+message FetchGroupsRequestConfig1 {
+  optional bool group_owner = 1;
+  optional bool field2 = 2;
+  optional bool member_max = 3;
+  optional bool member_count = 4;
+  optional bool group_name = 5;
+  optional bool field8 = 8;
+  optional bool field9 = 9;
+  optional bool field10 = 10;
+  optional bool field11 = 11;
+  optional bool field12 = 12;
+  optional bool field13 = 13;
+  optional bool field14 = 14;
+  optional bool field15 = 15;
+  optional bool field16 = 16;
+  optional bool field17 = 17;
+  optional bool field18 = 18;
+  optional bool question = 19;
+  optional bool field20 = 20;
+  optional bool field22 = 22;
+  optional bool field23 = 23;
+  optional bool field24 = 24;
+  optional bool field25 = 25;
+  optional bool field26 = 26;
+  optional bool field27 = 27;
+  optional bool field28 = 28;
+  optional bool field29 = 29;
+  optional bool field30 = 30;
+  optional bool field31 = 31;
+  optional bool field32 = 32;
+  optional bool field5001 = 5001;
+  optional bool field5002 = 5002;
+  optional bool field5003 = 5003;
+}
+
+message FetchGroupsRequestConfig2 {
+  optional bool field1 = 1;
+  optional bool field2 = 2;
+  optional bool field3 = 3;
+  optional bool field4 = 4;
+  optional bool field5 = 5;
+  optional bool field6 = 6;
+  optional bool field7 = 7;
+  optional bool field8 = 8;
+}
+
+message FetchGroupsRequestConfig3 {
+  optional bool field5 = 5;
+  optional bool field6 = 6;
+}
+
+message FetchGroupsResponse {
+  repeated FetchGroupsResponseGroup groups = 2;
+}
+
+message FetchGroupsResponseGroup {
+  optional int64 group_uin = 3;
+  optional FetchGroupsResponseGroupInfo info = 4;
+  optional FetchGroupsResponseCustomInfo custom_info = 5;
+}
+
+message FetchGroupsResponseGroupInfo {
+  optional FetchGroupsResponseMember group_owner = 1;
+  optional uint32 created_time = 2;
+  optional uint32 member_max = 3;
+  optional uint32 member_count = 4;
+  optional string group_name = 5;
+  optional string description = 18;
+  optional string question = 19;
+  optional string announcement = 30;
+}
+
+message FetchGroupsResponseCustomInfo {
+  optional int64 last_speak_time = 1;
+  optional uint32 lastest_seq = 5;
+}
+
+message FetchGroupsResponseMember {
+  optional string remark = 3;
+}
+
+message FetchStrangerByUidRequest {
+  optional string uid = 1;
+  repeated FetchStrangerRequestKey keys = 3;
+}
+
+message FetchStrangerByUinRequest {
+  optional int64 uin = 1;
+  repeated FetchStrangerRequestKey keys = 3;
+}
+
+message FetchStrangerRequestKey {
+  optional uint64 key = 1;
+}
+
+message FetchStrangerResponse {
+  optional FetchStrangerResponseBody body = 1;
+}
+
+message FetchStrangerResponseBody {
+  optional FetchStrangerResponseProperties properties = 2;
+  optional uint32 uin = 3;
+}
+
+message FetchStrangerResponseProperties {
+  repeated FetchStrangerResponseNumberProperties number_properties = 1;
+  repeated FetchStrangerResponseBytesProperties bytes_properties = 2;
+}
+
+message FetchStrangerResponseNumberProperties {
+  optional uint64 key = 1;
+  optional uint64 value = 2;
+}
+
+message FetchStrangerResponseBytesProperties {
+  optional uint64 key = 1;
+  optional bytes value = 2;
+}
+
+message SetGroupNotificationRequest {
+  optional uint64 operate = 1;
+  optional SetGroupNotificationRequestBody body = 2;
+}
+
+message SetGroupNotificationRequestBody {
+  optional uint64 sequence = 1;
+  optional uint64 type = 2;
+  optional int64 group_uin = 3;
+  optional string message = 4;
+}
+
+message SetGroupNotificationResponse {}
+
+message C501ReqBody {
+  optional SubCmd0x501ReqBody req_body = 1281;
+}
+
+message C501RspBody {
+  optional SubCmd0x501RspBody rsp_body = 1281;
+}
+
+message SubCmd0x501ReqBody {
+  optional uint64 uin = 1;
+  optional uint32 idc_id = 2;
+  optional uint32 appid = 3;
+  optional uint32 login_sig_type = 4;
+  optional bytes login_sig_ticket = 5;
+  optional uint32 request_flag = 6;
+  repeated uint32 service_types = 7;
+  optional uint32 bid = 8;
+  optional int32 field9 = 9;
+  optional int32 field10 = 10;
+  optional int32 field11 = 11;
+  optional string version = 15;
+}
+
+message SubCmd0x501RspBody {
+  optional bytes sig_session = 1;
+  optional bytes session_key = 2;
+  repeated SrvAddrs addrs = 3;
+}
+
+message SrvAddrs {
+  optional uint32 service_type = 1;
+  repeated IpAddr addrs = 2;
+}
+
+message IpAddr {
+  optional uint32 type = 1;
+  optional sint32 ip = 2;
+  optional uint32 port = 3;
+  optional uint32 area = 4;
+}
