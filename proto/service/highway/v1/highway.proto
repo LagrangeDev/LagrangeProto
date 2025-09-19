@@ -136,7 +136,7 @@ message SegHead {
   optional uint64 data_offset = 3;
   uint32 data_length = 4;
   optional uint32 ret_code = 5;
-  bytes  service_ticket = 6;
+  bytes service_ticket = 6;
   // uint32 flag = 7;
   bytes md5 = 8;
   bytes file_md5 = 9;

@@ -48,7 +48,7 @@ message ClientMeta {
 }
 
 message DownloadReq {
-  IndexNode  node = 1;
+  IndexNode node = 1;
   DownloadExt download = 2;
 }
 
@@ -68,7 +68,7 @@ message FileInfo {
   string file_name = 4;
   FileType type = 5;
   uint32 width = 6; // 0
-  uint32 height = 7;  // 0
+  uint32 height = 7; // 0
   uint32 time = 8; // 2
   uint32 original = 9; // 0
 }
@@ -92,13 +92,9 @@ message VideoDownloadExt {
   uint32 sub_busi_type = 3; // 0
 }
 
-message PicDownloadExt {
+message PicDownloadExt {}
 
-}
-
-message PttDownloadExt {
-
-}
+message PttDownloadExt {}
 
 message PicUrlExtInfo {
   string original_parameter = 1;
@@ -137,13 +133,9 @@ message TroopSource {
   uint32 group_uin = 1;
 }
 
-message VideoInfo {
+message VideoInfo {}
 
-}
-
-message AudioInfo {
-
-}
+message AudioInfo {}
 
 message PictureInfo {
   string url_path = 1;

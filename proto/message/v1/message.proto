@@ -1,7 +1,9 @@
 syntax = "proto3";
+
+package message.v1;
+
 import "message/v1/element.proto";
 import "system/v1/system.proto";
-package message.v1;
 
 message ContentHead {
   uint32 type = 1;
@@ -79,7 +81,7 @@ message ResponseHead {
   uint32 from_uin = 1;
   optional string from_uid = 2;
   uint32 type = 3;
-  uint32 sig_map = 4;  // 鬼知道是啥
+  uint32 sig_map = 4; // 鬼知道是啥
   uint32 to_uin = 5;
   optional string to_uid = 6;
   optional ResponseForward forward = 7;
@@ -390,7 +392,6 @@ message Button {
   string id = 1;
   RenderData render_data = 2;
   Action action = 3;
-
 }
 
 message RenderData {
@@ -453,7 +454,7 @@ message ImageExtraUrl {
 message PokeExtra {
   uint32 type = 1;
   uint32 field7 = 7;
-  uint32  field8 = 8;
+  uint32 field8 = 8;
 }
 
 message ForwardHead {

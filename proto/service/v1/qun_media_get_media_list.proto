@@ -24,7 +24,7 @@ message QzoneGetMediaListF10 {
   string app_id_value = 2;
 }
 
-message QzoneGetMediaListResponse{
+message QzoneGetMediaListResponse {
   optional uint32 field1 = 1;
   optional uint32 error_code = 2;
   optional string error_msg = 3;
@@ -112,5 +112,3 @@ message UserInfo {
   string user_nick_name = 2;
   string user_uin = 13;
 }
-
-

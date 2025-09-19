@@ -82,9 +82,7 @@ message SubFileInfo {
   repeated IPv6 i_pv6s = 5;
 }
 
-message DownloadSafeResp {
-
-}
+message DownloadSafeResp {}
 
 message UploadKeyRenewalResp {
   string ukey = 1;
@@ -101,9 +99,7 @@ message UploadCompletedResp {
   uint64 msg_seq = 1;
 }
 
-message DeleteResp {
-
-}
+message DeleteResp {}
 
 message DownloadRKeyResp {
   repeated RKeyInfo r_keys = 1;

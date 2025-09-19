@@ -8,7 +8,7 @@ message OidbSvcTrpcTcp0x6D7 {
   optional OidbSvcTrpcTcp0x6D7Rename rename = 3;
 }
 
-message OidbSvcTrpcTcp0x6D7Create{
+message OidbSvcTrpcTcp0x6D7Create {
   uint32 group_uin = 1;
   string target_directory = 3;
   string folder_name = 4;

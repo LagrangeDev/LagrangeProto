@@ -30,8 +30,6 @@ message FaceRoamUserInfo {
   repeated uint32 emoji_type = 5;
 }
 
-
-
 message SendMessageResponse {
   int32 result = 1;
   optional string err_msg = 2;

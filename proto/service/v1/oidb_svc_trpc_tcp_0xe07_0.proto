@@ -18,11 +18,11 @@ message OcrReqBody {
   string after_compress_file_size = 12;
   string after_compress_weight = 13;
   string after_compress_height = 14;
-  bool   is_cut = 15;
+  bool is_cut = 15;
 }
 
 message OidbSvcTrpcTcp0xE070Response {
-  int32  ret_code = 1;
+  int32 ret_code = 1;
   string err_msg = 2;
   string wording = 3;
   OcrRspBody ocr_rsp_body = 10;
@@ -41,7 +41,7 @@ message OcrRspBody {
 
 message TextDetection {
   string detected_text = 1;
-  int32  confidence = 2;
+  int32 confidence = 2;
   Polygon polygon = 3;
   string advanced_info = 4;
 }

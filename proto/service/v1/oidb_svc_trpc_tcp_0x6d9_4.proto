@@ -1,6 +1,6 @@
 syntax = "proto3";
-package service.v1;
 
+package service.v1;
 
 // Group Send File
 message OidbSvcTrpcTcp0x6D94 {

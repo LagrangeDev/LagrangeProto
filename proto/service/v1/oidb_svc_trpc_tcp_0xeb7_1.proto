@@ -9,8 +9,8 @@ message OidbSvcTrpcTcp0xEB71ReqBody {
 }
 
 message StSignInWriteReq {
-  string uin        = 1;
-  string group_uin   = 2;
+  string uin = 1;
+  string group_uin = 2;
   string app_version = 3; // 不确定要不要加，测试过没有这个参数也是可以的
 }
 
@@ -23,8 +23,8 @@ message StSignInWriteRsp {
 }
 
 message SignInStatusDoneInfo {
-  string title = 1;                // 今日已成功打卡
-  string keep_day_text = 2;          // 已打卡N天
+  string title = 1; // 今日已成功打卡
+  string keep_day_text = 2; // 已打卡N天
   repeated string clock_in_info = 3; // ["群内排名第N位", "[clock in timestamp (second)]"]
-  string detail_url = 4;            // https://qun.qq.com/v2/signin/detail?...
+  string detail_url = 4; // https://qun.qq.com/v2/signin/detail?...
 }

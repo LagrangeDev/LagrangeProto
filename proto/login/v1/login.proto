@@ -27,7 +27,6 @@ message SsoKeyExchangePlain {
   optional bytes guid = 2;
 }
 
-
 message SsoNTLoginEncryptedData {
   optional bytes sign = 1;
   optional bytes gcm_calc = 3;

@@ -12,4 +12,3 @@ message OidbSvcTrpcTcp0x102A0 {
 message OidbSvcTrpcTcp0x102A0Response {
   repeated OidbProperty urls = 1;
 }
-

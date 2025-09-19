@@ -243,5 +243,5 @@ message GroupReactionData3 {
   string code = 1;
   uint32 count = 3;
   string operator_uid = 4;
-  uint32 type = 5;  // 1 Add, 2 Remove
+  uint32 type = 5; // 1 Add, 2 Remove
 }

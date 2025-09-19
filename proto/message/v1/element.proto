@@ -419,4 +419,3 @@ message QSmallFaceExtra {
   string preview = 2;
   string preview2 = 3;
 }
-

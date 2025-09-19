@@ -1,5 +1,7 @@
 syntax = "proto3";
+
 package service.v1;
+
 import "service/v1/generics.proto";
 
 // Protobuf版Tlv sbtx

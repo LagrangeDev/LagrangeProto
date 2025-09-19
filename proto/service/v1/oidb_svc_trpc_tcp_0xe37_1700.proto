@@ -5,7 +5,7 @@ package service.v1;
 // Upload Offline File
 message OidbSvcTrpcTcp0xE371700 {
   uint32 command = 1; // 1700
-  int32 seq = 2;  // 0
+  int32 seq = 2; // 0
   ApplyUploadReqV3 upload = 19;
   int32 business_id = 101; // 3
   int32 client_type = 102; // 1

@@ -5,7 +5,7 @@ package service.v1;
 // RequestFriendSearch
 message OidbSvcTrpcTcp0x9726 {
   string target_uin = 1;
-    OidbSvcTrpcTcp0x9726Settings settings = 3;
+  OidbSvcTrpcTcp0x9726Settings settings = 3;
 }
 
 message OidbSvcTrpcTcp0x9726Settings {
