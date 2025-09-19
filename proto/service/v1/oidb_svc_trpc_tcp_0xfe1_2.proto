@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package service.v1;
+
+import "service/v1/generics.proto";
+
+// Fetch Avatar
+message OidbSvcTrpcTcp0xFE12 {
+  optional string uid = 1;
+  uint32 field2 = 2;
+  repeated OidbSvcTrpcTcp0xFE12Key keys = 3;
+}
+
+message OidbSvcTrpcTcp0xFE12Uin {
+  uint32 uin = 1;
+  uint32 field2 = 2;
+  repeated OidbSvcTrpcTcp0xFE12Key keys = 3;
+}
+
+message OidbSvcTrpcTcp0xFE12Key {
+  uint32 key = 1;
+}
+
+message OidbSvcTrpcTcp0xFE12Response {
+  OidbSvcTrpcTcp0xFE12ResponseBody body = 1;
+}
+
+message OidbSvcTrpcTcp0xFE12ResponseBody {
+  //  string uid = 1;
+  OidbSvcTrpcTcp0xFE12ResponseProperty properties = 2;
+  uint32 uin = 3;
+}
+
+message OidbSvcTrpcTcp0xFE12ResponseProperty {
+  repeated OidbTwoNumber number_properties = 1;
+  repeated OidbFriendProperty string_properties = 2;
+}
+
+message CustomStatus {
+  uint32 face_id = 1;
+  optional string msg = 2;
+}
+
+message Avatar {
+  optional string url = 5;
+}
+
+message Business {
+  optional BusinessBody body = 3;
+}
+
+message BusinessBody {
+  optional string msg = 1;
+  repeated BusinessList lists = 3;
+}
+
+message BusinessList {
+  uint32 type = 1;
+  uint32 field2 = 2;
+  bool is_year = 3; // 是否年费
+  uint32 level = 4;
+  bool is_pro = 5; // 是否超级
+  oneof icon {
+    string icon1 = 6;
+    string icon2 = 7;
+  }
+}

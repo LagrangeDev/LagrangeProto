@@ -1,0 +1,140 @@
+syntax = "proto3";
+
+package service.v1;
+
+// fetch group 0x88d_0 0x88d_14
+message OidbSvcTrpcTcp0x88D {
+  uint32 app_id = 1; // 537099973
+  OidbSvcTrpcTcp0x88DConfig2 config2 = 2;
+}
+
+message OidbSvcTrpcTcp0x88DConfig2 {
+  uint32 group_uin = 1;
+  D88DGroupInfo group_info = 2;
+}
+
+message D88DGroupHeadPortrait {
+  /*
+     optional uint32 pic_count = 1;
+     repeated D88DGroupHeadPortraitInfo msg_info = 2;
+     optional uint32 default_id = 3;
+     optional uint32 verifying_pic_cnt = 4;
+     repeated D88DGroupHeadPortraitInfo msg_verifying_pic_info = 5;
+  */
+}
+
+message D88DGroupExInfoOnly {
+  /*
+     optional uint32 tribe_id = 1;
+     optional uint32 money_for_add_group = 2;
+  */
+}
+
+message OidbSvcTrpcTcp0x88DResponse {
+  RspGroupInfo info = 1;
+}
+
+message RspGroupInfo {
+  optional uint64 group_uin = 1;
+  optional uint32 result = 2;
+  optional D88DGroupInfoResp group_info = 3;
+}
+
+message D88DGroupInfo {
+  optional bool group_owner = 1;
+  optional bool group_create_time = 2;
+  optional bool group_flag = 3;
+  optional bool group_flag_ext = 4;
+  optional bool group_member_max_num = 5;
+  optional bool group_member_num = 6;
+  optional bool group_option = 7;
+  optional bool group_class_ext = 8;
+  optional bool group_special_class = 9;
+  optional bool group_level = 10;
+  optional bool group_face = 11;
+  optional bool group_default_page = 12;
+  //  optional bool group_info_seq = 13;
+  optional bool group_roaming_time = 14;
+  optional string group_name = 15;
+  //  optional string  group_memo = 16;
+  optional string group_finger_memo = 17;
+  optional string group_class_text = 18;
+  //  repeated bool group_alliance_code = 19;
+  //  optional bool group_extra_aadm_num = 20;
+  optional bool group_uin = 21;
+  optional bool group_cur_msg_seq = 22;
+  optional bool group_last_msg_time = 23;
+  optional string group_question = 24;
+  optional string group_answer = 25;
+  //  optional bool group_visitor_max_num = 26;
+  //  optional bool group_visitor_cur_num = 27;
+  //  optional bool level_name_seq = 28;
+  //  optional bool group_admin_max_num = 29;
+  //  optional bool group_aio_skin_timestamp = 30;
+  //  optional bool group_board_skin_timestamp = 31;
+  //  optional string  group_aio_skin_url = 32;
+  //  optional string  group_board_skin_url = 33;
+  //  optional bool group_cover_skin_timestamp = 34;
+  //  optional string  group_cover_skin_url = 35;
+  optional bool group_grade = 36;
+  //  optional bool active_member_num = 37;
+  optional bool certification_type = 38;
+  optional string certification_text = 39;
+  optional string group_rich_finger_memo = 40;
+  // repeated D88DTagRecord tagRecord = 41;
+  // optional D88DGroupGeoInfo groupGeoInfo = 42;
+  optional bool head_portrait_seq = 43;
+  optional D88DGroupHeadPortrait msg_head_portrait = 44;
+  optional bool shutup_timestamp = 45;
+  optional bool shutup_timestamp_me = 46;
+  optional bool create_source_flag = 47;
+  //  optional bool cmduin_msg_seq = 48;
+  //  optional bool cmduin_join_time = 49;
+  //  optional bool cmduin_uin_flag = 50;
+  //  optional bool cmduin_flag_ex = 51;
+  //  optional bool cmduin_new_mobile_flag = 52;
+  //  optional bool cmduin_read_msg_seq = 53;
+  //  optional bool cmduin_last_msg_time = 54;
+  optional bool group_type_flag = 55;
+  optional bool app_privilege_flag = 56;
+  //  optional D88DGroupExInfoOnly st_group_ex_info = 57;
+  optional bool group_sec_level = 58;
+  //  optional bool group_sec_level_info = 59;
+  //  optional bool cmduin_privilege = 60;
+  optional string poid_info = 61;
+  //  optional bool cmduin_flag_ex2 = 62;
+  //  optional bool conf_uin = 63;
+  //  optional bool conf_max_msg_seq = 64;
+  //  optional bool conf_to_group_time = 65;
+  //  optional bool password_redbag_time = 66;
+  optional bool subscription_uin = 67;
+  //  optional bool member_list_change_seq = 68;
+  //  optional bool membercard_seq = 69;
+  //  optional bool root_id = 70;
+  //  optional bool parent_id = 71;
+  //  optional bool team_seq = 72;
+  //  optional bool history_msg_begin_time = 73;
+  //  optional bool invite_no_auth_num_limit = 74;
+  //  optional bool cmduin_history_msg_seq = 75;
+  //  optional bool cmduin_join_msg_seq = 76;
+  optional bool group_flagext3 = 77;
+  //  optional bool group_open_appid = 78;
+  optional bool is_conf_group = 79;
+  optional bool is_modify_conf_group_face = 80;
+  optional bool is_modify_conf_group_name = 81;
+  optional bool no_finger_open_flag = 82;
+  optional bool no_code_finger_open_flag = 83;
+}
+
+message D88DGroupInfoResp {
+  string group_owner = 1;
+  uint32 group_create_time = 2;
+  uint32 group_member_max_num = 5;
+  uint32 group_member_num = 6;
+  uint32 group_level = 10;
+  string group_name = 15;
+  string group_memo = 16;
+  uint32 group_uin = 21;
+  uint32 group_cur_msg_seq = 22;
+  uint32 group_last_msg_time = 23;
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Get Offline File Download
+message OidbSvcTrpcTcp0xE37800 {
+  uint32 sub_command = 1;
+  int32 field2 = 2;
+  OidbSvcTrpcTcp0xE37800Body body = 10;
+  int32 field101 = 101;
+  int32 field102 = 102;
+  int32 field200 = 200;
+}
+
+message OidbSvcTrpcTcp0xE37800Body {
+  string sender_uid = 10;
+  string receiver_uid = 20;
+  string file_uuid = 30;
+  string file_hash = 40;
+}
+
+message OidbSvcTrpcTcp0xE37Response {
+  uint32 command = 1;
+  int32 seq = 2;
+  ApplyUploadRespV3 upload = 19;
+  int32 business_id = 101;
+  int32 client_type = 102;
+  int32 flag_support_media_platform = 200;
+}
+
+message ApplyUploadRespV3 {
+  int32 ret_code = 10;
+  string ret_msg = 20;
+  int64 total_space = 30;
+  int64 used_space = 40;
+  int64 uploaded_size = 50;
+  string upload_ip = 60;
+  string upload_domain = 70;
+  uint32 upload_port = 80;
+  string uuid = 90;
+  bytes upload_key = 100;
+  bool bool_file_exist = 110;
+  int32 pack_size = 120;
+  repeated string upload_ip_list = 130;
+  int32 upload_https_port = 140;
+  string upload_https_domain = 150;
+  string upload_dns = 160;
+  string upload_lanip = 170;
+  string file_addon = 200;
+  bytes media_platform_upload_key = 220;
+}

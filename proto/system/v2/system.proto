@@ -1,0 +1,191 @@
+syntax = "proto2";
+package system.v2;
+
+import "message/v2/message.proto";
+
+message InfoSyncPush {
+  optional uint32 result = 1;
+  optional string err_msg = 2;
+  optional uint32 push_flag = 3;
+  optional uint32 push_seq = 4;
+  optional uint32 retry_flag = 5;
+  repeated GroupNode group_nodes = 6;
+  optional GroupSystemNotifications notifications = 7;
+  optional SystemNotifications sys_notifications = 8;
+  optional uint32 use_init_cache_data = 10;
+  optional GuildNode guild_nodes = 11;
+  optional uint32 discuss_list_flag = 12;
+  optional uint32 roam_msg_optimize_flag = 13;
+  optional uint32 group_guild_flag = 14;
+}
+
+message GroupNode {
+  optional uint64 group_code = 1;
+  optional uint64 group_seq = 2;
+  optional uint64 read_msg_seq = 3;
+  optional uint64 mask = 4;
+  optional uint64 longest_msg_time = 5;
+  optional bool has_message = 6;
+  optional uint64 latest_msg_time = 8;
+  optional string peer_name = 9;
+  optional uint64 longest_msg_seq = 10;
+  optional uint64 uin_flag_ex2 = 11;
+  optional uint32 important_msg_latest_seq = 12;
+  optional uint32 group_max_event_seq = 13;
+  optional uint32 random = 14;
+  optional uint32 need_to_check_seq_on_aio_open = 15;
+}
+
+message GuildNode {
+  optional uint64 peer_id = 1;
+}
+
+message GroupSystemNotifications {
+  repeated GroupSystemNotificationsInfo infos = 3;
+}
+
+message SystemNotifications {
+  repeated SystemNotificationsInfo infos = 4;
+}
+
+message GroupSystemNotificationsInfo {
+  optional int64 group_code = 3;
+  optional uint32 start_seq = 4;
+  optional uint32 end_seq = 5;
+  repeated message.v2.CommonMessage messages = 6;
+  optional int64 last_speak_timestamp = 8;
+}
+
+message SystemNotificationsInfo {
+  optional int64 peer_uin = 1;
+  optional string peer_uid = 2;
+  optional int64 last_speak_timestamp = 5;
+  repeated message.v2.CommonMessage messages = 8;
+}
+
+message SsoHeartBeatRequest {
+  optional uint32 type = 1;
+  optional SilenceState local_silence = 2;
+  optional uint32 battery_state = 3;
+  optional uint64 time = 4;
+}
+
+message SsoHeartBeatResponse {
+  optional uint64 interval = 3;
+}
+
+message SilenceState {
+  optional uint32 local_silence = 1;
+}
+
+message PushParams {
+  repeated OnlineDevice online_devices = 4;
+  optional GuildParams guild_params = 6;
+  optional string err_msg = 7;
+  optional uint32 group_msg_storage_time = 9;
+}
+
+message GuildParams {
+  optional uint32 guild_flag = 1;
+  optional uint32 guild_switch_flag = 2;
+}
+
+message OnlineDevice {
+  optional uint32 inst_id = 1;
+  optional uint32 client_type = 2;
+  optional uint32 state = 3;
+  optional uint32 plat_id = 4;
+  optional string plat_type = 5;
+  optional uint32 new_client_type = 6;
+  optional string device_name = 7;
+}
+
+message SsoC2CMsgCookie {
+  optional uint64 c2_c_last_msg_time = 1;
+}
+
+message SsoC2CSyncInfo {
+  optional SsoC2CMsgCookie c2_c_msg_cookie = 1;
+  optional uint64 c2_c_last_msg_time = 2;
+  optional SsoC2CMsgCookie last_c2_c_msg_cookie = 3;
+}
+
+message DeviceInfo {
+  optional string dev_name = 1;
+  optional string dev_type = 2;
+  optional string os_ver = 3;
+  optional string brand = 4;
+  optional string vendor_os_name = 5;
+}
+
+message OnlineBusinessInfo {
+  optional uint32 notify_switch = 1;
+  optional uint32 bind_uin_notify_switch = 2;
+}
+
+message RegisterInfo {
+  optional string guid = 1;
+  optional uint32 kick_pc = 2;
+  optional string build_ver = 3;
+  optional uint32 is_first_register_proxy_online = 4;
+  optional uint32 locale_id = 5;
+  optional DeviceInfo device_info = 6;
+  optional uint32 set_mute = 7;
+  optional uint32 register_vendor_type = 8;
+  optional uint32 reg_type = 9;
+  optional OnlineBusinessInfo business_info = 10;
+  optional uint32 battery_status = 11;
+  optional int32 field12 = 12;
+}
+
+message NormalConfig {
+  map<uint32, int32> int_cfg = 1;
+}
+
+message CurAppState {
+  optional uint32 is_delay_request = 1;
+  optional uint32 app_status = 2;
+  optional uint32 silence_status = 3;
+}
+
+message SsoInfoSyncRequest {
+  optional uint32 sync_flag = 1;
+  optional uint32 req_random = 2;
+  optional uint32 cur_active_status = 4;
+  optional uint64 group_last_msg_time = 5;
+  optional SsoC2CSyncInfo c2_c_sync_info = 6;
+  optional NormalConfig normal_config = 8;
+  optional RegisterInfo register_info = 9;
+  map<uint32, uint32> unknown = 10;
+  optional CurAppState app_state = 11;
+}
+
+message RegisterResponse {
+  optional string msg = 2;
+}
+
+message SsoSyncInfoResponse {
+  optional RegisterResponse register_response = 7;
+}
+
+message SsoUnregister {
+  optional int32 reg_type = 1;
+  optional DeviceInfo device_info = 2;
+  optional int32 user_trigger = 3;
+}
+
+message ThirdPartyLoginResponse {
+  optional uint64 seq = 1;
+  optional RespCommonInfo common_info = 9;
+}
+
+message RespCommonInfo {
+  optional uint32 need_verify_scenes = 10;
+  optional RspNT rsp_nt = 11;
+  optional uint32 a1_seq = 12;
+}
+
+message RspNT {
+  optional string uid = 1;
+  optional bytes ua2 = 2;
+}

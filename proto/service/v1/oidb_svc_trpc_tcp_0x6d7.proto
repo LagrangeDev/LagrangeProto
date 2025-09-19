@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package service.v1;
+
+message OidbSvcTrpcTcp0x6D7 {
+  optional OidbSvcTrpcTcp0x6D7Create create = 1;
+  optional OidbSvcTrpcTcp0x6D7Delete delete = 2;
+  optional OidbSvcTrpcTcp0x6D7Rename rename = 3;
+}
+
+message OidbSvcTrpcTcp0x6D7Create {
+  uint32 group_uin = 1;
+  string target_directory = 3;
+  string folder_name = 4;
+}
+
+message OidbSvcTrpcTcp0x6D7Delete {
+  uint32 group_uin = 1;
+  string folder_id = 3;
+}
+
+message OidbSvcTrpcTcp0x6D7Rename {
+  uint32 group_uin = 1;
+  string folder_id = 3;
+  string new_folder_name = 4;
+}
+
+message OidbSvcTrpcTcp0x6D7Response {
+  OidbSvcTrpcTcp0x6D70Response create = 1;
+  OidbSvcTrpcTcp0x6D712Response delete = 2;
+  OidbSvcTrpcTcp0x6D712Response rename = 3;
+}
+
+message OidbSvcTrpcTcp0x6D712Response {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+  string client_wording = 3;
+}
+
+message OidbSvcTrpcTcp0x6D70Response {
+  int32 ret_code = 1;
+  string ret_msg = 2;
+  string client_wording = 3;
+  OidbSvcTrpcTcp0x6D70ResponseFolderInfo folder_info = 4;
+}
+
+message OidbSvcTrpcTcp0x6D70ResponseFolderInfo {
+  string folder_id = 1;
+  string folder_path = 2;
+  string folder_name = 3;
+  uint32 timestamp4 = 4;
+  uint32 timestamp5 = 5;
+  uint32 operator_uin6 = 6;
+  uint32 operator_uin9 = 9;
+}

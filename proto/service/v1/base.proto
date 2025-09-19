@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package service.v1;
+
+import "service/v1/generics.proto";
+
+// Protobuf版Tlv sbtx
+
+message OidbSvcTrpcTcpBase {
+  uint32 command = 1;
+  uint32 sub_command = 2;
+  uint32 error_code = 3;
+  bytes body = 4;
+  string error_msg = 5;
+  optional OidbLafter lafter = 7;
+  repeated OidbProperty properties = 11;
+  int32 reserved = 12;
+}

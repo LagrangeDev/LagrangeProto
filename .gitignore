@@ -3,9 +3,10 @@
 !/**/
 
 # porotobuf files
-!**/*.proto
+!proto/**/*.proto
 
 # repo
+!buf.yaml
 !README.md
 !LICENSE
 !.gitignore

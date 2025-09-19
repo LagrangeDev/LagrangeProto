@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package service.v1;
+
+message OidbSvcTrpcTcp0x126B0 {
+  OidbSvcTrpcTcp0x126B0Field1 field1 = 1;
+}
+
+message OidbSvcTrpcTcp0x126B0Field1 {
+  string target_uid = 1;
+  OidbSvcTrpcTcp0x126B0Field12 field2 = 2;
+  bool block = 3;
+  bool field4 = 4; // true
+}
+
+message OidbSvcTrpcTcp0x126B0Field12 {
+  uint32 field1 = 1; // 130
+  uint32 field2 = 2; // 109
+  OidbSvcTrpcTcp0x126B0Field123 field3 = 3;
+}
+
+message OidbSvcTrpcTcp0x126B0Field123 {
+  uint32 field1 = 1; // 8
+  uint32 field2 = 2; // 8
+  uint32 field3 = 3; // 50
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Friend Likes
+message OidbSvcTrpcTcp0x7E5104 {
+  optional string target_uid = 11;
+  uint32 source = 12; // 71
+  uint32 count = 13; // 1
+}

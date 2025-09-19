@@ -1,0 +1,15 @@
+syntax = "proto3";
+package service.v1;
+
+// FetchFriendRequests
+message OidbSvcTrpcTcp0x5CF11 {
+  int32 field1 = 1; // 1
+  int32 field3 = 3; // 6
+  string self_uid = 4;
+  int32 field5 = 5; // 0
+  int32 field6 = 6; // 80
+  int32 field8 = 8; // 2
+  int32 field9 = 9; // 0
+  int32 field12 = 12; // 1
+  int32 field22 = 22; //1
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package service.v1;
+
+message OidbSvcTrpcTcp0x102A1 {}
+
+message OidbSvcTrpcTcp0x102A1Response {
+  uint32 field1 = 2;
+  string client_key = 3;
+  uint32 expiration = 4;
+}

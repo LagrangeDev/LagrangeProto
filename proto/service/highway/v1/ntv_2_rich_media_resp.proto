@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package service.highway.v1;
+
+import "service/highway/v1/ntv_2_rich_media_req.proto";
+
+message NTV2RichMediaResp {
+  MultiMediaRespHead resp_head = 1;
+  UploadResp upload = 2;
+  DownloadResp download = 3;
+  DownloadRKeyResp download_r_key = 4;
+  DeleteResp delete = 5;
+  UploadCompletedResp upload_completed = 6;
+  MsgInfoAuthResp msg_info_auth = 7;
+  UploadKeyRenewalResp upload_key_renewal = 8;
+  DownloadSafeResp download_safe = 9;
+  optional bytes extension = 99;
+}
+
+message MultiMediaRespHead {
+  CommonHead common = 1;
+  uint32 ret_code = 2;
+  string message = 3;
+}
+
+message DownloadResp {
+  string r_key_param = 1;
+  uint32 r_key_ttl_second = 2;
+  DownloadInfo info = 3;
+  uint32 r_key_create_time = 4;
+}
+
+message DownloadInfo {
+  string domain = 1;
+  string url_path = 2;
+  uint32 https_port = 3;
+  repeated IPv4 i_pv4s = 4;
+  repeated IPv6 i_pv6s = 5;
+  PicUrlExtInfo pic_url_ext_info = 6;
+  VideoExtInfo video_ext_info = 7;
+}
+
+message IPv4 {
+  uint32 out_ip = 1;
+  uint32 out_port = 2;
+  uint32 in_ip = 3;
+  uint32 in_port = 4;
+  uint32 ip_type = 5;
+}
+
+message IPv6 {
+  bytes out_ip = 1;
+  uint32 out_port = 2;
+  bytes in_ip = 3;
+  uint32 in_port = 4;
+  uint32 ip_type = 5;
+}
+
+message UploadResp {
+  optional string u_key = 1;
+  uint32 u_key_ttl_second = 2;
+  repeated IPv4 i_pv4s = 3;
+  repeated IPv6 i_pv6s = 4;
+  uint64 msg_seq = 5;
+  MsgInfo msg_info = 6;
+  repeated RichMediaStorageTransInfo ext = 7;
+  bytes compat_q_msg = 8;
+  repeated SubFileInfo sub_file_infos = 10;
+}
+
+message RichMediaStorageTransInfo {
+  uint32 sub_type = 1;
+  uint32 ext_type = 2;
+  bytes ext_value = 3;
+}
+
+message SubFileInfo {
+  uint32 sub_type = 1;
+  string u_key = 2;
+  uint32 u_key_ttl_second = 3;
+  repeated IPv4 i_pv4s = 4;
+  repeated IPv6 i_pv6s = 5;
+}
+
+message DownloadSafeResp {}
+
+message UploadKeyRenewalResp {
+  string ukey = 1;
+  uint64 ukey_ttl_sec = 2;
+}
+
+message MsgInfoAuthResp {
+  uint32 auth_code = 1;
+  bytes msg = 2;
+  uint64 result_time = 3;
+}
+
+message UploadCompletedResp {
+  uint64 msg_seq = 1;
+}
+
+message DeleteResp {}
+
+message DownloadRKeyResp {
+  repeated RKeyInfo r_keys = 1;
+}
+
+message RKeyInfo {
+  string rkey = 1;
+  uint64 rkey_ttl_sec = 2;
+  uint32 store_id = 3;
+  optional uint32 rkey_create_time = 4;
+  optional uint32 type = 5;
+}

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Upload Offline File
+message OidbSvcTrpcTcp0xE371700 {
+  uint32 command = 1; // 1700
+  int32 seq = 2; // 0
+  ApplyUploadReqV3 upload = 19;
+  int32 business_id = 101; // 3
+  int32 client_type = 102; // 1
+  int32 flag_support_media_platform = 200; // 1
+}
+
+message ApplyUploadReqV3 {
+  string sender_uid = 10;
+  string receiver_uid = 20;
+  uint32 file_size = 30;
+  string file_name = 40;
+  bytes md510_m_check_sum = 50;
+  bytes sha1_check_sum = 60;
+  string local_path = 70;
+  bytes md5_check_sum = 110;
+  bytes sha3_check_sum = 120;
+}

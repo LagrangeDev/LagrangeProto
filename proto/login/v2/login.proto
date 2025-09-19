@@ -1,0 +1,409 @@
+syntax = "proto2";
+
+package login.v2;
+
+enum NTLoginPlatform {
+  NT_LOGIN_PLATFORM_UNKNOWN = 0;
+  NT_LOGIN_PLATFORM_IOS = 1;
+  NT_LOGIN_PLATFORM_ANDROID = 2;
+  NT_LOGIN_PLATFORM_SYMBIAN = 3;
+  NT_LOGIN_PLATFORM_WINDOWS = 4;
+  NT_LOGIN_PLATFORM_MAC = 5;
+  NT_LOGIN_PLATFORM_IPAD = 6;
+  NT_LOGIN_PLATFORM_LINUX = 7;
+  NT_LOGIN_PLATFORM_HARMONY = 8;
+}
+
+enum NTLoginCodeType {
+  NT_LOGIN_CODE_TYPE_AUTHCODE = 0;
+  NT_LOGIN_CODE_TYPE_TGT = 1;
+  NT_LOGIN_CODE_TYPE_A2 = 2;
+  NT_LOGIN_CODE_TYPE_TGTGT = 3;
+}
+
+message KeyExchangeRequest {
+  optional bytes public_key = 1;
+  optional uint32 type = 2;
+  optional bytes secret = 3;
+  optional int64 timestamp = 4;
+  optional bytes verify_hash = 5;
+}
+
+message KeyExchangeResponse {
+  optional bytes secret = 1;
+  optional bytes field2 = 2;
+  optional bytes public_key = 3;
+}
+
+message KeyExchangeRequestBuf {
+  optional string uin = 1;
+  optional bytes guid = 2;
+}
+
+message KeyExchangeResponseSecret {
+  optional bytes session_key = 1;
+  optional bytes session_ticket = 2;
+  optional uint32 expiration = 3;
+}
+
+message NTLoginForwardRequest {
+  optional bytes session_ticket = 1;
+  optional bytes buffer = 3;
+  optional uint32 type = 4;
+}
+
+message NTLoginHead {
+  optional NTLoginUserInfo user_info = 1;
+  optional NTLoginClientInfo client_info = 2;
+  optional NTLoginAppInfo app_info = 3;
+  optional NTLoginErrorInfo error_info = 4;
+  optional NTLoginCookie cookie = 5;
+  optional NTLoginSecurityInfo security_info = 6;
+  optional NTLoginSdkInfo sdk_info = 7;
+  optional NTLoginLongCookie long_cookie = 8;
+}
+
+message NTLoginUserInfo {
+  optional string account = 1;
+  optional uint32 country_code = 2;
+}
+
+message NTLoginClientInfo {
+  optional string device_type = 1;
+  optional string device_name = 2;
+  optional NTLoginPlatform platform = 3;
+  optional bytes guid = 4;
+  optional uint32 pubno = 5;
+  optional uint32 client_ver = 6;
+  optional uint32 client_type = 7;
+  optional uint32 sso_ver = 8;
+}
+
+message NTLoginAppInfo {
+  optional string version = 1;
+  optional int32 app_id = 2;
+  optional string app_name = 3;
+  optional uint32 client_a1_version = 4;
+  optional string qua = 5;
+  optional NTLoginOpenInfo open_info = 6;
+}
+
+message NTLoginOpenInfo {
+  optional uint32 app_id = 1;
+}
+
+message NTLoginSdkInfo {
+  optional uint32 version = 1;
+}
+
+message NTLoginSecurityInfo {}
+
+message NTLoginCookie {
+  optional string cookie_content = 1;
+}
+
+message NTLoginLongCookie {
+  optional bytes content = 1;
+}
+
+message NTLoginErrorInfo {
+  optional uint64 err_code = 1;
+  optional string str_tips_title = 2;
+  optional string str_tips_content = 3;
+  optional string str_jump_wording = 4;
+  optional string str_jump_url = 5;
+  optional NTLoginErrorDetail msg_detail = 6;
+  repeated NTLoginButton rpt_msg_button = 7;
+}
+
+message NTLoginErrorDetail {
+  optional NTLoginErrorNeedVerifyNewDevice msg_need_verify_new_device = 1;
+  optional NTLoginErrorUnregistered msg_unregistered = 2;
+  optional NTLoginErrorBeenForbiden msg_been_forbiden = 3;
+  optional NTLoginErrorNiceAccountExpire msg_nice_account_expire = 4;
+}
+
+message NTLoginErrorNeedVerifyNewDevice {
+  optional bool allow_gate_way_verify = 1;
+}
+
+message NTLoginErrorUnregistered {
+  optional string unregistered_sig = 1;
+}
+
+message NTLoginErrorBeenForbiden {
+  optional uint32 area = 1;
+}
+
+message NTLoginErrorNiceAccountExpire {
+  optional string expire_sig = 1;
+}
+
+message NTLoginButton {
+  optional string wording = 1;
+  optional string url = 2;
+}
+
+message NTLoginCommonInfo {
+  optional uint32 face = 1;
+  optional string nick = 2;
+  optional uint32 gender = 3;
+  optional uint32 flag = 4;
+  optional uint32 age = 5;
+  optional int32 svr_flag = 6;
+}
+
+message NTLoginTgtInfo {
+  optional bytes tgt = 1;
+  optional bytes gtkey_tgt = 2;
+  optional uint32 tgt_ver = 3;
+  optional uint64 priority = 4;
+  optional uint64 refresh_interval = 5;
+  optional uint64 validate_interval = 6;
+  optional uint64 try_refresh_interval = 7;
+  optional uint64 try_refresh_count = 8;
+  optional uint64 dst_appid = 9;
+  optional bytes gtkey_tgtpwd = 10;
+  optional NTLoginCommonInfo comm_info = 11;
+  optional bytes sig_session = 12;
+  optional bytes sig_session_key = 13;
+  optional uint64 next_refresh_gap = 14;
+}
+
+message NTLoginSTInfo {
+  optional bytes st = 1;
+  optional bytes gtkey_st = 2;
+}
+
+message NTLoginSTHttpInfo {
+  optional uint32 allow_ptlogin = 1;
+  optional bytes st_http = 2;
+  optional bytes gtkey_st_http = 3;
+}
+
+message NTLoginControlRefreshTime {
+  optional uint64 next_start_refresh_time = 1;
+  optional uint64 expire_time = 2;
+}
+
+message NTLoginTickets {
+  optional bytes a1 = 3;
+  optional bytes a2 = 4;
+  optional bytes d2 = 5;
+  optional bytes d2_key = 6;
+  optional bytes auth_code = 7;
+  optional NTLoginTgtInfo tgt_info = 8;
+  optional NTLoginSTInfo st_info = 9;
+  optional bytes sec_extra = 10;
+  optional NTLoginSTHttpInfo st_http_info = 11;
+  optional NTLoginControlRefreshTime a1_refresh_time = 12;
+  optional bytes nopicsig = 13;
+  optional bytes a1_key = 14;
+  optional uint64 a1_seq = 15;
+  optional NTLoginControlRefreshTime a2_refresh_time = 16;
+  optional bytes a2_key = 17;
+}
+
+message NTLoginUserProfile {
+  optional bytes nick_name = 1;
+  optional bool register_without_password = 2;
+}
+
+message NTLoginAccoutInfo {
+  optional uint64 uin = 1;
+  optional string uid = 2;
+  optional NTLoginUserProfile user_profile = 3;
+}
+
+message NTLoginIframe {
+  optional string iframe_sig = 1;
+  optional string iframe_randstr = 2;
+  optional string iframe_sid = 3;
+}
+
+message NTLoginSecProtect {
+  optional bytes new_device_check_sig = 1;
+  optional bytes unusual_device_check_sig = 2;
+  optional string unusual_device_qr_sig = 3;
+  optional string uin_token = 4;
+}
+
+message NTLoginSecCheck {
+  optional string iframe_url = 3;
+}
+
+message NTLoginLoginProcessReqBody {
+  optional bool need_remind_cancellated_status = 1;
+}
+
+message NTLoginLoginProcessRspBody {}
+
+message NTLoginPasswordLoginReqBody {
+  optional bytes a1 = 1;
+  optional NTLoginIframe iframe = 2;
+  optional bytes new_device_check_succeed_sig = 3;
+  optional string register_succeed_sig = 4;
+  optional NTLoginLoginProcessReqBody login_process_req = 5;
+}
+
+message NTLoginPasswordLoginRspBody {
+  optional NTLoginTickets tickets = 1;
+  optional NTLoginSecCheck sec_check = 2;
+  optional NTLoginSecProtect sec_protect = 3;
+  optional NTLoginAccoutInfo account = 4;
+  optional NTLoginLoginProcessRspBody login_process_rsp = 5;
+}
+
+message NTLoginPasswordLoginNewDeviceReqBody {
+  optional bytes new_device_check_succeed_sig = 1;
+}
+
+message NTLoginPasswordLoginNewDeviceRspBody {
+  optional NTLoginTickets tickets = 1;
+  optional NTLoginAccoutInfo account = 3;
+}
+
+message NTLoginPasswordLoginUnusualDeviceReqBody {
+  optional bytes a1 = 1;
+  optional bytes unusual_device_check_succeed_sig = 2;
+}
+
+message NTLoginPasswordLoginUnusualDeviceRspBody {
+  optional NTLoginTickets tickets = 1;
+  optional NTLoginAccoutInfo account = 2;
+}
+
+message NTLoginEasyLoginReqBody {
+  optional bytes a1 = 1;
+}
+
+message NTLoginEasyLoginRspBody {
+  optional NTLoginTickets tickets = 1;
+  optional NTLoginSecCheck sec_check = 2;
+  optional NTLoginSecProtect sec_protect = 3;
+}
+
+message NTLoginEasyLoginUnusualDeviceReqBody {
+  optional bytes a1 = 1;
+  optional bytes unusual_device_check_succeed_sig = 2;
+}
+
+message NTLoginEasyLoginUnusualDeviceRspBody {
+  optional NTLoginTickets tickets = 1;
+}
+
+message NTLoginTGTExchangeFastLoginReqBody {
+  optional bytes tgt = 1;
+  optional bytes sec_extra = 2;
+  optional int32 code_type = 3;
+}
+
+message NTLoginTGTExchangeFastLoginRspBody {
+  optional NTLoginTickets tickets = 1;
+}
+
+message NTLoginRefreshTicketReqBody {
+  optional bytes a1 = 1;
+  optional bytes nopicsig = 2;
+}
+
+message NTLoginRefreshTicketRspBody {
+  optional NTLoginTickets tickets = 1;
+  optional NTLoginAccoutInfo account = 2;
+}
+
+message NTLoginRefreshA2ReqBody {
+  optional bytes a2 = 1;
+  optional bytes d2 = 2;
+  optional bytes d2_key = 3;
+}
+
+message NTLoginRefreshA2RspBody {
+  optional NTLoginTickets tickets = 1;
+  optional NTLoginAccoutInfo account = 2;
+}
+
+message NTLoginCommon {
+  optional NTLoginHead head = 1;
+  optional bytes body = 2;
+}
+
+message QrLogin {
+  optional uint32 scan_result = 1;
+  optional SafeInfo safe_info = 2;
+  optional RiskInfo risk_info = 3;
+  optional RejectInfo reject_info = 4;
+  optional TipsCtrl tips_ctrl = 5;
+  optional AutoRenewTicketInfo auto_renew_ticket_info = 6;
+}
+
+message SafeInfo {
+  optional string tips_template = 1;
+  optional string login_loc = 2;
+  optional string app_name = 3;
+  optional string new_tips_template = 4;
+}
+
+message RiskInfo {
+  optional string tips_template = 1;
+  optional string login_loc = 2;
+  optional string app_name = 3;
+  optional string new_tips_template = 4;
+}
+
+message RejectInfo {
+  optional string tips = 1;
+}
+
+message AutoRenewTicketInfo {
+  optional bool is_show_switch = 1;
+  optional bool is_open_switch = 2;
+  optional string tips_title = 3;
+  optional string tips_template = 4;
+}
+
+message TipsCtrl {
+  optional uint32 normal_tips_color = 1;
+  optional bool sec_check = 2;
+  optional string sec_check_tips = 3;
+  optional uint32 sec_tips_color = 4;
+}
+
+message DevInfo {
+  optional string dev_type = 1;
+  optional string dev_name = 2;
+}
+
+message GenInfo {
+  optional uint32 client_type = 1;
+  optional uint32 client_ver = 2;
+  optional uint32 client_appid = 3;
+  optional uint32 field6 = 6;
+}
+
+message QrExtInfo {
+  optional DevInfo dev_info = 1;
+  optional string qr_url = 2;
+  optional string qr_sig = 3;
+  optional GenInfo gen_info = 4;
+}
+
+message ScanExtInfo {
+  optional bytes guid = 1;
+  optional string imei = 2;
+  optional uint32 scan_scene = 3;
+  optional bool allow_auto_renew_ticket = 4;
+  optional bool invalid_gen_ticket = 5;
+}
+
+message DeviceReport {
+  optional string bootloader = 1;
+  optional string proc_version = 2;
+  optional string code_name = 3;
+  optional string incremental = 4;
+  optional string fingerprint = 5;
+  optional string boot_id = 6;
+  optional string android_id = 7;
+  optional string base_band = 8;
+  optional string inner_version = 9;
+}

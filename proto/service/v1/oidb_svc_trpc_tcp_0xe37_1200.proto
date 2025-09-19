@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package service.v1;
+
+// FileDownload
+message OidbSvcTrpcTcp0xE371200 {
+  uint32 sub_command = 1; // 1200
+  int32 field2 = 2; // 1
+  OidbSvcTrpcTcp0xE371200Body body = 14;
+  int32 field101 = 101; // 3
+  int32 field102 = 102; // 103
+  int32 field200 = 200; // 1
+  bytes field99999 = 99999; // 0xc0, 0x85, 0x2c, 0x01
+  // Actually it is a sub-proto 90200: 1, but we it would be more easy to just hardcode it
+}
+
+message OidbSvcTrpcTcp0xE371200Body {
+  string receiver_uid = 10;
+  string file_uuid = 20;
+  int32 type = 30; // 2
+  string file_hash = 60;
+  int32 t2 = 601; // 0
+}
+
+message OidbSvcTrpcTcp0xE371200Response {
+  uint32 command = 1;
+  uint32 sub_command = 2;
+  OidbSvcTrpcTcp0xE371200ResponseBody body = 14;
+  uint32 field50 = 50;
+}
+
+message OidbSvcTrpcTcp0xE371200ResponseBody {
+  uint32 field10 = 10;
+  string state = 20;
+  OidbSvcTrpcTcp0xE371200Result result = 30;
+  OidbSvcTrpcTcp0xE371200Metadata metadata = 40;
+}
+
+message OidbSvcTrpcTcp0xE371200Result {
+  string server = 20;
+  uint32 port = 40;
+  string url = 50;
+  repeated string additional_server = 60;
+  uint32 sso_port = 80;
+  string sso_url = 90;
+  bytes extra = 120;
+}
+
+message OidbSvcTrpcTcp0xE371200Metadata {
+  uint32 uin = 1;
+  uint32 field2 = 2;
+  uint32 field3 = 3;
+  uint32 size = 4;
+  uint32 timestamp = 5;
+  string file_uuid = 6;
+  string file_name = 7;
+  bytes field100 = 100;
+  bytes field101 = 101;
+  uint32 field110 = 110;
+  uint32 timestamp1 = 130;
+  string file_hash = 140;
+  bytes field141 = 141;
+  bytes field142 = 142;
+}

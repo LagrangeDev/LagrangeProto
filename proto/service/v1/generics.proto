@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package service.v1;
+
+message OidbFriend {
+  string uid = 1;
+  uint32 uin = 3;
+  repeated OidbFriendAdditional additional = 10001;
+}
+
+message OidbFriendAdditional {
+  uint32 type = 1;
+  OidbFriendLayer1 layer1 = 2;
+}
+
+message OidbFriendLayer1 {
+  repeated OidbFriendProperty properties = 2;
+}
+
+message OidbFriendProperty {
+  uint32 code = 1;
+  string value = 2;
+}
+
+message OidbLafter {
+  int32 type = 1;
+  bytes d2 = 2;
+  uint32 sub_appid = 3;
+}
+
+message OidbNumber {
+  repeated uint32 numbers = 1;
+}
+
+message OidbProperty {
+  string key = 1;
+  bytes value = 2;
+}
+
+message OidbTwoNumber {
+  uint32 number1 = 1;
+  uint32 number2 = 2;
+}

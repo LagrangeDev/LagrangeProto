@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package service.v1;
+
+message InfoPushGroup {
+  uint32 group_uin = 1;
+  uint32 sequence1 = 2;
+  uint32 sequence2 = 3;
+  uint32 field4 = 4;
+  uint32 last_msg_time = 8;
+  string group_name = 9;
+  uint32 sequence3 = 10;
+  uint64 random = 11;
+  uint32 field13 = 13;
+}

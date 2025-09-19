@@ -1,0 +1,172 @@
+syntax = "proto2";
+
+package notify.v2;
+
+message Event0x20D {
+  optional uint64 sub_type = 1;
+  optional bytes body = 2;
+}
+
+message FriendRequest {
+  optional FriendRequestInfo info = 1;
+}
+
+message FriendRequestInfo {
+  optional string target_uid = 1;
+  optional string source_uid = 2;
+  optional string new_source = 5;
+  optional string message = 10;
+  optional string source = 11;
+}
+
+message GroupChange {
+  optional uint32 group_uin = 1;
+  optional uint32 flag = 2;
+  optional string member_uid = 3;
+  optional uint32 decrease_type = 4;
+  optional bytes operator = 5;
+  optional uint32 increase_type = 6;
+  optional bytes field7 = 7;
+}
+
+message OperatorInfo {
+  optional OperatorField1 operator = 1;
+}
+
+message OperatorField1 {
+  optional string uid = 1;
+  optional uint32 field2 = 2;
+  optional bytes field3 = 3;
+  optional uint32 field4 = 4;
+  optional bytes field5 = 5;
+}
+
+message EssenceMessage {
+  optional int64 group_uin = 1;
+  optional int64 msg_sequence = 2;
+  optional uint32 random = 3;
+  optional uint32 set_flag = 4;
+  optional uint32 member_uin = 5;
+  optional uint32 operator_uin = 6;
+  optional uint32 time_stamp = 7;
+  optional uint32 msg_sequence2 = 8;
+  optional string operator_nick_name = 9;
+  optional string member_nick_name = 10;
+  optional uint32 set_flag2 = 11;
+}
+
+message GroupInvite {
+  optional GroupInviteBody body = 1;
+}
+
+message GroupInviteBody {
+  optional int64 group_uin = 1;
+  optional string target_uid = 5;
+  optional string inviter_uid = 6;
+}
+
+message GroupJoin {
+  optional int64 group_uin = 1;
+  optional uint64 type = 2;
+  optional string target_uid = 3;
+  optional string comment = 5;
+}
+
+message GroupReactionData0 {
+  optional GroupReactionData1 data = 1;
+}
+
+message GroupReactionData1 {
+  optional GroupReactionData2 data = 1;
+}
+
+message GroupReactionData2 {
+  optional GroupReactionTarget target = 2;
+  optional GroupReactionData3 data = 3;
+}
+
+message GroupReactionTarget {
+  optional int64 sequence = 1;
+}
+
+message GroupReactionData3 {
+  optional string code = 1;
+  optional uint32 count = 3;
+  optional string operator_uid = 4;
+  optional uint32 type = 5;
+}
+
+message GroupRecall {
+  optional string operator_uid = 1;
+  repeated RecallMessage recall_messages = 3;
+  optional bytes user_def = 5;
+  optional int32 group_type = 6;
+  optional int32 op_type = 7;
+  optional GroupRecallTipInfo tip_info = 9;
+}
+
+message RecallMessage {
+  optional uint32 sequence = 1;
+  optional uint32 time = 2;
+  optional uint32 random = 3;
+  optional uint32 type = 4;
+  optional uint32 flag = 5;
+  optional string author_uid = 6;
+}
+
+message GroupRecallTipInfo {
+  optional string tip = 2;
+}
+
+message GroupRecallNudge {
+  optional string operator_uid = 1;
+  optional int64 group_uin = 3;
+  optional uint64 busi_id = 4;
+  optional uint64 tips_seq_id = 5;
+}
+
+message NotifyMessageBody {
+  optional uint32 type = 1;
+  optional int64 group_uin = 4;
+  optional bytes event_param = 5;
+  optional GroupRecall recall = 11;
+  optional uint32 field13 = 13;
+  optional string operator_uid = 21;
+  optional GeneralGrayTipInfo general_gray_tip = 26;
+  optional int64 msg_sequence = 37;
+  optional uint32 field39 = 39;
+  optional GroupRecallNudge group_recall_nudge = 40;
+  optional GroupReactionData0 reaction = 44;
+  optional uint64 tips_seq_id = 50;
+  optional EssenceMessage essence_message = 33;
+}
+
+message GeneralGrayTipInfo {
+  optional uint64 busi_type = 1;
+  optional uint64 busi_id = 2;
+  optional uint32 ctrl_flag = 3;
+  optional uint32 c2_c_type = 4;
+  optional uint32 service_type = 5;
+  optional uint64 templ_id = 6;
+  repeated TemplParam msg_templ_param = 7;
+  optional string content = 8;
+  optional uint64 tips_seq_id = 10;
+  optional GrayTipMsgInfo msg_info = 100;
+}
+
+message GrayTipMsgInfo {
+  optional uint64 sequence = 6;
+}
+
+message TemplParam {
+  optional string name = 1;
+  optional string value = 2;
+}
+
+message FriendRecallPokeInfo {
+  optional string self_uid = 1;
+  optional string peer_uid = 2;
+  optional string operator_uid = 3;
+  optional uint64 busi_id = 4;
+  optional uint64 tips_seq_id = 5;
+}

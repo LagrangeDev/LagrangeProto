@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package service.v1;
+
+import "service/v1/generics.proto";
+
+// Get Cookie
+message OidbSvcTrpcTcp0x102A0 {
+  repeated string domain = 1;
+}
+
+message OidbSvcTrpcTcp0x102A0Response {
+  repeated OidbProperty urls = 1;
+}

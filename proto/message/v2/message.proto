@@ -1,0 +1,594 @@
+syntax = "proto2";
+
+package message.v2;
+
+message Elem {
+  optional Text text = 1;
+  optional NotOnlineImage not_online_image = 4;
+  optional CustomFace custom_face = 8;
+  optional RichMsg rich_msg = 12;
+  optional VideoFile video_file = 19;
+  optional SourceMsg src_msg = 45;
+  optional LightAppElem light_app_elem = 51;
+  optional CommonElem common_elem = 53;
+}
+
+message Text {
+  optional string text_msg = 1;
+  optional string link = 2;
+  optional bytes attr6_buf = 3;
+  optional bytes attr7_buf = 4;
+  optional bytes buf = 11;
+  optional bytes pb_reserve = 12;
+}
+
+message NotOnlineImage {
+  optional bytes file_path = 1;
+  optional uint32 file_len = 2;
+  optional bytes download_path = 3;
+  optional bytes old_ver_send_file = 4;
+  optional uint32 img_type = 5;
+  optional bytes previews_image = 6;
+  optional bytes pic_md5 = 7;
+  optional uint32 pic_height = 8;
+  optional uint32 pic_width = 9;
+  optional bytes res_id = 10;
+  optional bytes flag = 11;
+  optional string thumb_url = 12;
+  optional uint32 original = 13;
+  optional string big_url = 14;
+  optional string orig_url = 15;
+  optional uint32 biz_type = 16;
+  optional uint32 result = 17;
+  optional uint32 index = 18;
+  optional bytes op_face_buf = 19;
+  optional bool old_pic_md5 = 20;
+  optional uint32 thumb_width = 21;
+  optional uint32 thumb_height = 22;
+  optional uint32 file_id = 23;
+  optional uint32 show_len = 24;
+  optional uint32 download_len = 25;
+  optional string url400 = 26;
+  optional uint32 width400 = 27;
+  optional uint32 height400 = 28;
+  optional bytes pb_reserve = 29;
+}
+
+message CustomFace {
+  optional bytes guid = 1;
+  optional string file_path = 2;
+  optional string shortcut = 3;
+  optional bytes buffer = 4;
+  optional bytes flag = 5;
+  optional bytes old_data = 6;
+  optional uint32 file_id = 7;
+  optional int32 server_ip = 8;
+  optional int32 server_port = 9;
+  optional int32 file_type = 10;
+  optional bytes signature = 11;
+  optional int32 useful = 12;
+  optional bytes md5 = 13;
+  optional string thumb_url = 14;
+  optional string big_url = 15;
+  optional string orig_url = 16;
+  optional int32 biz_type = 17;
+  optional int32 repeat_index = 18;
+  optional int32 repeat_image = 19;
+  optional int32 image_type = 20;
+  optional int32 index = 21;
+  optional int32 width = 22;
+  optional int32 height = 23;
+  optional int32 source = 24;
+  optional uint32 size = 25;
+  optional int32 origin = 26;
+  optional int32 thumb_width = 27;
+  optional int32 thumb_height = 28;
+  optional int32 show_len = 29;
+  optional int32 download_len = 30;
+  optional string x400_url = 31;
+  optional int32 x400_width = 32;
+  optional int32 x400_height = 33;
+  optional PbReserve1 pb_reserve = 34;
+}
+
+message RichMsg {
+  optional bytes bytes_template1 = 1;
+  optional uint32 service_id = 2;
+  optional bytes bytes_msg_resid = 3;
+  optional uint32 rand = 4;
+  optional uint32 seq = 5;
+  optional uint32 flags = 6;
+}
+
+message VideoFile {
+  optional string file_uuid = 1;
+  optional bytes file_md5 = 2;
+  optional string file_name = 3;
+  optional int32 file_format = 4;
+  optional int32 file_time = 5;
+  optional int32 file_size = 6;
+  optional int32 thumb_width = 7;
+  optional int32 thumb_height = 8;
+  optional bytes thumb_file_md5 = 9;
+  optional bytes source = 10;
+  optional int32 thumb_file_size = 11;
+  optional int32 busi_type = 12;
+  optional int32 from_chat_type = 13;
+  optional int32 to_chat_type = 14;
+  optional bool bool_support_progressive = 15;
+  optional int32 file_width = 16;
+  optional int32 file_height = 17;
+  optional int32 sub_busi_type = 18;
+  optional int32 video_attr = 19;
+  repeated bytes bytes_thumb_file_urls = 20;
+  repeated bytes bytes_video_file_urls = 21;
+  optional int32 thumb_download_flag = 22;
+  optional int32 video_download_flag = 23;
+  optional bytes pb_reserve = 24;
+}
+
+message SourceMsg {
+  repeated uint32 orig_seqs = 1;
+  optional uint64 sender_uin = 2;
+  optional uint32 time = 3;
+  optional uint32 flag = 4;
+  repeated bytes elems = 5;
+  optional uint32 type = 6;
+  optional bytes rich_msg = 7;
+  optional bytes pb_reserve = 8;
+  optional bytes src_msg = 9;
+  optional uint64 to_uin = 10;
+  optional bytes troop_name = 11;
+}
+
+message LightAppElem {
+  optional bytes bytes_data = 1;
+  optional bytes bytes_msg_resid = 2;
+}
+
+message CommonElem {
+  optional uint32 service_type = 1;
+  optional bytes pb_elem = 2;
+  optional uint32 business_type = 3;
+}
+
+message FileExtra {
+  optional NotOnlineFile file = 1;
+}
+
+message TextResvAttr {
+  optional string wording = 1;
+  optional uint32 text_analysis_result = 2;
+  optional uint32 at_type = 3;
+  optional uint64 at_member_uin = 4;
+  optional uint64 at_member_tinyid = 5;
+  optional RoleInfo at_member_role_info = 6;
+  optional RoleInfo at_role_info = 7;
+  optional ChannelInfo at_channel_info = 8;
+  optional string at_member_uid = 9;
+}
+
+message ChannelInfo {
+  optional uint64 guild_id = 1;
+  optional uint64 channel_id = 2;
+}
+
+message RoleInfo {}
+
+message SourceMsgResvAttr {
+  optional uint32 ori_msg_type = 2;
+  optional uint64 source_msg_id = 3;
+  optional string sender_uid = 6;
+  optional string receiver_uid = 7;
+}
+
+message FeedsInfo {
+  optional uint32 bus_id = 1;
+  optional string file_id = 2;
+  optional uint32 msg_random = 3;
+  optional bytes ext = 4;
+  optional uint32 feed_flag = 5;
+}
+
+message FeedsResult {
+  optional int32 ret_code = 1;
+  optional string detail = 2;
+  optional string file_id = 3;
+  optional uint32 bus_id = 4;
+  optional uint32 dead_time = 5;
+}
+
+message FileInfo {
+  optional string file_id = 1;
+  optional string file_name = 2;
+  optional uint64 file_size = 3;
+  optional uint32 bus_id = 4;
+  optional uint64 uploaded_size = 5;
+  optional uint32 upload_time = 6;
+  optional uint32 dead_time = 7;
+  optional uint32 modify_time = 8;
+  optional uint32 download_times = 9;
+  optional bytes sha = 10;
+  optional bytes sha3 = 11;
+  optional bytes md5 = 12;
+  optional string local_path = 13;
+  optional string uploader_name = 14;
+  optional uint64 uploader_uin = 15;
+  optional string parent_folder_id = 16;
+  optional uint32 safe_type = 17;
+  optional bytes file_blob_ext = 20;
+  optional uint64 owner_uin = 21;
+  optional string feed_id = 22;
+  optional bytes reserved_field = 23;
+}
+
+message FileInfoTmem {
+  optional uint64 group_code = 1;
+  repeated FileInfo files = 2;
+}
+
+message FileItem {
+  optional uint32 type = 1;
+  optional FolderInfo folder_info = 2;
+  optional FileInfo file_info = 3;
+}
+
+message FolderInfo {
+  optional string folder_id = 1;
+  optional string parent_folder_id = 2;
+  optional string folder_name = 3;
+  optional uint32 create_time = 4;
+  optional uint32 modify_time = 5;
+  optional uint64 create_uin = 6;
+  optional string creator_name = 7;
+  optional uint32 total_file_count = 8;
+  optional uint64 modify_uin = 9;
+  optional string modify_name = 10;
+  optional uint64 used_space = 11;
+}
+
+message FolderInfoItem {
+  optional uint64 group_code = 1;
+  repeated FolderInfo folders = 2;
+}
+
+message OverwriteInfo {
+  optional string file_id = 1;
+  optional uint32 download_times = 2;
+}
+
+message PbMultiMsgTransmit {
+  repeated CommonMessage messages = 1;
+  repeated PbMultiMsgItem items = 2;
+}
+
+message PbMultiMsgItem {
+  optional string file_name = 1;
+  optional PbMultiMsgNew buffer = 2;
+}
+
+message PbMultiMsgNew {
+  repeated CommonMessage msg = 1;
+}
+
+message LongMsgInterfaceReq {
+  optional LongMsgRecvReq recv_req = 1;
+  optional LongMsgSendReq send_req = 2;
+  optional LongMsgAttr attr = 15;
+}
+
+message LongMsgInterfaceRsp {
+  optional LongMsgRecvRsp recv_rsp = 1;
+  optional LongMsgSendRsp send_rsp = 2;
+  optional LongMsgAttr attr = 15;
+}
+
+message LongMsgAttr {
+  optional uint32 sub_cmd = 1;
+  optional uint32 client_type = 2;
+  optional uint32 platform = 3;
+  optional uint32 proxy_type = 4;
+}
+
+message LongMsgPeerInfo {
+  optional string peer_uid = 2;
+}
+
+message LongMsgRecvReq {
+  optional LongMsgPeerInfo peer_info = 1;
+  optional string res_id = 2;
+  optional uint32 msg_type = 3;
+}
+
+message LongMsgSendReq {
+  optional uint32 msg_type = 1;
+  optional LongMsgPeerInfo peer_info = 2;
+  optional int64 group_uin = 3;
+  optional bytes payload = 4;
+}
+
+message LongMsgSendRsp {
+  optional string res_id = 3;
+}
+
+message LongMsgRecvRsp {
+  optional string res_id = 3;
+  optional bytes payload = 4;
+}
+
+message CommonMessage {
+  optional RoutingHead routing_head = 1;
+  optional ContentHead content_head = 2;
+  optional MessageBody message_body = 3;
+}
+
+message ContentHead {
+  optional int32 type = 1;
+  optional int32 sub_type = 2;
+  optional int32 c2_c_command = 3;
+  optional uint32 random = 4;
+  optional int32 sequence = 5;
+  optional int64 time = 6;
+  optional int32 pkg_num = 7;
+  optional int32 pkg_index = 8;
+  optional int32 div_seq = 9;
+  optional int32 auto_reply = 10;
+  optional int32 client_sequence = 11;
+  optional uint64 msg_uid = 12;
+}
+
+message RoutingHead {
+  optional int64 from_uin = 1;
+  optional string from_uid = 2;
+  optional int32 from_app_id = 3;
+  optional int32 from_inst_id = 4;
+  optional int64 to_uin = 5;
+  optional string to_uid = 6;
+  optional CommonC2C common_c2_c = 7;
+  optional CommonGroup group = 8;
+}
+
+message CommonC2C {
+  optional int32 c2_c_type = 1;
+  optional int32 service_type = 2;
+  optional bytes sig = 3;
+  optional int64 from_tiny_id = 4;
+  optional int64 to_tiny_id = 5;
+  optional string name = 6;
+}
+
+message CommonGroup {
+  optional int64 group_code = 1;
+  optional int32 group_type = 2;
+  optional int64 group_info_seq = 3;
+  optional string group_card = 4;
+  optional int32 group_card_type = 5;
+  optional int32 group_level = 6;
+  optional string group_name = 7;
+  optional string ext_group_key_info = 8;
+  optional int32 msg_flag = 9;
+}
+
+message MessageBody {
+  optional RichText rich_text = 1;
+  optional bytes msg_content = 2;
+  optional bytes msg_encrypt_content = 3;
+}
+
+message RichText {
+  optional Attr attr = 1;
+  repeated Elem elems = 2;
+  optional NotOnlineFile not_online_file = 3;
+  optional Ptt ptt = 4;
+  optional TmpPtt tmp_ptt = 5;
+  optional Trans211TmpMsg trans211_tmp_msg = 6;
+}
+
+message Attr {
+  optional int32 code_page = 1;
+  optional int32 time = 2;
+  optional int32 play_mode_random = 3;
+  optional int32 color = 4;
+  optional int32 size = 5;
+  optional int32 tab_effect = 6;
+  optional int32 char_set = 7;
+  optional int32 pitch_and_family = 8;
+  optional string font_name = 9;
+  optional bytes reserve_data = 10;
+}
+
+message NotOnlineFile {
+  optional uint32 file_type = 1;
+  optional bytes sig = 2;
+  optional string file_uuid = 3;
+  optional bytes file_md5 = 4;
+  optional string file_name = 5;
+  optional uint64 file_size = 6;
+  optional bytes note = 7;
+  optional uint32 reserved = 8;
+  optional uint32 sub_cmd = 9;
+  optional uint32 micro_cloud = 10;
+  repeated bytes file_urls = 11;
+  optional uint32 download_flag = 12;
+  optional uint32 danger_level = 50;
+  optional uint32 life_time = 51;
+  optional uint32 upload_time = 52;
+  optional uint32 abs_file_type = 53;
+  optional uint32 client_type = 54;
+  optional uint32 expire_time = 55;
+  optional bytes pb_reserve = 56;
+  optional string file_id_crc_media = 57;
+}
+
+message Ptt {
+  optional uint32 file_type = 1;
+  optional uint64 src_uin = 2;
+  optional bytes file_uuid = 3;
+  optional bytes file_md5 = 4;
+  optional string file_name = 5;
+  optional uint32 file_size = 6;
+  optional bytes reserve = 7;
+  optional uint32 file_id = 8;
+  optional uint32 server_ip = 9;
+  optional uint32 server_port = 10;
+  optional bool valid = 11;
+  optional bytes signature = 12;
+  optional bytes shortcut = 13;
+  optional string file_key = 14;
+  optional uint32 magic_ptt_index = 15;
+  optional uint32 voice_switch = 16;
+  optional bytes ptt_url = 17;
+  optional bytes group_file_key = 18;
+  optional uint32 time = 19;
+  optional bytes down_para = 20;
+  optional uint32 format = 29;
+  optional bytes pb_reserve = 30;
+  repeated bytes ptt_urls = 31;
+  optional uint32 download_flag = 32;
+}
+
+message TmpPtt {
+  optional uint32 file_type = 1;
+  optional bytes file_uuid = 2;
+  optional bytes file_md5 = 3;
+  optional bytes file_name = 4;
+  optional uint32 file_size = 5;
+  optional uint32 ptt_times = 6;
+  optional uint32 user_type = 7;
+  optional uint32 ptt_trans_flag = 8;
+  optional uint32 busi_type = 9;
+  optional uint64 msg_id = 10;
+  optional bytes pb_reserve = 30;
+  optional bytes ptt_encode_data = 31;
+}
+
+message Trans211TmpMsg {
+  optional bytes msg_body = 1;
+  optional uint32 c2_c_cmd = 2;
+}
+
+message MsgPush {
+  optional CommonMessage common_message = 1;
+  optional bool push_notify_flag = 5;
+}
+
+message PbSendMsgReq {
+  optional SendRoutingHead routing_head = 1;
+  optional SendContentHead content_head = 2;
+  optional MessageBody message_body = 3;
+  optional int32 client_sequence = 4;
+  optional uint32 random = 5;
+}
+
+message PbSendMsgResp {
+  optional int32 result = 1;
+  optional string err_msg = 2;
+  optional int64 send_time = 3;
+  optional uint32 msg_info_flag = 10;
+  optional int32 sequence = 11;
+  optional int32 client_sequence = 14;
+}
+
+message SendContentHead {
+  optional uint32 pkg_num = 1;
+  optional uint32 pkg_index = 2;
+  optional uint32 div_seq = 3;
+  optional uint32 auto_reply = 4;
+}
+
+message SendRoutingHead {
+  optional C2C c2_c = 1;
+  optional Grp group = 2;
+  optional Trans0X211 trans0_x211 = 15;
+}
+
+message C2C {
+  optional int64 peer_uin = 1;
+  optional string peer_uid = 2;
+}
+
+message Grp {
+  optional int64 group_uin = 1;
+}
+
+message Trans0X211 {
+  optional int64 to_uin = 1;
+  optional uint32 cc_cmd = 2;
+  optional string uid = 8;
+}
+
+message SsoGetC2CMsgReq {
+  optional int64 peer_uin = 1;
+  optional string peer_uid = 2;
+  optional int32 start_sequence = 3;
+  optional int32 end_sequence = 4;
+}
+
+message SsoGetC2CMsgRsp {
+  optional uint32 retcode = 1;
+  optional string message = 2;
+  optional uint32 start_sequence = 3;
+  optional uint32 end_sequence = 4;
+  repeated CommonMessage messages = 7;
+}
+
+message SsoGetGroupMsg {
+  optional SsoGetGroupMsgInfo info = 1;
+  optional uint32 filter = 2;
+}
+
+message SsoGetGroupMsgInfo {
+  optional int64 group_uin = 1;
+  optional int32 start_sequence = 2;
+  optional int32 end_sequence = 3;
+}
+
+message SsoGetGroupMsgRsp {
+  optional uint32 ret_code = 1;
+  optional string error_msg = 2;
+  optional SsoGetGroupMsgRspBody body = 3;
+}
+
+message SsoGetGroupMsgRspBody {
+  optional uint32 retcode = 1;
+  optional string message = 2;
+  optional uint32 group_uin = 3;
+  optional uint32 start_sequence = 4;
+  optional uint32 end_sequence = 5;
+  repeated CommonMessage messages = 6;
+}
+
+message SsoGetRoamMsgReq {
+  optional string peer_uid = 1;
+  optional uint32 time = 2;
+  optional uint32 random = 3;
+  optional uint32 count = 4;
+  optional uint32 direction = 5;
+}
+
+message SsoGetRoamMsgRsp {
+  optional string peer_uid = 3;
+  optional bool is_complete = 4;
+  optional uint32 timestamp = 5;
+  optional uint32 random = 6;
+  repeated CommonMessage messages = 7;
+}
+
+message PbReserve1 {
+  optional int32 sub_type = 1;
+  optional int32 field3 = 3;
+  optional int32 field4 = 4;
+  optional string summary = 9;
+  optional int32 field10 = 10;
+  optional PbReserve2 field21 = 21;
+  optional string field31 = 31;
+}
+
+message PbReserve2 {
+  optional int32 field1 = 1;
+  optional string field2 = 2;
+  optional int32 field3 = 3;
+  optional int32 field4 = 4;
+  optional int32 field5 = 5;
+  optional string md5_str = 7;
+}

@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+package service.highway.v1;
+
+import "service/highway/v1/ntv_2_rich_media_req.proto";
+
+message DataHighwayHead {
+  uint32 version = 1;
+  optional string uin = 2;
+  optional string command = 3;
+  optional uint32 seq = 4;
+  optional uint32 retry_times = 5;
+  uint32 app_id = 6;
+  uint32 data_flag = 7;
+  uint32 command_id = 8;
+  optional bytes build_ver = 9;
+  // uint32 locale_id = 10;
+  // uint32 env_id = 11;
+}
+
+message FileUploadExt {
+  int32 unknown1 = 1;
+  int32 unknown2 = 2;
+  int32 unknown3 = 3;
+  FileUploadEntry entry = 100;
+  int32 unknown200 = 200;
+}
+
+message FileUploadEntry {
+  ExcitingBusiInfo busi_buff = 100;
+  ExcitingFileEntry file_entry = 200;
+  ExcitingClientInfo client_info = 300;
+  ExcitingFileNameInfo file_name_info = 400;
+  ExcitingHostConfig host = 500;
+}
+
+message ExcitingBusiInfo {
+  int32 bus_id = 1;
+  uint64 sender_uin = 100;
+  uint64 receiver_uin = 200;
+  uint64 group_code = 400;
+}
+
+message ExcitingFileEntry {
+  uint64 file_size = 100;
+  bytes md5 = 200;
+  bytes check_key = 300;
+  bytes md5_s2 = 400;
+  string file_id = 600;
+  bytes upload_key = 700;
+}
+
+message ExcitingClientInfo {
+  int32 client_type = 100;
+  string app_id = 200;
+  int32 terminal_type = 300;
+  string client_ver = 400;
+  int32 unknown = 600;
+}
+
+message ExcitingFileNameInfo {
+  string file_name = 100;
+}
+
+message ExcitingHostConfig {
+  repeated ExcitingHostInfo hosts = 200;
+}
+
+message ExcitingHostInfo {
+  ExcitingUrlInfo url = 1;
+  uint32 port = 2;
+}
+
+message ExcitingUrlInfo {
+  int32 unknown = 1;
+  string host = 2;
+}
+
+message LoginSigHead {
+  uint32 uint32_login_sig_type = 1;
+  bytes bytes_login_sig = 2;
+  uint32 app_id = 3;
+}
+
+message NTV2RichMediaHighwayExt {
+  string file_uuid = 1;
+  string u_key = 2;
+  NTHighwayNetwork network = 5;
+  repeated MsgInfoBody msg_info_body = 6;
+  uint32 block_size = 10;
+  NTHighwayHash hash = 11;
+}
+
+message NTHighwayHash {
+  repeated bytes file_sha1 = 1;
+}
+
+message NTHighwayNetwork {
+  repeated NTHighwayIPv4 i_pv4s = 1;
+}
+
+message NTHighwayIPv4 {
+  NTHighwayDomain domain = 1;
+  uint32 port = 2;
+}
+
+message NTHighwayDomain {
+  bool is_enable = 1;
+  string ip = 2;
+}
+
+message ReqDataHighwayHead {
+  optional DataHighwayHead msg_base_head = 1;
+  optional SegHead msg_seg_head = 2;
+  optional bytes bytes_req_extend_info = 3;
+  uint64 timestamp = 4;
+  optional LoginSigHead msg_login_sig_head = 5;
+}
+
+message RespDataHighwayHead {
+  optional DataHighwayHead msg_base_head = 1;
+  optional SegHead msg_seg_head = 2;
+  uint32 error_code = 3;
+  uint32 allow_retry = 4;
+  uint32 cache_cost = 5;
+  uint32 ht_cost = 6;
+  optional bytes bytes_rsp_extend_info = 7;
+  uint64 timestamp = 8;
+  uint64 range = 9;
+  uint32 is_reset = 10;
+}
+
+message SegHead {
+  optional uint32 service_id = 1;
+  uint64 filesize = 2;
+  optional uint64 data_offset = 3;
+  uint32 data_length = 4;
+  optional uint32 ret_code = 5;
+  bytes service_ticket = 6;
+  // uint32 flag = 7;
+  bytes md5 = 8;
+  bytes file_md5 = 9;
+  optional uint32 cache_addr = 10;
+  uint32 query_times = 11;
+  uint32 update_cache_ip = 12;
+  optional uint32 cache_port = 13;
+}
+
+message GroupAvatarExtra {
+  uint32 type = 1; // 101
+  uint32 group_uin = 2;
+  GroupAvatarExtraField3 field3 = 3;
+  uint32 field5 = 5; // 3
+  uint32 field6 = 6; // 1
+}
+
+message GroupAvatarExtraField3 {
+  uint32 field1 = 1;
+}

@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Fetch Groups
+message OidbSvcTrpcTcp0xFE52 {
+  OidbSvcTrpcTcp0xFE52Config config = 1;
+}
+
+message OidbSvcTrpcTcp0xFE52Config {
+  OidbSvcTrpcTcp0xFE52Config1 config1 = 1;
+  OidbSvcTrpcTcp0xFE52Config2 config2 = 2;
+  OidbSvcTrpcTcp0xFE52Config3 config3 = 3;
+}
+
+message OidbSvcTrpcTcp0xFE52Config1 {
+  // all true
+  bool group_owner = 1;
+  bool field2 = 2;
+  bool member_max = 3;
+  bool member_count = 4;
+  bool group_name = 5;
+  bool field8 = 8;
+  bool field9 = 9;
+  bool field10 = 10;
+  bool field11 = 11;
+  bool field12 = 12;
+  bool field13 = 13;
+  bool field14 = 14;
+  bool field15 = 15;
+  bool field16 = 16;
+  bool field17 = 17;
+  bool field18 = 18;
+  bool question = 19;
+  bool field20 = 20;
+  bool field22 = 22;
+  bool field23 = 23;
+  bool field24 = 24;
+  bool field25 = 25;
+  bool field26 = 26;
+  bool field27 = 27;
+  bool field28 = 28;
+  bool field29 = 29;
+  bool field30 = 30;
+  bool field31 = 31;
+  bool field32 = 32;
+  bool field5001 = 5001;
+  bool field5002 = 5002;
+  bool field5003 = 5003;
+}
+
+message OidbSvcTrpcTcp0xFE52Config2 {
+  // all ture
+  bool field1 = 1;
+  bool field2 = 2;
+  bool field3 = 3;
+  bool field4 = 4;
+  bool field5 = 5;
+  bool field6 = 6;
+  bool field7 = 7;
+  bool field8 = 8;
+}
+
+message OidbSvcTrpcTcp0xFE52Config3 {
+  bool field5 = 5;
+  bool field6 = 6;
+}
+
+message OidbSvcTrpcTcp0xFE52Response {
+  repeated OidbSvcTrpcTcp0xFE52Group groups = 2;
+}
+
+message OidbSvcTrpcTcp0xFE52Group {
+  uint32 group_uin = 3;
+  OidbSvcTrpcTcp0xFE52GroupInfo info = 4;
+  ExtGroupInfo ext_info = 5;
+}
+
+message OidbSvcTrpcTcp0xFE52GroupInfo {
+  OidbSvcTrpcTcp0xFE52Member group_owner = 1;
+  uint32 create_time_stamp = 2;
+  uint32 member_max = 3;
+  uint32 member_count = 4;
+  string group_name = 5;
+}
+
+message OidbSvcTrpcTcp0xFE52Member {
+  string uid = 2;
+}
+
+message ExtGroupInfo {
+  uint32 last_msg_time_stamp = 1;
+  string group_memo = 3;
+  uint32 shutup_timestamp_me = 4;
+}

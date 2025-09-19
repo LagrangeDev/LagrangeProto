@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Rename Group Title
+message OidbSvcTrpcTcp0x89A15 {
+  uint32 group_uin = 1;
+  OidbSvcTrpcTcp0x89A15Body body = 2;
+}
+
+message OidbSvcTrpcTcp0x89A15Body {
+  string target_name = 3;
+}

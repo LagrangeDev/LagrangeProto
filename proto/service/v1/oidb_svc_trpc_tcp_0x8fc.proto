@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package service.v1;
+
+// Rename Group Member
+message OidbSvcTrpcTcp0x8FC {
+  uint32 group_uin = 1;
+  OidbSvcTrpcTcp0x8FCBody body = 3;
+}
+
+message OidbSvcTrpcTcp0x8FCBody {
+  string target_uid = 1;
+  string special_title = 5;
+  int32 special_title_expire_time = 6;
+  string uin_name = 7;
+  string target_name = 8;
+}
+
+message OidbSvcTrpcTcp0x8FC3Response {
+  uint32 group_uin = 1;
+}
