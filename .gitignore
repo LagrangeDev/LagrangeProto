@@ -6,6 +6,7 @@
 !proto/**/*.proto
 
 # repo
+!.github/**
 !buf.yaml
 !README.md
 !LICENSE

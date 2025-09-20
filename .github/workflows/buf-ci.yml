@@ -1,0 +1,24 @@
+name: Buf CI
+on:
+  push:
+    paths:
+      - '**.proto'
+      - '**/buf.yaml'
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+  delete:
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  buf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@v1
+        with:
+          # Publishing schema changes to the BSR requires a BSR authentication token.
+          token: ${{ secrets.BUF_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          push_create_visibility: public
+          push: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') }}
