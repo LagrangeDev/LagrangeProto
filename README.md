@@ -76,7 +76,7 @@ plugins:
     opt: paths=source_relative
 inputs:
   - git_repo: https://github.com/LagrangeDev/LagrangeProto.git
-    branch: v2
+    branch: master
     depth: 1
     subdir: proto
     paths:
