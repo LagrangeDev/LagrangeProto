@@ -7,7 +7,7 @@ message Tlv543 {
 }
 
 message Tlv543Layer1 {
-  Tlv543Layer2 layer2 = 11;
+  Tlv543Layer2 layer2 = 10;
 }
 
 message Tlv543Layer2 {
