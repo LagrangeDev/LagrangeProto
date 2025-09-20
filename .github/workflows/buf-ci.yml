@@ -1,9 +1,6 @@
 name: Buf CI
 on:
   push:
-    paths:
-      - '**.proto'
-      - '**/buf.yaml'
   pull_request:
     types: [opened, synchronize, reopened, labeled, unlabeled]
   delete:
