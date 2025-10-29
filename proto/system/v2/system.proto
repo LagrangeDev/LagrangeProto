@@ -1,4 +1,4 @@
-syntax = "proto3";
+syntax = "proto2";
 package system.v2;
 
 import "message/v2/message.proto";
