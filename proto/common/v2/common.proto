@@ -3,49 +3,49 @@ syntax = "proto3";
 package common.v2;
 
 message SsoSecureInfo {
-  bytes sec_sign = 1;
-  bytes sec_token = 2;
-  bytes sec_extra = 3;
+  optional bytes sec_sign = 1;
+  optional bytes sec_token = 2;
+  optional bytes sec_extra = 3;
 }
 
 message SsoReserveFields {
-  bytes client_ip_cookie = 8;
-  uint32 flag = 9;
-  uint32 env_id = 10;
-  uint32 locale_id = 11;
-  string qimei = 12;
-  bytes env = 13;
-  uint32 new_conn_flag = 14;
-  string trace_parent = 15;
-  string uid = 16;
-  uint32 imsi = 18;
-  uint32 network_type = 19;
-  uint32 ip_stack_type = 20;
-  uint32 msg_type = 21;
-  string trpc_rsp = 22;
+  optional bytes client_ip_cookie = 8;
+  optional uint32 flag = 9;
+  optional uint32 env_id = 10;
+  optional uint32 locale_id = 11;
+  optional string qimei = 12;
+  optional bytes env = 13;
+  optional uint32 new_conn_flag = 14;
+  optional string trace_parent = 15;
+  optional string uid = 16;
+  optional uint32 imsi = 18;
+  optional uint32 network_type = 19;
+  optional uint32 ip_stack_type = 20;
+  optional uint32 msg_type = 21;
+  optional string trpc_rsp = 22;
   map<string, string> trans_info = 23;
-  SsoSecureInfo sec_info = 24;
-  uint32 sec_sig_flag = 25;
-  uint32 nt_core_version = 26;
-  uint32 sso_route_cost = 27;
-  uint32 sso_ip_origin = 28;
-  bytes presure_token = 30;
+  optional SsoSecureInfo sec_info = 24;
+  optional uint32 sec_sig_flag = 25;
+  optional uint32 nt_core_version = 26;
+  optional uint32 sso_route_cost = 27;
+  optional uint32 sso_ip_origin = 28;
+  optional bytes presure_token = 30;
 }
 message IncPullRequest {
-  uint32 req_count = 2;
-  int64 time = 3;
-  uint32 local_seq = 4;
-  bytes cookie = 5;
-  int32 flag = 6;
-  uint32 proxy_seq = 7;
+  optional uint32 req_count = 2;
+  optional int64 time = 3;
+  optional uint32 local_seq = 4;
+  optional bytes cookie = 5;
+  optional int32 flag = 6;
+  optional uint32 proxy_seq = 7;
   repeated IncPullRequestBiz request_biz = 10001;
   repeated uint32 ext_sns_flag_key = 10002;
   repeated uint32 ext_private_id_list_key = 10003;
 }
 
 message IncPullRequestBiz {
-  int32 biz_type = 1;
-  IncPullRequestBizBusi biz_data = 2;
+  optional int32 biz_type = 1;
+  optional IncPullRequestBizBusi biz_data = 2;
 }
 
 message IncPullRequestBizBusi {
@@ -53,20 +53,20 @@ message IncPullRequestBizBusi {
 }
 
 message IncPullResponse {
-  uint32 seq = 1;
-  bytes cookie = 2;
-  bool is_end = 3;
-  int64 time = 6;
-  int64 self_uin = 7;
-  uint32 small_seq = 8;
+  optional uint32 seq = 1;
+  optional bytes cookie = 2;
+  optional bool is_end = 3;
+  optional int64 time = 6;
+  optional int64 self_uin = 7;
+  optional uint32 small_seq = 8;
   repeated IncPullResponseFriend friend_list = 101;
   repeated IncPullResponseCategory category = 102;
 }
 
 message IncPullResponseFriend {
-  string uid = 1;
-  int32 category_id = 2;
-  int64 uin = 3;
+  optional string uid = 1;
+  optional int32 category_id = 2;
+  optional int64 uin = 3;
   map<int32, IncPullResponseSubBiz> sub_biz = 10001;
 }
 
@@ -76,15 +76,15 @@ message IncPullResponseSubBiz {
 }
 
 message IncPullResponseCategory {
-  int32 category_id = 1;
-  string category_name = 2;
-  int32 category_member_count = 3;
-  int32 catogory_sort_id = 4;
+  optional int32 category_id = 1;
+  optional string category_name = 2;
+  optional int32 category_member_count = 3;
+  optional int32 catogory_sort_id = 4;
 }
 
 message KickNTReq {
-  int64 uin = 1;
-  bool is_same_device = 2;
-  string tips_info = 3;
-  string tips_title = 4;
+  optional int64 uin = 1;
+  optional bool is_same_device = 2;
+  optional string tips_info = 3;
+  optional string tips_title = 4;
 }

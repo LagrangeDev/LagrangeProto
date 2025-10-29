@@ -5,12 +5,12 @@ package service.v2;
 import "message/v2/message.proto";
 
 message Oidb {
-  uint32 command = 1;
-  uint32 service = 2;
-  uint32 result = 3;
-  bytes body = 4;
-  string message = 5;
-  uint32 reserved = 12;
+  optional uint32 command = 1;
+  optional uint32 service = 2;
+  optional uint32 result = 3;
+  optional bytes body = 4;
+  optional string message = 5;
+  optional uint32 reserved = 12;
 }
 
 message D102AReqBody {
@@ -19,322 +19,322 @@ message D102AReqBody {
 
 message D102ARspBody {
   map<string, string> ps_keys = 1;
-  int32 key_type = 2;
-  string client_key = 3;
-  uint32 expiration = 4;
+  optional int32 key_type = 2;
+  optional string client_key = 3;
+  optional uint32 expiration = 4;
 }
 
 message D1097ReqBody {
-  int64 group_code = 1;
+  optional int64 group_code = 1;
 }
 
 message D1097RspBody {}
 
 message DeleteFileReqBody {
-  uint64 uint64_group_code = 1;
-  uint32 uint32_app_id = 2;
-  uint32 uint32_bus_id = 3;
-  string str_parent_folder_id = 4;
-  string str_file_id = 5;
-  uint32 uint32_msgdb_seq = 6;
-  uint32 uint32_msg_rand = 7;
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_parent_folder_id = 4;
+  optional string str_file_id = 5;
+  optional uint32 uint32_msgdb_seq = 6;
+  optional uint32 uint32_msg_rand = 7;
 }
 
 message DeleteFileRspBody {
-  int64 int32_ret_code = 1;
-  string str_ret_msg = 2;
-  string str_client_wording = 3;
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
 }
 
 message DownloadFileReqBody {
-  uint64 uint64_group_code = 1;
-  uint32 uint32_app_id = 2;
-  uint32 uint32_bus_id = 3;
-  string str_file_id = 4;
-  bool bool_thumbnail_req = 5;
-  uint32 uint32_url_type = 6;
-  bool bool_preview_req = 7;
-  uint32 uint32_src = 8;
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional bool bool_thumbnail_req = 5;
+  optional uint32 uint32_url_type = 6;
+  optional bool bool_preview_req = 7;
+  optional uint32 uint32_src = 8;
 }
 
 message DownloadFileRspBody {
-  int64 int32_ret_code = 1;
-  string str_ret_msg = 2;
-  string str_client_wording = 3;
-  string str_download_ip = 4;
-  string str_download_dns = 5;
-  bytes bytes_download_url = 6;
-  bytes bytes_sha = 7;
-  bytes bytes_sha3 = 8;
-  bytes bytes_md5 = 9;
-  bytes bytes_cookie_val = 10;
-  string str_save_file_name = 11;
-  uint32 uint32_preview_port = 12;
-  string str_download_dns_https = 13;
-  uint32 uint32_preview_port_https = 14;
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional string str_download_ip = 4;
+  optional string str_download_dns = 5;
+  optional bytes bytes_download_url = 6;
+  optional bytes bytes_sha = 7;
+  optional bytes bytes_sha3 = 8;
+  optional bytes bytes_md5 = 9;
+  optional bytes bytes_cookie_val = 10;
+  optional string str_save_file_name = 11;
+  optional uint32 uint32_preview_port = 12;
+  optional string str_download_dns_https = 13;
+  optional uint32 uint32_preview_port_https = 14;
 }
 
 message MoveFileReqBody {
-  uint64 uint64_group_code = 1;
-  uint32 uint32_app_id = 2;
-  uint32 uint32_bus_id = 3;
-  string str_file_id = 4;
-  string str_parent_folder_id = 5;
-  string str_dest_folder_id = 6;
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional string str_parent_folder_id = 5;
+  optional string str_dest_folder_id = 6;
 }
 
 message MoveFileRspBody {
-  int64 int32_ret_code = 1;
-  string str_ret_msg = 2;
-  string str_client_wording = 3;
-  string str_parent_folder_id = 4;
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional string str_parent_folder_id = 4;
 }
 
 message RenameFileReqBody {
-  uint64 uint64_group_code = 1;
-  uint32 uint32_app_id = 2;
-  uint32 uint32_bus_id = 3;
-  string str_file_id = 4;
-  string str_parent_folder_id = 5;
-  string str_new_file_name = 6;
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional string str_parent_folder_id = 5;
+  optional string str_new_file_name = 6;
 }
 
 message RenameFileRspBody {
-  int64 int32_ret_code = 1;
-  string str_ret_msg = 2;
-  string str_client_wording = 3;
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
 }
 
 message D6D6ReqBody {
-  UploadFileReqBody upload_file_req = 1;
-  ResendReqBody resend_file_req = 2;
-  DownloadFileReqBody download_file_req = 3;
-  DeleteFileReqBody delete_file_req = 4;
-  RenameFileReqBody rename_file_req = 5;
-  MoveFileReqBody move_file_req = 6;
+  optional UploadFileReqBody upload_file_req = 1;
+  optional ResendReqBody resend_file_req = 2;
+  optional DownloadFileReqBody download_file_req = 3;
+  optional DeleteFileReqBody delete_file_req = 4;
+  optional RenameFileReqBody rename_file_req = 5;
+  optional MoveFileReqBody move_file_req = 6;
 }
 
 message ResendReqBody {
-  uint64 uint64_group_code = 1;
-  uint32 uint32_app_id = 2;
-  uint32 uint32_bus_id = 3;
-  string str_file_id = 4;
-  bytes bytes_sha = 5;
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional bytes bytes_sha = 5;
 }
 
 message ResendRspBody {
-  int64 int32_ret_code = 1;
-  string str_ret_msg = 2;
-  string str_client_wording = 3;
-  string str_upload_ip = 4;
-  bytes bytes_file_key = 5;
-  bytes bytes_check_key = 6;
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional string str_upload_ip = 4;
+  optional bytes bytes_file_key = 5;
+  optional bytes bytes_check_key = 6;
 }
 
 message D6D6RspBody {
-  UploadFileRspBody upload_file_rsp = 1;
-  ResendRspBody resend_file_rsp = 2;
-  DownloadFileRspBody download_file_rsp = 3;
-  DeleteFileRspBody delete_file_rsp = 4;
-  RenameFileRspBody rename_file_rsp = 5;
-  MoveFileRspBody move_file_rsp = 6;
+  optional UploadFileRspBody upload_file_rsp = 1;
+  optional ResendRspBody resend_file_rsp = 2;
+  optional DownloadFileRspBody download_file_rsp = 3;
+  optional DeleteFileRspBody delete_file_rsp = 4;
+  optional RenameFileRspBody rename_file_rsp = 5;
+  optional MoveFileRspBody move_file_rsp = 6;
 }
 
 message UploadFileReqBody {
-  uint64 uint64_group_code = 1;
-  uint32 uint32_app_id = 2;
-  uint32 uint32_bus_id = 3;
-  uint32 uint32_entrance = 4;
-  string str_parent_folder_id = 5;
-  string str_file_name = 6;
-  string str_local_path = 7;
-  uint64 uint64_file_size = 8;
-  bytes bytes_sha = 9;
-  bytes bytes_sha3 = 10;
-  bytes bytes_md5 = 11;
-  bool bool_support_multi_upload = 12;
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional uint32 uint32_entrance = 4;
+  optional string str_parent_folder_id = 5;
+  optional string str_file_name = 6;
+  optional string str_local_path = 7;
+  optional uint64 uint64_file_size = 8;
+  optional bytes bytes_sha = 9;
+  optional bytes bytes_sha3 = 10;
+  optional bytes bytes_md5 = 11;
+  optional bool bool_support_multi_upload = 12;
 }
 
 message UploadFileRspBody {
-  int64 int32_ret_code = 1;
-  string str_ret_msg = 2;
-  string str_client_wording = 3;
-  string str_upload_ip = 4;
-  string str_server_dns = 5;
-  uint32 uint32_bus_id = 6;
-  string str_file_id = 7;
-  bytes bytes_file_key = 8;
-  bytes bytes_check_key = 9;
-  bool bool_file_exist = 10;
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional string str_upload_ip = 4;
+  optional string str_server_dns = 5;
+  optional uint32 uint32_bus_id = 6;
+  optional string str_file_id = 7;
+  optional bytes bytes_file_key = 8;
+  optional bytes bytes_check_key = 9;
+  optional bool bool_file_exist = 10;
   repeated string str_upload_ip_lan_v4 = 12;
   repeated string str_upload_ip_lan_v6 = 13;
-  uint32 uint32_upload_port = 14;
+  optional uint32 uint32_upload_port = 14;
 }
 
 message CopyFromReqBody {
-  uint64 group_code = 1;
-  uint32 app_id = 2;
-  uint32 src_bus_id = 3;
-  bytes src_parent_folder = 4;
-  bytes src_file_path = 5;
-  uint32 dst_bus_id = 6;
-  bytes dst_folder_id = 7;
-  uint64 file_size = 8;
-  string local_path = 9;
-  string file_name = 10;
-  uint64 src_uin = 11;
-  bytes md5 = 12;
+  optional uint64 group_code = 1;
+  optional uint32 app_id = 2;
+  optional uint32 src_bus_id = 3;
+  optional bytes src_parent_folder = 4;
+  optional bytes src_file_path = 5;
+  optional uint32 dst_bus_id = 6;
+  optional bytes dst_folder_id = 7;
+  optional uint64 file_size = 8;
+  optional string local_path = 9;
+  optional string file_name = 10;
+  optional uint64 src_uin = 11;
+  optional bytes md5 = 12;
 }
 
 message CopyFromRspBody {
-  int64 ret_code = 1;
-  string ret_msg = 2;
-  string client_wording = 3;
-  bytes save_file_path = 4;
-  uint32 bus_id = 5;
+  optional int64 ret_code = 1;
+  optional string ret_msg = 2;
+  optional string client_wording = 3;
+  optional bytes save_file_path = 4;
+  optional uint32 bus_id = 5;
 }
 
 message CopyToReqBody {
-  uint64 group_code = 1;
-  uint32 app_id = 2;
-  uint32 src_bus_id = 3;
-  string src_file_id = 4;
-  uint32 dst_bus_id = 5;
-  uint64 dst_uin = 6;
-  string new_file_name = 40;
-  bytes tim_cloud_pdir_key = 100;
-  bytes tim_cloud_ppdir_key = 101;
-  bytes tim_cloud_extension_info = 102;
-  uint32 tim_file_exist_option = 103;
+  optional uint64 group_code = 1;
+  optional uint32 app_id = 2;
+  optional uint32 src_bus_id = 3;
+  optional string src_file_id = 4;
+  optional uint32 dst_bus_id = 5;
+  optional uint64 dst_uin = 6;
+  optional string new_file_name = 40;
+  optional bytes tim_cloud_pdir_key = 100;
+  optional bytes tim_cloud_ppdir_key = 101;
+  optional bytes tim_cloud_extension_info = 102;
+  optional uint32 tim_file_exist_option = 103;
 }
 
 message CopyToRspBody {
-  int64 ret_code = 1;
-  string ret_msg = 2;
-  string client_wording = 3;
-  string save_file_path = 4;
-  uint32 bus_id = 5;
-  string file_name = 40;
+  optional int64 ret_code = 1;
+  optional string ret_msg = 2;
+  optional string client_wording = 3;
+  optional string save_file_path = 4;
+  optional uint32 bus_id = 5;
+  optional string file_name = 40;
 }
 
 message FeedsReqBody {
-  uint64 group_code = 1;
-  uint32 app_id = 2;
+  optional uint64 group_code = 1;
+  optional uint32 app_id = 2;
   repeated message.v2.FeedsInfo feeds_info_list = 3;
-  uint32 multi_send_seq = 4;
+  optional uint32 multi_send_seq = 4;
 }
 
 message FeedsRspBody {
-  int64 ret_code = 1;
-  string ret_msg = 2;
-  string client_wording = 3;
+  optional int64 ret_code = 1;
+  optional string ret_msg = 2;
+  optional string client_wording = 3;
   repeated message.v2.FeedsResult feeds_result_list = 4;
-  uint32 svr_busy_wait_time = 5;
+  optional uint32 svr_busy_wait_time = 5;
 }
 
 message D6D9ReqBody {
-  TransFileReqBody trans_file_req = 1;
-  CopyFromReqBody copy_from_req = 2;
-  CopyToReqBody copy_to_req = 3;
-  FeedsReqBody feeds_info_req = 5;
+  optional TransFileReqBody trans_file_req = 1;
+  optional CopyFromReqBody copy_from_req = 2;
+  optional CopyToReqBody copy_to_req = 3;
+  optional FeedsReqBody feeds_info_req = 5;
 }
 
 message D6D9RspBody {
-  TransFileRspBody trans_file_rsp = 1;
-  CopyFromRspBody copy_from_rsp = 2;
-  CopyToRspBody copy_to_rsp = 3;
-  FeedsRspBody feeds_info_rsp = 5;
+  optional TransFileRspBody trans_file_rsp = 1;
+  optional CopyFromRspBody copy_from_rsp = 2;
+  optional CopyToRspBody copy_to_rsp = 3;
+  optional FeedsRspBody feeds_info_rsp = 5;
 }
 
 message TransFileReqBody {
-  uint64 group_code = 1;
-  uint32 app_id = 2;
-  uint32 bus_id = 3;
-  string file_id = 4;
+  optional uint64 group_code = 1;
+  optional uint32 app_id = 2;
+  optional uint32 bus_id = 3;
+  optional string file_id = 4;
 }
 
 message TransFileRspBody {
-  int64 ret_code = 1;
-  string ret_msg = 2;
-  string client_wording = 3;
-  uint32 save_bus_id = 4;
-  string save_file_path = 5;
+  optional int64 ret_code = 1;
+  optional string ret_msg = 2;
+  optional string client_wording = 3;
+  optional uint32 save_bus_id = 4;
+  optional string save_file_path = 5;
 }
 
 message D89AReqBody {
-  int64 group_code = 1;
-  GroupInfo group = 2;
-  int64 original_operator_uin = 3;
-  uint32 req_group_open_appid = 4;
+  optional int64 group_code = 1;
+  optional GroupInfo group = 2;
+  optional int64 original_operator_uin = 3;
+  optional uint32 req_group_open_appid = 4;
 }
 
 message D89ARspBody {
-  int64 group_code = 1;
-  string error_info = 2;
+  optional int64 group_code = 1;
+  optional string error_info = 2;
 }
 
 message GroupExInfoOnly {
-  uint32 tribe_id = 1;
-  uint32 money_for_add_group = 2;
+  optional uint32 tribe_id = 1;
+  optional uint32 money_for_add_group = 2;
 }
 
 message GroupGeoInfo {
-  uint32 city_id = 1;
-  uint64 longitude = 2;
-  uint64 latitude = 3;
-  string geo_content = 4;
-  uint64 poi_id = 5;
+  optional uint32 city_id = 1;
+  optional uint64 longitude = 2;
+  optional uint64 latitude = 3;
+  optional string geo_content = 4;
+  optional uint64 poi_id = 5;
 }
 
 message GroupNewGuidelinesInfo {
-  bool enabled = 1;
-  string content = 2;
+  optional bool enabled = 1;
+  optional string content = 2;
 }
 
 message GroupInfo {
-  uint32 group_ext_adm_num = 1;
-  uint32 flag = 2;
-  string group_name = 3;
-  string group_memo = 4;
-  string group_finger_memo = 5;
-  string group_aio_skin_url = 6;
-  string group_board_skin_url = 7;
-  string group_cover_skin_url = 8;
-  uint32 group_grade = 9;
-  uint32 active_member_num = 10;
-  uint32 certification_type = 11;
-  string certification_text = 12;
-  string group_rich_finger_memo = 13;
-  GroupNewGuidelinesInfo group_new_guidelines = 14;
-  uint32 group_face = 15;
-  uint32 add_option = 16;
-  uint32 shutup_time = 17;
-  uint32 group_type_flag = 18;
+  optional uint32 group_ext_adm_num = 1;
+  optional uint32 flag = 2;
+  optional string group_name = 3;
+  optional string group_memo = 4;
+  optional string group_finger_memo = 5;
+  optional string group_aio_skin_url = 6;
+  optional string group_board_skin_url = 7;
+  optional string group_cover_skin_url = 8;
+  optional uint32 group_grade = 9;
+  optional uint32 active_member_num = 10;
+  optional uint32 certification_type = 11;
+  optional string certification_text = 12;
+  optional string group_rich_finger_memo = 13;
+  optional GroupNewGuidelinesInfo group_new_guidelines = 14;
+  optional uint32 group_face = 15;
+  optional uint32 add_option = 16;
+  optional uint32 shutup_time = 17;
+  optional uint32 group_type_flag = 18;
   repeated string group_tag = 19;
-  GroupGeoInfo group_geo = 20;
-  uint32 group_class_ext = 21;
-  string group_class_text = 22;
-  uint32 app_privilege_flag = 23;
-  uint32 app_privilege_mask = 24;
-  GroupExInfoOnly group_ex_info = 25;
-  uint32 group_sec_level = 26;
-  uint32 group_sec_level_info = 27;
-  int64 subscription_uin = 28;
-  uint32 allow_member_invite = 29;
-  string group_question = 30;
-  string group_answer = 31;
-  uint32 group_flag_ext3 = 32;
-  uint32 group_flag_ext3_mask = 33;
-  uint32 group_open_appid = 34;
-  uint32 no_finger_open_flag = 35;
-  uint32 no_code_finger_open_flag = 36;
-  int64 root_id = 37;
-  uint32 msg_limit_frequency = 38;
-  uint32 hl_guild_appid = 39;
-  uint32 hl_guild_sub_type = 40;
-  uint32 hl_guild_orgid = 41;
-  uint32 group_flag_ext4 = 42;
-  uint32 group_flag_ext4_mask = 43;
+  optional GroupGeoInfo group_geo = 20;
+  optional uint32 group_class_ext = 21;
+  optional string group_class_text = 22;
+  optional uint32 app_privilege_flag = 23;
+  optional uint32 app_privilege_mask = 24;
+  optional GroupExInfoOnly group_ex_info = 25;
+  optional uint32 group_sec_level = 26;
+  optional uint32 group_sec_level_info = 27;
+  optional int64 subscription_uin = 28;
+  optional uint32 allow_member_invite = 29;
+  optional string group_question = 30;
+  optional string group_answer = 31;
+  optional uint32 group_flag_ext3 = 32;
+  optional uint32 group_flag_ext3_mask = 33;
+  optional uint32 group_open_appid = 34;
+  optional uint32 no_finger_open_flag = 35;
+  optional uint32 no_code_finger_open_flag = 36;
+  optional int64 root_id = 37;
+  optional uint32 msg_limit_frequency = 38;
+  optional uint32 hl_guild_appid = 39;
+  optional uint32 hl_guild_sub_type = 40;
+  optional uint32 hl_guild_orgid = 41;
+  optional uint32 group_flag_ext4 = 42;
+  optional uint32 group_flag_ext4_mask = 43;
 }
 
 enum CardType {
@@ -344,64 +344,64 @@ enum CardType {
 }
 
 message D8FCReqBody {
-  int64 group_code = 1;
-  uint32 show_flag = 2;
+  optional int64 group_code = 1;
+  optional uint32 show_flag = 2;
   repeated MemberInfo mem_level_info = 3;
   repeated LevelName level_names = 4;
-  uint32 update_time = 5;
-  uint32 office_mode = 6;
-  uint32 group_open_appid = 7;
-  ClientInfo client = 8;
-  bytes auth_key = 9;
+  optional uint32 update_time = 5;
+  optional uint32 office_mode = 6;
+  optional uint32 group_open_appid = 7;
+  optional ClientInfo client = 8;
+  optional bytes auth_key = 9;
 }
 
 message D8FCRspBody {
-  int64 group_code = 1;
-  string err_info = 2;
+  optional int64 group_code = 1;
+  optional string err_info = 2;
 }
 
 message ClientInfo {
-  uint32 implat = 1;
-  string client_ver = 2;
+  optional uint32 implat = 1;
+  optional string client_ver = 2;
 }
 
 message LevelName {
-  uint32 level = 1;
-  string name = 2;
+  optional uint32 level = 1;
+  optional string name = 2;
 }
 
 message MemberInfo {
-  string uid = 1;
-  uint32 point = 2;
-  uint32 active_key = 3;
-  uint32 level = 4;
-  bytes special_title = 5;
-  uint32 special_title_expire_time = 6;
-  bytes uin_name = 7;
-  bytes member_card_name = 8;
-  bytes phone = 9;
-  bytes email = 10;
-  bytes remark = 11;
-  uint32 gender = 12;
-  bytes job = 13;
-  uint32 tribe_level = 14;
-  uint32 tribe_point = 15;
+  optional string uid = 1;
+  optional uint32 point = 2;
+  optional uint32 active_key = 3;
+  optional uint32 level = 4;
+  optional bytes special_title = 5;
+  optional uint32 special_title_expire_time = 6;
+  optional bytes uin_name = 7;
+  optional bytes member_card_name = 8;
+  optional bytes phone = 9;
+  optional bytes email = 10;
+  optional bytes remark = 11;
+  optional uint32 gender = 12;
+  optional bytes job = 13;
+  optional uint32 tribe_level = 14;
+  optional uint32 tribe_point = 15;
   repeated CardNameElem rich_card_name = 16;
-  bytes comm_rich_card_name = 17;
+  optional bytes comm_rich_card_name = 17;
 }
 
 message CardNameElem {
-  CardType type = 1;
-  bytes value = 2;
+  optional CardType type = 1;
+  optional bytes value = 2;
 }
 
 message DED3ReqBody {
-  int64 to_uin = 1;
-  int64 group_code = 2;
-  uint32 msg_seq = 3;
-  uint32 msg_rand = 4;
-  int64 aio_uin = 5;
-  uint32 nudge_type = 6;
+  optional int64 to_uin = 1;
+  optional int64 group_code = 2;
+  optional uint32 msg_seq = 3;
+  optional uint32 msg_rand = 4;
+  optional int64 aio_uin = 5;
+  optional uint32 nudge_type = 6;
 }
 
 message DED3RspBody {}

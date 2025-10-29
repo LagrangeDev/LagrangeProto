@@ -3,64 +3,64 @@ syntax = "proto3";
 package service.highway.v2;
 
 message ReqDataHighwayHead {
-  DataHighwayHead msg_base_head = 1;
-  SegHead msg_seg_head = 2;
-  bytes bytes_req_extend_info = 3;
-  uint64 timestamp = 4;
-  LoginSigHead msg_login_sig_head = 5;
+  optional DataHighwayHead msg_base_head = 1;
+  optional SegHead msg_seg_head = 2;
+  optional bytes bytes_req_extend_info = 3;
+  optional uint64 timestamp = 4;
+  optional LoginSigHead msg_login_sig_head = 5;
 }
 
 message RespDataHighwayHead {
-  DataHighwayHead msg_base_head = 1;
-  SegHead msg_seg_head = 2;
-  uint32 error_code = 3;
-  uint32 allow_retry = 4;
-  uint32 cache_cost = 5;
-  uint32 ht_cost = 6;
-  bytes bytes_rsp_extend_info = 7;
-  uint64 timestamp = 8;
-  uint64 range = 9;
-  uint32 is_reset = 10;
+  optional DataHighwayHead msg_base_head = 1;
+  optional SegHead msg_seg_head = 2;
+  optional uint32 error_code = 3;
+  optional uint32 allow_retry = 4;
+  optional uint32 cache_cost = 5;
+  optional uint32 ht_cost = 6;
+  optional bytes bytes_rsp_extend_info = 7;
+  optional uint64 timestamp = 8;
+  optional uint64 range = 9;
+  optional uint32 is_reset = 10;
 }
 
 message DataHighwayHead {
-  uint32 version = 1;
-  string uin = 2;
-  string command = 3;
-  uint32 seq = 4;
-  uint32 retry_times = 5;
-  uint32 app_id = 6;
-  uint32 data_flag = 7;
-  uint32 command_id = 8;
-  bytes build_ver = 9;
+  optional uint32 version = 1;
+  optional string uin = 2;
+  optional string command = 3;
+  optional uint32 seq = 4;
+  optional uint32 retry_times = 5;
+  optional uint32 app_id = 6;
+  optional uint32 data_flag = 7;
+  optional uint32 command_id = 8;
+  optional bytes build_ver = 9;
 }
 
 message LoginSigHead {
-  uint32 uint32_login_sig_type = 1;
-  bytes bytes_login_sig = 2;
-  uint32 app_id = 3;
+  optional uint32 uint32_login_sig_type = 1;
+  optional bytes bytes_login_sig = 2;
+  optional uint32 app_id = 3;
 }
 
 message SegHead {
-  uint32 service_id = 1;
-  uint64 filesize = 2;
-  uint64 data_offset = 3;
-  uint32 data_length = 4;
-  uint32 ret_code = 5;
-  bytes service_ticket = 6;
-  bytes md5 = 8;
-  bytes file_md5 = 9;
-  uint32 cache_addr = 10;
-  uint32 cache_port = 13;
+  optional uint32 service_id = 1;
+  optional uint64 filesize = 2;
+  optional uint64 data_offset = 3;
+  optional uint32 data_length = 4;
+  optional uint32 ret_code = 5;
+  optional bytes service_ticket = 6;
+  optional bytes md5 = 8;
+  optional bytes file_md5 = 9;
+  optional uint32 cache_addr = 10;
+  optional uint32 cache_port = 13;
 }
 
 message NTV2RichMediaHighwayExt {
-  string file_uuid = 1;
-  string u_key = 2;
-  NTHighwayNetwork network = 5;
+  optional string file_uuid = 1;
+  optional string u_key = 2;
+  optional NTHighwayNetwork network = 5;
   repeated MsgInfoBody msg_info_body = 6;
-  uint32 block_size = 10;
-  NTHighwayHash hash = 11;
+  optional uint32 block_size = 10;
+  optional NTHighwayHash hash = 11;
 }
 
 message NTHighwayHash {
@@ -72,103 +72,103 @@ message NTHighwayNetwork {
 }
 
 message NTHighwayIPv4 {
-  NTHighwayDomain domain = 1;
-  uint32 port = 2;
+  optional NTHighwayDomain domain = 1;
+  optional uint32 port = 2;
 }
 
 message NTHighwayDomain {
-  bool is_enable = 1;
-  string ip = 2;
+  optional bool is_enable = 1;
+  optional string ip = 2;
 }
 
 message NTV2RichMediaReq {
-  MultiMediaReqHead req_head = 1;
-  UploadReq upload = 2;
-  DownloadReq download = 3;
-  DownloadRKeyReq download_r_key = 4;
-  DeleteReq delete = 5;
-  UploadCompletedReq upload_completed = 6;
-  MsgInfoAuthReq msg_info_auth = 7;
-  UploadKeyRenewalReq upload_key_renewal = 8;
-  DownloadSafeReq download_safe = 9;
-  bytes extension = 99;
+  optional MultiMediaReqHead req_head = 1;
+  optional UploadReq upload = 2;
+  optional DownloadReq download = 3;
+  optional DownloadRKeyReq download_r_key = 4;
+  optional DeleteReq delete = 5;
+  optional UploadCompletedReq upload_completed = 6;
+  optional MsgInfoAuthReq msg_info_auth = 7;
+  optional UploadKeyRenewalReq upload_key_renewal = 8;
+  optional DownloadSafeReq download_safe = 9;
+  optional bytes extension = 99;
 }
 
 message MultiMediaReqHead {
-  CommonHead common = 1;
-  SceneInfo scene = 2;
-  ClientMeta client = 3;
+  optional CommonHead common = 1;
+  optional SceneInfo scene = 2;
+  optional ClientMeta client = 3;
 }
 
 message CommonHead {
-  uint32 request_id = 1;
-  uint32 command = 2;
+  optional uint32 request_id = 1;
+  optional uint32 command = 2;
 }
 
 message SceneInfo {
-  uint32 request_type = 101;
-  uint32 business_type = 102;
-  uint32 scene_type = 200;
-  C2CUserInfo c2_c = 201;
-  GroupInfo group = 202;
+  optional uint32 request_type = 101;
+  optional uint32 business_type = 102;
+  optional uint32 scene_type = 200;
+  optional C2CUserInfo c2_c = 201;
+  optional GroupInfo group = 202;
 }
 
 message C2CUserInfo {
-  uint32 account_type = 1;
-  string target_uid = 2;
+  optional uint32 account_type = 1;
+  optional string target_uid = 2;
 }
 
 message GroupInfo {
-  int64 group_uin = 1;
+  optional int64 group_uin = 1;
 }
 
 message ClientMeta {
-  uint32 agent_type = 1;
+  optional uint32 agent_type = 1;
 }
 
 message DownloadReq {
-  IndexNode node = 1;
-  DownloadExt download = 2;
+  optional IndexNode node = 1;
+  optional DownloadExt download = 2;
 }
 
 message IndexNode {
-  FileInfo info = 1;
-  string file_uuid = 2;
-  uint32 store_id = 3;
-  uint32 upload_time = 4;
-  uint32 ttl = 5;
-  uint32 sub_type = 6;
+  optional FileInfo info = 1;
+  optional string file_uuid = 2;
+  optional uint32 store_id = 3;
+  optional uint32 upload_time = 4;
+  optional uint32 ttl = 5;
+  optional uint32 sub_type = 6;
 }
 
 message FileInfo {
-  uint32 file_size = 1;
-  string file_hash = 2;
-  string file_sha1 = 3;
-  string file_name = 4;
-  FileType type = 5;
-  uint32 width = 6;
-  uint32 height = 7;
-  uint32 time = 8;
-  uint32 original = 9;
+  optional uint32 file_size = 1;
+  optional string file_hash = 2;
+  optional string file_sha1 = 3;
+  optional string file_name = 4;
+  optional FileType type = 5;
+  optional uint32 width = 6;
+  optional uint32 height = 7;
+  optional uint32 time = 8;
+  optional uint32 original = 9;
 }
 
 message FileType {
-  uint32 type = 1;
-  uint32 pic_format = 2;
-  uint32 video_format = 3;
-  uint32 voice_format = 4;
+  optional uint32 type = 1;
+  optional uint32 pic_format = 2;
+  optional uint32 video_format = 3;
+  optional uint32 voice_format = 4;
 }
 
 message DownloadExt {
-  PicDownloadExt pic = 1;
-  VideoDownloadExt video = 2;
-  PttDownloadExt ptt = 3;
+  optional PicDownloadExt pic = 1;
+  optional VideoDownloadExt video = 2;
+  optional PttDownloadExt ptt = 3;
 }
 
 message VideoDownloadExt {
-  uint32 busi_type = 1;
-  uint32 scene_type = 2;
-  uint32 sub_busi_type = 3;
+  optional uint32 busi_type = 1;
+  optional uint32 scene_type = 2;
+  optional uint32 sub_busi_type = 3;
 }
 
 message PicDownloadExt {}
@@ -176,40 +176,40 @@ message PicDownloadExt {}
 message PttDownloadExt {}
 
 message PicUrlExtInfo {
-  string original_parameter = 1;
-  string big_parameter = 2;
-  string thumb_parameter = 3;
+  optional string original_parameter = 1;
+  optional string big_parameter = 2;
+  optional string thumb_parameter = 3;
 }
 
 message VideoExtInfo {
-  uint32 video_codec_format = 1;
+  optional uint32 video_codec_format = 1;
 }
 
 message MsgInfo {
   repeated MsgInfoBody msg_info_body = 1;
-  ExtBizInfo ext_biz_info = 2;
+  optional ExtBizInfo ext_biz_info = 2;
 }
 
 message MsgInfoBody {
-  IndexNode index = 1;
-  PictureInfo picture = 2;
-  VideoInfo video = 3;
-  AudioInfo audio = 4;
-  bool file_exist = 5;
-  HashSum hash_sum = 6;
+  optional IndexNode index = 1;
+  optional PictureInfo picture = 2;
+  optional VideoInfo video = 3;
+  optional AudioInfo audio = 4;
+  optional bool file_exist = 5;
+  optional HashSum hash_sum = 6;
 }
 
 message HashSum {
-  C2cSource bytes_pb_reserve_c2c = 201;
-  TroopSource troop_source = 202;
+  optional C2cSource bytes_pb_reserve_c2c = 201;
+  optional TroopSource troop_source = 202;
 }
 
 message C2cSource {
-  string friend_uid = 2;
+  optional string friend_uid = 2;
 }
 
 message TroopSource {
-  uint32 group_uin = 1;
+  optional uint32 group_uin = 1;
 }
 
 message VideoInfo {}
@@ -217,73 +217,73 @@ message VideoInfo {}
 message AudioInfo {}
 
 message PictureInfo {
-  string url_path = 1;
-  PicUrlExtInfo ext = 2;
-  string domain = 3;
+  optional string url_path = 1;
+  optional PicUrlExtInfo ext = 2;
+  optional string domain = 3;
 }
 
 message ExtBizInfo {
-  PicExtBizInfo pic = 1;
-  VideoExtBizInfo video = 2;
-  PttExtBizInfo ptt = 3;
-  uint32 busi_type = 10;
+  optional PicExtBizInfo pic = 1;
+  optional VideoExtBizInfo video = 2;
+  optional PttExtBizInfo ptt = 3;
+  optional uint32 busi_type = 10;
 }
 
 message PttExtBizInfo {
-  uint64 src_uin = 1;
-  uint32 ptt_scene = 2;
-  uint32 ptt_type = 3;
-  uint32 change_voice = 4;
-  bytes waveform = 5;
-  uint32 auto_convert_text = 6;
-  bytes bytes_reserve = 11;
-  bytes bytes_pb_reserve = 12;
-  bytes bytes_general_flags = 13;
+  optional uint64 src_uin = 1;
+  optional uint32 ptt_scene = 2;
+  optional uint32 ptt_type = 3;
+  optional uint32 change_voice = 4;
+  optional bytes waveform = 5;
+  optional uint32 auto_convert_text = 6;
+  optional bytes bytes_reserve = 11;
+  optional bytes bytes_pb_reserve = 12;
+  optional bytes bytes_general_flags = 13;
 }
 
 message VideoExtBizInfo {
-  uint32 from_scene = 1;
-  uint32 to_scene = 2;
-  bytes bytes_pb_reserve = 3;
+  optional uint32 from_scene = 1;
+  optional uint32 to_scene = 2;
+  optional bytes bytes_pb_reserve = 3;
 }
 
 message PicExtBizInfo {
-  uint32 biz_type = 1;
-  string text_summary = 2;
-  bytes bytes_pb_reserve_c2c = 11;
-  bytes bytes_pb_reserve_troop = 12;
-  uint32 from_scene = 1001;
-  uint32 to_scene = 1002;
-  uint32 old_file_id = 1003;
+  optional uint32 biz_type = 1;
+  optional string text_summary = 2;
+  optional bytes bytes_pb_reserve_c2c = 11;
+  optional bytes bytes_pb_reserve_troop = 12;
+  optional uint32 from_scene = 1001;
+  optional uint32 to_scene = 1002;
+  optional uint32 old_file_id = 1003;
 }
 
 message DownloadSafeReq {
-  IndexNode index = 1;
+  optional IndexNode index = 1;
 }
 
 message UploadKeyRenewalReq {
-  string old_u_key = 1;
-  uint32 sub_type = 2;
+  optional string old_u_key = 1;
+  optional uint32 sub_type = 2;
 }
 
 message MsgInfoAuthReq {
-  bytes msg = 1;
-  uint64 auth_time = 2;
+  optional bytes msg = 1;
+  optional uint64 auth_time = 2;
 }
 
 message UploadCompletedReq {
-  bool srv_send_msg = 1;
-  uint64 client_random_id = 2;
-  MsgInfo msg_info = 3;
-  uint32 client_seq = 4;
+  optional bool srv_send_msg = 1;
+  optional uint64 client_random_id = 2;
+  optional MsgInfo msg_info = 3;
+  optional uint32 client_seq = 4;
 }
 
 message DeleteReq {
   repeated IndexNode index = 1;
-  bool need_recall_msg = 2;
-  uint64 msg_seq = 3;
-  uint64 msg_random = 4;
-  uint64 msg_time = 5;
+  optional bool need_recall_msg = 2;
+  optional uint64 msg_seq = 3;
+  optional uint64 msg_random = 4;
+  optional uint64 msg_time = 5;
 }
 
 message DownloadRKeyReq {
@@ -291,95 +291,95 @@ message DownloadRKeyReq {
 }
 
 message UploadInfo {
-  FileInfo file_info = 1;
-  uint32 sub_file_type = 2;
+  optional FileInfo file_info = 1;
+  optional uint32 sub_file_type = 2;
 }
 
 message UploadReq {
   repeated UploadInfo upload_info = 1;
-  bool try_fast_upload_completed = 2;
-  bool srv_send_msg = 3;
-  uint64 client_random_id = 4;
-  uint32 compat_q_msg_scene_type = 5;
-  ExtBizInfo ext_biz_info = 6;
-  uint32 client_seq = 7;
-  bool no_need_compat_msg = 8;
+  optional bool try_fast_upload_completed = 2;
+  optional bool srv_send_msg = 3;
+  optional uint64 client_random_id = 4;
+  optional uint32 compat_q_msg_scene_type = 5;
+  optional ExtBizInfo ext_biz_info = 6;
+  optional uint32 client_seq = 7;
+  optional bool no_need_compat_msg = 8;
 }
 
 message NTV2RichMediaResp {
-  MultiMediaRespHead resp_head = 1;
-  UploadResp upload = 2;
-  DownloadResp download = 3;
-  DownloadRKeyResp download_r_key = 4;
-  DeleteResp delete = 5;
-  UploadCompletedResp upload_completed = 6;
-  MsgInfoAuthResp msg_info_auth = 7;
-  UploadKeyRenewalResp upload_key_renewal = 8;
-  DownloadSafeResp download_safe = 9;
-  bytes extension = 99;
+  optional MultiMediaRespHead resp_head = 1;
+  optional UploadResp upload = 2;
+  optional DownloadResp download = 3;
+  optional DownloadRKeyResp download_r_key = 4;
+  optional DeleteResp delete = 5;
+  optional UploadCompletedResp upload_completed = 6;
+  optional MsgInfoAuthResp msg_info_auth = 7;
+  optional UploadKeyRenewalResp upload_key_renewal = 8;
+  optional DownloadSafeResp download_safe = 9;
+  optional bytes extension = 99;
 }
 
 message MultiMediaRespHead {
-  CommonHead common = 1;
-  uint32 ret_code = 2;
-  string message = 3;
+  optional CommonHead common = 1;
+  optional uint32 ret_code = 2;
+  optional string message = 3;
 }
 
 message DownloadResp {
-  string r_key_param = 1;
-  uint32 r_key_ttl_second = 2;
-  DownloadInfo info = 3;
-  uint32 r_key_create_time = 4;
+  optional string r_key_param = 1;
+  optional uint32 r_key_ttl_second = 2;
+  optional DownloadInfo info = 3;
+  optional uint32 r_key_create_time = 4;
 }
 
 message DownloadInfo {
-  string domain = 1;
-  string url_path = 2;
-  uint32 https_port = 3;
+  optional string domain = 1;
+  optional string url_path = 2;
+  optional uint32 https_port = 3;
   repeated IPv4 i_pv4s = 4;
   repeated IPv6 i_pv6s = 5;
-  PicUrlExtInfo pic_url_ext_info = 6;
-  VideoExtInfo video_ext_info = 7;
+  optional PicUrlExtInfo pic_url_ext_info = 6;
+  optional VideoExtInfo video_ext_info = 7;
 }
 
 message IPv4 {
-  uint32 out_ip = 1;
-  uint32 out_port = 2;
-  uint32 in_ip = 3;
-  uint32 in_port = 4;
-  uint32 ip_type = 5;
+  optional uint32 out_ip = 1;
+  optional uint32 out_port = 2;
+  optional uint32 in_ip = 3;
+  optional uint32 in_port = 4;
+  optional uint32 ip_type = 5;
 }
 
 message IPv6 {
-  bytes out_ip = 1;
-  uint32 out_port = 2;
-  bytes in_ip = 3;
-  uint32 in_port = 4;
-  uint32 ip_type = 5;
+  optional bytes out_ip = 1;
+  optional uint32 out_port = 2;
+  optional bytes in_ip = 3;
+  optional uint32 in_port = 4;
+  optional uint32 ip_type = 5;
 }
 
 message UploadResp {
-  string u_key = 1;
-  uint32 u_key_ttl_second = 2;
+  optional string u_key = 1;
+  optional uint32 u_key_ttl_second = 2;
   repeated IPv4 i_pv4s = 3;
   repeated IPv6 i_pv6s = 4;
-  uint64 msg_seq = 5;
-  MsgInfo msg_info = 6;
+  optional uint64 msg_seq = 5;
+  optional MsgInfo msg_info = 6;
   repeated RichMediaStorageTransInfo ext = 7;
-  bytes compat_q_msg = 8;
+  optional bytes compat_q_msg = 8;
   repeated SubFileInfo sub_file_infos = 10;
 }
 
 message RichMediaStorageTransInfo {
-  uint32 sub_type = 1;
-  uint32 ext_type = 2;
-  bytes ext_value = 3;
+  optional uint32 sub_type = 1;
+  optional uint32 ext_type = 2;
+  optional bytes ext_value = 3;
 }
 
 message SubFileInfo {
-  uint32 sub_type = 1;
-  string u_key = 2;
-  uint32 u_key_ttl_second = 3;
+  optional uint32 sub_type = 1;
+  optional string u_key = 2;
+  optional uint32 u_key_ttl_second = 3;
   repeated IPv4 i_pv4s = 4;
   repeated IPv6 i_pv6s = 5;
 }
@@ -387,18 +387,18 @@ message SubFileInfo {
 message DownloadSafeResp {}
 
 message UploadKeyRenewalResp {
-  string ukey = 1;
-  uint64 ukey_ttl_sec = 2;
+  optional string ukey = 1;
+  optional uint64 ukey_ttl_sec = 2;
 }
 
 message MsgInfoAuthResp {
-  uint32 auth_code = 1;
-  bytes msg = 2;
-  uint64 result_time = 3;
+  optional uint32 auth_code = 1;
+  optional bytes msg = 2;
+  optional uint64 result_time = 3;
 }
 
 message UploadCompletedResp {
-  uint64 msg_seq = 1;
+  optional uint64 msg_seq = 1;
 }
 
 message DeleteResp {}
@@ -408,117 +408,117 @@ message DownloadRKeyResp {
 }
 
 message RKeyInfo {
-  string rkey = 1;
-  uint64 rkey_ttl_sec = 2;
-  uint32 store_id = 3;
-  uint32 rkey_create_time = 4;
-  uint32 type = 5;
+  optional string rkey = 1;
+  optional uint64 rkey_ttl_sec = 2;
+  optional uint32 store_id = 3;
+  optional uint32 rkey_create_time = 4;
+  optional uint32 type = 5;
 }
 
 message OfflineFileUploadRequest {
-  uint32 command = 1;
-  int32 seq = 2;
-  ApplyUploadReqV3 upload = 19;
-  int32 business_id = 101;
-  int32 client_type = 102;
-  int32 flag_support_media_platform = 200;
+  optional uint32 command = 1;
+  optional int32 seq = 2;
+  optional ApplyUploadReqV3 upload = 19;
+  optional int32 business_id = 101;
+  optional int32 client_type = 102;
+  optional int32 flag_support_media_platform = 200;
 }
 
 message ApplyUploadReqV3 {
-  string sender_uid = 10;
-  string receiver_uid = 20;
-  uint32 file_size = 30;
-  string file_name = 40;
-  bytes md510_m_check_sum = 50;
-  bytes sha1_check_sum = 60;
-  string local_path = 70;
-  bytes md5_check_sum = 110;
-  bytes sha3_check_sum = 120;
+  optional string sender_uid = 10;
+  optional string receiver_uid = 20;
+  optional uint32 file_size = 30;
+  optional string file_name = 40;
+  optional bytes md510_m_check_sum = 50;
+  optional bytes sha1_check_sum = 60;
+  optional string local_path = 70;
+  optional bytes md5_check_sum = 110;
+  optional bytes sha3_check_sum = 120;
 }
 
 message OfflineFileUploadResponse {
-  uint32 command = 1;
-  int32 seq = 2;
-  ApplyUploadRespV3 upload = 19;
-  int32 business_id = 101;
-  int32 client_type = 102;
-  int32 flag_support_media_platform = 200;
+  optional uint32 command = 1;
+  optional int32 seq = 2;
+  optional ApplyUploadRespV3 upload = 19;
+  optional int32 business_id = 101;
+  optional int32 client_type = 102;
+  optional int32 flag_support_media_platform = 200;
 }
 
 message ApplyUploadRespV3 {
-  int32 ret_code = 10;
-  string ret_msg = 20;
-  int64 total_space = 30;
-  int64 used_space = 40;
-  int64 uploaded_size = 50;
-  string upload_ip = 60;
-  string upload_domain = 70;
-  uint32 upload_port = 80;
-  string uuid = 90;
-  bytes upload_key = 100;
-  bool bool_file_exist = 110;
-  int32 pack_size = 120;
+  optional int32 ret_code = 10;
+  optional string ret_msg = 20;
+  optional int64 total_space = 30;
+  optional int64 used_space = 40;
+  optional int64 uploaded_size = 50;
+  optional string upload_ip = 60;
+  optional string upload_domain = 70;
+  optional uint32 upload_port = 80;
+  optional string uuid = 90;
+  optional bytes upload_key = 100;
+  optional bool bool_file_exist = 110;
+  optional int32 pack_size = 120;
   repeated string upload_ip_list = 130;
-  int32 upload_https_port = 140;
-  string upload_https_domain = 150;
-  string upload_dns = 160;
-  string upload_lanip = 170;
-  string file_id_crc = 200;
+  optional int32 upload_https_port = 140;
+  optional string upload_https_domain = 150;
+  optional string upload_dns = 160;
+  optional string upload_lanip = 170;
+  optional string file_id_crc = 200;
   repeated Addr rtp_media_platform_upload_address = 210;
-  bytes media_platform_upload_key = 220;
+  optional bytes media_platform_upload_key = 220;
 }
 
 message Addr {
-  uint32 out_ip = 1;
-  uint32 out_port = 2;
-  uint32 inner_ip = 3;
-  uint32 inner_port = 4;
-  uint32 ip_type = 5;
+  optional uint32 out_ip = 1;
+  optional uint32 out_port = 2;
+  optional uint32 inner_ip = 3;
+  optional uint32 inner_port = 4;
+  optional uint32 ip_type = 5;
 }
 
 message FileUploadExt {
-  int32 unknown1 = 1;
-  int32 unknown2 = 2;
-  int32 unknown3 = 3;
-  FileUploadEntry entry = 100;
-  int32 unknown200 = 200;
+  optional int32 unknown1 = 1;
+  optional int32 unknown2 = 2;
+  optional int32 unknown3 = 3;
+  optional FileUploadEntry entry = 100;
+  optional int32 unknown200 = 200;
 }
 
 message FileUploadEntry {
-  ExcitingBusiInfo busi_buff = 100;
-  ExcitingFileEntry file_entry = 200;
-  ExcitingClientInfo client_info = 300;
-  ExcitingFileNameInfo file_name_info = 400;
-  ExcitingHostConfig host = 500;
+  optional ExcitingBusiInfo busi_buff = 100;
+  optional ExcitingFileEntry file_entry = 200;
+  optional ExcitingClientInfo client_info = 300;
+  optional ExcitingFileNameInfo file_name_info = 400;
+  optional ExcitingHostConfig host = 500;
 }
 
 message ExcitingBusiInfo {
-  int32 bus_id = 1;
-  int64 sender_uin = 100;
-  int64 receiver_uin = 200;
-  int64 group_code = 400;
+  optional int32 bus_id = 1;
+  optional int64 sender_uin = 100;
+  optional int64 receiver_uin = 200;
+  optional int64 group_code = 400;
 }
 
 message ExcitingFileEntry {
-  int64 file_size = 100;
-  bytes md5 = 200;
-  bytes check_key = 300;
-  bytes md510_m = 400;
-  bytes sha3 = 500;
-  string file_id = 600;
-  bytes upload_key = 700;
+  optional int64 file_size = 100;
+  optional bytes md5 = 200;
+  optional bytes check_key = 300;
+  optional bytes md510_m = 400;
+  optional bytes sha3 = 500;
+  optional string file_id = 600;
+  optional bytes upload_key = 700;
 }
 
 message ExcitingClientInfo {
-  int32 client_type = 100;
-  string app_id = 200;
-  int32 terminal_type = 300;
-  string client_ver = 400;
-  int32 unknown = 600;
+  optional int32 client_type = 100;
+  optional string app_id = 200;
+  optional int32 terminal_type = 300;
+  optional string client_ver = 400;
+  optional int32 unknown = 600;
 }
 
 message ExcitingFileNameInfo {
-  string file_name = 100;
+  optional string file_name = 100;
 }
 
 message ExcitingHostConfig {
@@ -526,11 +526,11 @@ message ExcitingHostConfig {
 }
 
 message ExcitingHostInfo {
-  ExcitingUrlInfo url = 1;
-  uint32 port = 2;
+  optional ExcitingUrlInfo url = 1;
+  optional uint32 port = 2;
 }
 
 message ExcitingUrlInfo {
-  int32 unknown = 1;
-  string host = 2;
+  optional int32 unknown = 1;
+  optional string host = 2;
 }
