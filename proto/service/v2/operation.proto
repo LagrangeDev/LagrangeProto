@@ -274,7 +274,7 @@ message SrvAddrs {
 
 message IpAddr {
   optional uint32 type = 1;
-  optional sint32 ip = 2;
+  optional fixed32 ip = 2;
   optional uint32 port = 3;
   optional uint32 area = 4;
 }
