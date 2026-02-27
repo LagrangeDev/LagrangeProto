@@ -96,7 +96,7 @@ message NTHighwayHash {
 }
 
 message NTHighwayNetwork {
-  repeated NTHighwayIPv4 i_pv4s = 1;
+  repeated NTHighwayIPv4 ipv4s = 1;
 }
 
 message NTHighwayIPv4 {
