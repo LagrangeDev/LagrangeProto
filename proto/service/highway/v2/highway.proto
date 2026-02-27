@@ -68,7 +68,7 @@ message NTHighwayHash {
 }
 
 message NTHighwayNetwork {
-  repeated NTHighwayIPv4 i_pv4s = 1;
+  repeated NTHighwayIPv4 ipv4s = 1;
 }
 
 message NTHighwayIPv4 {
@@ -336,8 +336,8 @@ message DownloadInfo {
   optional string domain = 1;
   optional string url_path = 2;
   optional uint32 https_port = 3;
-  repeated IPv4 i_pv4s = 4;
-  repeated IPv6 i_pv6s = 5;
+  repeated IPv4 ipv4s = 4;
+  repeated IPv6 ipv6s = 5;
   optional PicUrlExtInfo pic_url_ext_info = 6;
   optional VideoExtInfo video_ext_info = 7;
 }
@@ -361,8 +361,8 @@ message IPv6 {
 message UploadResp {
   optional string u_key = 1;
   optional uint32 u_key_ttl_second = 2;
-  repeated IPv4 i_pv4s = 3;
-  repeated IPv6 i_pv6s = 4;
+  repeated IPv4 ipv4s = 3;
+  repeated IPv6 ipv6s = 4;
   optional uint64 msg_seq = 5;
   optional MsgInfo msg_info = 6;
   repeated RichMediaStorageTransInfo ext = 7;
@@ -380,8 +380,8 @@ message SubFileInfo {
   optional uint32 sub_type = 1;
   optional string u_key = 2;
   optional uint32 u_key_ttl_second = 3;
-  repeated IPv4 i_pv4s = 4;
-  repeated IPv6 i_pv6s = 5;
+  repeated IPv4 ipv4s = 4;
+  repeated IPv6 ipv6s = 5;
 }
 
 message DownloadSafeResp {}
