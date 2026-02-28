@@ -89,7 +89,7 @@ message ResponseHead {
 }
 
 message RoutingHead {
-  optional C2C c2_c = 1;
+  optional C2C c2c = 1;
   optional Grp grp = 2;
   optional GrpTmp grp_tmp = 3;
   optional WPATmp wpa_tmp = 6;
@@ -98,7 +98,7 @@ message RoutingHead {
 
 message SsoReadedReport {
   optional SsoReadedReportGroup group = 1;
-  optional SsoReadedReportC2C c2_c = 2;
+  optional SsoReadedReportC2C c2c = 2;
 }
 
 message SsoReadedReportC2C {
