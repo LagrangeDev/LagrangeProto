@@ -325,7 +325,7 @@ message CommonMessage {
 message ContentHead {
   optional int32 type = 1;
   optional int32 sub_type = 2;
-  optional int32 c2_c_command = 3;
+  optional int32 c2c_command = 3;
   optional uint32 random = 4;
   optional int32 sequence = 5;
   optional int64 time = 6;
@@ -344,12 +344,12 @@ message RoutingHead {
   optional int32 from_inst_id = 4;
   optional int64 to_uin = 5;
   optional string to_uid = 6;
-  optional CommonC2C common_c2_c = 7;
+  optional CommonC2C common_c2c = 7;
   optional CommonGroup group = 8;
 }
 
 message CommonC2C {
-  optional int32 c2_c_type = 1;
+  optional int32 c2c_type = 1;
   optional int32 service_type = 2;
   optional bytes sig = 3;
   optional int64 from_tiny_id = 4;
@@ -464,7 +464,7 @@ message TmpPtt {
 
 message Trans211TmpMsg {
   optional bytes msg_body = 1;
-  optional uint32 c2_c_cmd = 2;
+  optional uint32 c2c_cmd = 2;
 }
 
 message MsgPush {
@@ -497,7 +497,7 @@ message SendContentHead {
 }
 
 message SendRoutingHead {
-  optional C2C c2_c = 1;
+  optional C2C c2c = 1;
   optional Grp group = 2;
   optional Trans0X211 trans0_x211 = 15;
 }

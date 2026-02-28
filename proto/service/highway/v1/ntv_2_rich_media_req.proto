@@ -30,7 +30,7 @@ message SceneInfo {
   uint32 request_type = 101; // 1
   uint32 business_type = 102; // 3
   uint32 scene_type = 200; // 1
-  optional C2CUserInfo c2_c = 201;
+  optional C2CUserInfo c2c = 201;
   optional NTGroupInfo group = 202;
 }
 

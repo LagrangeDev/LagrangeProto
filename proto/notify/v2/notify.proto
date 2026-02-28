@@ -145,7 +145,7 @@ message GeneralGrayTipInfo {
   optional uint64 busi_type = 1;
   optional uint64 busi_id = 2;
   optional uint32 ctrl_flag = 3;
-  optional uint32 c2_c_type = 4;
+  optional uint32 c2c_type = 4;
   optional uint32 service_type = 5;
   optional uint64 templ_id = 6;
   repeated TemplParam msg_templ_param = 7;

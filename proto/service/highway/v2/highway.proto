@@ -109,7 +109,7 @@ message SceneInfo {
   optional uint32 request_type = 101;
   optional uint32 business_type = 102;
   optional uint32 scene_type = 200;
-  optional C2CUserInfo c2_c = 201;
+  optional C2CUserInfo c2c = 201;
   optional GroupInfo group = 202;
 }
 
