@@ -597,6 +597,12 @@ message FaceExtra {
   optional int32 face_id = 1;
 }
 
+message QSmallFaceExtra {
+  optional uint32 face_id = 1;
+  optional string preview = 2;
+  optional string preview2 = 3;
+}
+
 message QFaceExtra {
   optional string pack_id = 1;
   optional string sticker_id = 2;
