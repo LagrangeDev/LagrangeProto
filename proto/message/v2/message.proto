@@ -598,9 +598,9 @@ message FaceExtra {
 }
 
 message QSmallFaceExtra {
-  uint32 face_id = 1;
-  string preview = 2;
-  string preview2 = 3;
+  optional uint32 face_id = 1;
+  optional string preview = 2;
+  optional string preview2 = 3;
 }
 
 message QFaceExtra {
