@@ -13,6 +13,8 @@ message Oidb {
   optional uint32 reserved = 12;
 }
 
+message GenericEmptyRspBody {}
+
 message D102AReqBody {
   repeated string domain = 1;
 }
@@ -404,4 +406,9 @@ message DED3ReqBody {
   optional uint32 nudge_type = 6;
 }
 
-message DED3RspBody {}
+message SetGroupMessageReactionReq {
+  optional int64 group_uin = 2;
+  optional uint32 sequence = 3;
+  optional string code = 4;
+  optional uint32 type = 5; // 1 face 2 emoji
+}
