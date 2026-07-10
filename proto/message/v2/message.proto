@@ -6,8 +6,7 @@ message Elem {
   optional Text text = 1;
   optional Face face = 2;
   optional NotOnlineImage not_online_image = 4;
-  optional TransElem trans_elem = 5;
-  optional MarketFace market_face = 6;
+  optional TransElem trans_elem_info = 5;
   optional CustomFace custom_face = 8;
   optional RichMsg rich_msg = 12;
   optional VideoFile video_file = 19;
@@ -64,24 +63,8 @@ message NotOnlineImage {
 }
 
 message TransElem {
-  optional int32 elem_type = 1;
+  optional uint32 elem_type = 1;
   optional bytes elem_value = 2;
-}
-
-message MarketFace {
-  optional bytes face_name = 1;
-  optional int32 item_type = 2;
-  optional int32 face_info = 3;
-  optional bytes face_id = 4;
-  optional int32 tab_id = 5;
-  optional int32 sub_type = 6;
-  optional bytes key = 7;
-  optional bytes param = 8;
-  optional int32 media_type = 9;
-  optional int32 image_width = 10;
-  optional int32 image_height = 11;
-  optional bytes mobileparam = 12;
-  optional bytes pb_reserve = 13;
 }
 
 message CustomFace {
@@ -118,7 +101,7 @@ message CustomFace {
   optional string x400_url = 31;
   optional int32 x400_width = 32;
   optional int32 x400_height = 33;
-  optional PbReserve1 pb_reserve = 34;
+  optional CustomFacePbReserve1 pb_reserve = 34;
 }
 
 message RichMsg {
@@ -158,7 +141,7 @@ message VideoFile {
 }
 
 message SourceMsg {
-  repeated uint32 orig_seqs = 1;
+  repeated uint64 orig_seqs = 1;
   optional uint64 sender_uin = 2;
   optional uint32 time = 3;
   optional uint32 flag = 4;
@@ -210,6 +193,27 @@ message SourceMsgResvAttr {
   optional uint64 source_msg_id = 3;
   optional string sender_uid = 6;
   optional string receiver_uid = 7;
+}
+
+message GroupFileExtra {
+  optional uint32 field1 = 1;
+  optional string file_name = 2;
+  optional string display = 3;
+  optional GroupFileExtraInner inner = 7;
+}
+
+message GroupFileExtraInner {
+  optional GroupFileExtraInfo info = 2;
+}
+
+message GroupFileExtraInfo {
+  optional uint32 bus_id = 1;
+  optional string file_id = 2;
+  optional int64 file_size = 3;
+  optional string file_name = 4;
+  optional uint32 field5 = 5;
+  optional string field7 = 7;
+  optional string file_md5 = 8;
 }
 
 message FeedsInfo {
@@ -355,15 +359,15 @@ message CommonMessage {
 message ContentHead {
   optional int32 type = 1;
   optional int32 sub_type = 2;
-  optional int32 c2c_command = 3;
+  optional int32 c2_c_command = 3;
   optional uint32 random = 4;
-  optional int32 sequence = 5;
+  optional uint64 sequence = 5;
   optional int64 time = 6;
   optional int32 pkg_num = 7;
   optional int32 pkg_index = 8;
   optional int32 div_seq = 9;
   optional int32 auto_reply = 10;
-  optional int32 client_sequence = 11;
+  optional uint64 client_sequence = 11;
   optional uint64 msg_uid = 12;
 }
 
@@ -374,12 +378,12 @@ message RoutingHead {
   optional int32 from_inst_id = 4;
   optional int64 to_uin = 5;
   optional string to_uid = 6;
-  optional CommonC2C common_c2c = 7;
+  optional CommonC2C common_c2_c = 7;
   optional CommonGroup group = 8;
 }
 
 message CommonC2C {
-  optional int32 c2c_type = 1;
+  optional int32 c2_c_type = 1;
   optional int32 service_type = 2;
   optional bytes sig = 3;
   optional int64 from_tiny_id = 4;
@@ -494,7 +498,7 @@ message TmpPtt {
 
 message Trans211TmpMsg {
   optional bytes msg_body = 1;
-  optional uint32 c2c_cmd = 2;
+  optional uint32 c2_c_cmd = 2;
 }
 
 message MsgPush {
@@ -506,7 +510,7 @@ message PbSendMsgReq {
   optional SendRoutingHead routing_head = 1;
   optional SendContentHead content_head = 2;
   optional MessageBody message_body = 3;
-  optional int32 client_sequence = 4;
+  optional uint64 client_sequence = 4;
   optional uint32 random = 5;
 }
 
@@ -515,8 +519,8 @@ message PbSendMsgResp {
   optional string err_msg = 2;
   optional int64 send_time = 3;
   optional uint32 msg_info_flag = 10;
-  optional int32 sequence = 11;
-  optional int32 client_sequence = 14;
+  optional uint64 sequence = 11;
+  optional uint64 client_sequence = 14;
 }
 
 message SendContentHead {
@@ -527,7 +531,7 @@ message SendContentHead {
 }
 
 message SendRoutingHead {
-  optional C2C c2c = 1;
+  optional C2C c2_c = 1;
   optional Grp group = 2;
   optional Trans0X211 trans0_x211 = 15;
 }
@@ -547,18 +551,40 @@ message Trans0X211 {
   optional string uid = 8;
 }
 
+message SsoC2CRecallMsgReq {
+  optional uint32 type = 1;
+  optional string target_uid = 3;
+  optional SsoC2CRecallMsgReqInfo info = 4;
+  optional SsoC2CRecallMsgReqSettings settings = 5;
+  optional bool field6 = 6;
+}
+
+message SsoC2CRecallMsgReqInfo {
+  optional uint64 sequence = 1;
+  optional uint32 random = 2;
+  optional uint64 message_id = 3;
+  optional uint32 timestamp = 4;
+  optional uint32 field5 = 5;
+  optional uint64 client_sequence = 6;
+}
+
+message SsoC2CRecallMsgReqSettings {
+  optional bool field1 = 1;
+  optional bool field2 = 2;
+}
+
 message SsoGetC2CMsgReq {
   optional int64 peer_uin = 1;
   optional string peer_uid = 2;
-  optional int32 start_sequence = 3;
-  optional int32 end_sequence = 4;
+  optional uint64 start_sequence = 3;
+  optional uint64 end_sequence = 4;
 }
 
 message SsoGetC2CMsgRsp {
   optional uint32 retcode = 1;
   optional string message = 2;
-  optional uint32 start_sequence = 3;
-  optional uint32 end_sequence = 4;
+  optional uint64 start_sequence = 3;
+  optional uint64 end_sequence = 4;
   repeated CommonMessage messages = 7;
 }
 
@@ -569,8 +595,8 @@ message SsoGetGroupMsg {
 
 message SsoGetGroupMsgInfo {
   optional int64 group_uin = 1;
-  optional int32 start_sequence = 2;
-  optional int32 end_sequence = 3;
+  optional uint64 start_sequence = 2;
+  optional uint64 end_sequence = 3;
 }
 
 message SsoGetGroupMsgRsp {
@@ -583,8 +609,8 @@ message SsoGetGroupMsgRspBody {
   optional uint32 retcode = 1;
   optional string message = 2;
   optional uint32 group_uin = 3;
-  optional uint32 start_sequence = 4;
-  optional uint32 end_sequence = 5;
+  optional uint64 start_sequence = 4;
+  optional uint64 end_sequence = 5;
   repeated CommonMessage messages = 6;
 }
 
@@ -604,17 +630,34 @@ message SsoGetRoamMsgRsp {
   repeated CommonMessage messages = 7;
 }
 
-message PbReserve1 {
+message SsoGroupRecallMsgReq {
+  optional uint32 type = 1;
+  optional int64 group_uin = 2;
+  optional SsoGroupRecallMsgReqField3 field3 = 3;
+  optional SsoGroupRecallMsgReqField4 field4 = 4;
+}
+
+message SsoGroupRecallMsgReqField3 {
+  optional uint64 sequence = 1;
+  optional uint32 random = 2;
+  optional uint32 field3 = 3;
+}
+
+message SsoGroupRecallMsgReqField4 {
+  optional uint32 field1 = 1;
+}
+
+message CustomFacePbReserve1 {
   optional int32 sub_type = 1;
   optional int32 field3 = 3;
   optional int32 field4 = 4;
   optional string summary = 9;
   optional int32 field10 = 10;
-  optional PbReserve2 field21 = 21;
+  optional CustomFacePbReserve2 field21 = 21;
   optional string field31 = 31;
 }
 
-message PbReserve2 {
+message CustomFacePbReserve2 {
   optional int32 field1 = 1;
   optional string field2 = 2;
   optional int32 field3 = 3;
