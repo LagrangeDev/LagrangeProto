@@ -2,6 +2,13 @@ syntax = "proto2";
 
 package login.v2;
 
+enum NTLoginCodeType {
+  NT_LOGIN_CODE_TYPE_AUTHCODE = 0;
+  NT_LOGIN_CODE_TYPE_TGT = 1;
+  NT_LOGIN_CODE_TYPE_A2 = 2;
+  NT_LOGIN_CODE_TYPE_TGTGT = 3;
+}
+
 enum NTLoginPlatform {
   NT_LOGIN_PLATFORM_UNKNOWN = 0;
   NT_LOGIN_PLATFORM_IOS = 1;
@@ -12,13 +19,6 @@ enum NTLoginPlatform {
   NT_LOGIN_PLATFORM_IPAD = 6;
   NT_LOGIN_PLATFORM_LINUX = 7;
   NT_LOGIN_PLATFORM_HARMONY = 8;
-}
-
-enum NTLoginCodeType {
-  NT_LOGIN_CODE_TYPE_AUTHCODE = 0;
-  NT_LOGIN_CODE_TYPE_TGT = 1;
-  NT_LOGIN_CODE_TYPE_A2 = 2;
-  NT_LOGIN_CODE_TYPE_TGTGT = 3;
 }
 
 message KeyExchangeRequest {
@@ -50,6 +50,7 @@ message NTLoginForwardRequest {
   optional bytes session_ticket = 1;
   optional bytes buffer = 3;
   optional uint32 type = 4;
+  optional bytes sec_buffer = 5;
 }
 
 message NTLoginHead {
@@ -295,7 +296,7 @@ message NTLoginEasyLoginUnusualDeviceRspBody {
 message NTLoginTGTExchangeFastLoginReqBody {
   optional bytes tgt = 1;
   optional bytes sec_extra = 2;
-  optional int32 code_type = 3;
+  optional NTLoginCodeType code_type = 3;
 }
 
 message NTLoginTGTExchangeFastLoginRspBody {
@@ -326,6 +327,16 @@ message NTLoginRefreshA2RspBody {
 message NTLoginCommon {
   optional NTLoginHead head = 1;
   optional bytes body = 2;
+}
+
+message NTLoginAndroidExt {
+  optional int32 field1 = 1;
+  optional string uin = 2;
+}
+
+message NTLoginAndroidCommon {
+  optional NTLoginCommon common = 2;
+  optional NTLoginAndroidExt ext = 3;
 }
 
 message QrLogin {

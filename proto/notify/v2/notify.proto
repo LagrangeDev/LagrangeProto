@@ -7,6 +7,21 @@ message Event0x20D {
   optional bytes body = 2;
 }
 
+message FriendRecall {
+  optional FriendRecallInfo info = 1;
+}
+
+message FriendRecallInfo {
+  optional string from_uid = 1;
+  optional string to_uid = 2;
+  optional FriendRecallTipInfo tip_info = 13;
+  optional int64 sequence = 20;
+}
+
+message FriendRecallTipInfo {
+  optional string tip = 2;
+}
+
 message FriendRequest {
   optional FriendRequestInfo info = 1;
 }
@@ -23,9 +38,9 @@ message GroupChange {
   optional uint32 group_uin = 1;
   optional uint32 flag = 2;
   optional string member_uid = 3;
-  optional uint32 decrease_type = 4;
+  optional uint32 type = 4;
   optional bytes operator = 5;
-  optional uint32 increase_type = 6;
+  optional uint32 field6 = 6;
   optional bytes field7 = 7;
 }
 
@@ -43,13 +58,13 @@ message OperatorField1 {
 
 message EssenceMessage {
   optional int64 group_uin = 1;
-  optional int64 msg_sequence = 2;
+  optional uint64 msg_sequence = 2;
   optional uint32 random = 3;
   optional uint32 set_flag = 4;
   optional uint32 member_uin = 5;
   optional uint32 operator_uin = 6;
   optional uint32 time_stamp = 7;
-  optional uint32 msg_sequence2 = 8;
+  optional uint64 msg_sequence2 = 8;
   optional string operator_nick_name = 9;
   optional string member_nick_name = 10;
   optional uint32 set_flag2 = 11;
@@ -86,12 +101,12 @@ message GroupReactionData2 {
 }
 
 message GroupReactionTarget {
-  optional int64 sequence = 1;
+  optional uint64 sequence = 1;
 }
 
 message GroupReactionData3 {
   optional string code = 1;
-  optional uint32 count = 3;
+  optional uint32 current_count = 3;
   optional string operator_uid = 4;
   optional uint32 type = 5;
 }
@@ -106,7 +121,7 @@ message GroupRecall {
 }
 
 message RecallMessage {
-  optional uint32 sequence = 1;
+  optional uint64 sequence = 1;
   optional uint32 time = 2;
   optional uint32 random = 3;
   optional uint32 type = 4;
@@ -126,14 +141,14 @@ message GroupRecallNudge {
 }
 
 message NotifyMessageBody {
-  optional uint32 type = 1;
+  optional uint32 notify_type = 1;
   optional int64 group_uin = 4;
   optional bytes event_param = 5;
   optional GroupRecall recall = 11;
-  optional uint32 field13 = 13;
+  optional uint32 sub_type = 13;
   optional string operator_uid = 21;
   optional GeneralGrayTipInfo general_gray_tip = 26;
-  optional int64 msg_sequence = 37;
+  optional uint64 msg_sequence = 37;
   optional uint32 field39 = 39;
   optional GroupRecallNudge group_recall_nudge = 40;
   optional GroupReactionData0 reaction = 44;
@@ -145,7 +160,7 @@ message GeneralGrayTipInfo {
   optional uint64 busi_type = 1;
   optional uint64 busi_id = 2;
   optional uint32 ctrl_flag = 3;
-  optional uint32 c2c_type = 4;
+  optional uint32 c2_c_type = 4;
   optional uint32 service_type = 5;
   optional uint64 templ_id = 6;
   repeated TemplParam msg_templ_param = 7;

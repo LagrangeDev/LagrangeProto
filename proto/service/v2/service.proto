@@ -1,0 +1,1670 @@
+syntax = "proto2";
+
+package service.v2;
+
+import "message/v2/message.proto";
+
+enum D8FCReqBodyCardNameElemCardType {
+  D8FC_REQ_BODY_CARD_NAME_ELEM_CARD_TYPE_UNSPECIFIED = 0;
+  D8FC_REQ_BODY_CARD_NAME_ELEM_CARD_TYPE_TEXT = 1;
+  D8FC_REQ_BODY_CARD_NAME_ELEM_CARD_TYPE_XC = 2;
+}
+
+message FetchGroupExtraRequest {
+  optional int64 random = 1;
+  optional FetchGroupExtraRequestConfig config = 2;
+}
+
+message FetchGroupExtraRequestConfig {
+  optional int64 group_uin = 1;
+  optional FetchGroupExtraRequestConfigFlags flags = 2;
+}
+
+message FetchGroupExtraRequestConfigFlags {
+  optional bool latest_message_sequence = 22;
+}
+
+message FetchGroupExtraResponse {
+  optional FetchGroupExtraResponseInfo info = 1;
+}
+
+message FetchGroupExtraResponseInfo {
+  optional int64 group_uin = 1;
+  optional FetchGroupExtraResponseInfoResult result = 3;
+}
+
+message FetchGroupExtraResponseInfoResult {
+  optional int64 latest_message_sequence = 22;
+}
+
+message FetchGroupMembersRequest {
+  optional int64 group_uin = 1;
+  optional uint32 field2 = 2;
+  optional uint32 field3 = 3;
+  optional FetchGroupMembersRequestBody body = 4;
+  optional bytes cookie = 15;
+}
+
+message FetchGroupMembersRequestBody {
+  optional bool member_name = 10;
+  optional bool member_card = 11;
+  optional bool level = 12;
+  optional bool field13 = 13;
+  optional bool field16 = 16;
+  optional bool special_title = 17;
+  optional bool field18 = 18;
+  optional bool field20 = 20;
+  optional bool field21 = 21;
+  optional bool join_timestamp = 100;
+  optional bool last_msg_timestamp = 101;
+  optional bool shut_up_timestamp = 102;
+  optional bool field103 = 103;
+  optional bool field104 = 104;
+  optional bool field105 = 105;
+  optional bool field106 = 106;
+  optional bool permission = 107;
+  optional bool field200 = 200;
+  optional bool field201 = 201;
+}
+
+message FetchGroupMembersResponse {
+  optional int64 group_uin = 1;
+  repeated FetchGroupMembersResponseMember members = 2;
+  optional uint32 member_count = 3;
+  optional uint32 member_list_change_seq = 5;
+  optional uint32 member_card_seq = 6;
+  optional bytes cookie = 15;
+}
+
+message FetchGroupMembersResponseMember {
+  optional FetchGroupMembersResponseId id = 1;
+  optional string member_name = 10;
+  optional string special_title = 17;
+  optional FetchGroupMembersResponseCard member_card = 11;
+  optional FetchGroupMembersResponseLevel level = 12;
+  optional uint32 join_timestamp = 100;
+  optional uint32 last_msg_timestamp = 101;
+  optional uint32 shut_up_timestamp = 102;
+  optional uint32 permission = 107;
+}
+
+message FetchGroupMembersResponseId {
+  optional string uid = 2;
+  optional uint32 uin = 4;
+}
+
+message FetchGroupMembersResponseCard {
+  optional string member_card = 2;
+}
+
+message FetchGroupMembersResponseLevel {
+  repeated uint32 infos = 1;
+  optional uint32 level = 2;
+}
+
+message FetchGroupNotificationsRequest {
+  optional uint64 count = 1;
+  optional uint64 start_sequence = 2;
+}
+
+message FetchGroupNotificationsResponse {
+  repeated FetchGroupNotificationsResponseNotification group_notifications = 1;
+}
+
+message FetchGroupNotificationsResponseNotification {
+  optional uint64 sequence = 1;
+  optional uint64 type = 2;
+  optional uint64 state = 3;
+  optional FetchGroupNotificationsResponseNotificationGroup group = 4;
+  optional FetchGroupNotificationsResponseNotificationUser target = 5;
+  optional FetchGroupNotificationsResponseNotificationUser inviter = 6;
+  optional FetchGroupNotificationsResponseNotificationUser operator = 7;
+  optional string comment = 10;
+}
+
+message FetchGroupNotificationsResponseNotificationGroup {
+  optional int64 group_uin = 1;
+}
+
+message FetchGroupNotificationsResponseNotificationUser {
+  optional string uid = 1;
+}
+
+message FetchGroupsRequest {
+  optional FetchGroupsRequestConfig config = 1;
+}
+
+message FetchGroupsRequestConfig {
+  optional FetchGroupsRequestConfig1 config1 = 1;
+  optional FetchGroupsRequestConfig2 config2 = 2;
+  optional FetchGroupsRequestConfig3 config3 = 3;
+}
+
+message FetchGroupsRequestConfig1 {
+  optional bool group_owner = 1;
+  optional bool field2 = 2;
+  optional bool member_max = 3;
+  optional bool member_count = 4;
+  optional bool group_name = 5;
+  optional bool field8 = 8;
+  optional bool field9 = 9;
+  optional bool field10 = 10;
+  optional bool field11 = 11;
+  optional bool field12 = 12;
+  optional bool field13 = 13;
+  optional bool field14 = 14;
+  optional bool field15 = 15;
+  optional bool field16 = 16;
+  optional bool field17 = 17;
+  optional bool field18 = 18;
+  optional bool question = 19;
+  optional bool field20 = 20;
+  optional bool field22 = 22;
+  optional bool field23 = 23;
+  optional bool field24 = 24;
+  optional bool field25 = 25;
+  optional bool field26 = 26;
+  optional bool field27 = 27;
+  optional bool field28 = 28;
+  optional bool field29 = 29;
+  optional bool field30 = 30;
+  optional bool field31 = 31;
+  optional bool field32 = 32;
+  optional bool field5001 = 5001;
+  optional bool field5002 = 5002;
+  optional bool field5003 = 5003;
+}
+
+message FetchGroupsRequestConfig2 {
+  optional bool field1 = 1;
+  optional bool field2 = 2;
+  optional bool field3 = 3;
+  optional bool field4 = 4;
+  optional bool field5 = 5;
+  optional bool field6 = 6;
+  optional bool field7 = 7;
+  optional bool field8 = 8;
+}
+
+message FetchGroupsRequestConfig3 {
+  optional bool field5 = 5;
+  optional bool field6 = 6;
+}
+
+message FetchGroupsResponse {
+  repeated FetchGroupsResponseGroup groups = 2;
+}
+
+message FetchGroupsResponseGroup {
+  optional int64 group_uin = 3;
+  optional FetchGroupsResponseGroupInfo info = 4;
+  optional FetchGroupsResponseCustomInfo custom_info = 5;
+}
+
+message FetchGroupsResponseGroupInfo {
+  optional FetchGroupsResponseMember group_owner = 1;
+  optional uint32 created_time = 2;
+  optional uint32 member_max = 3;
+  optional uint32 member_count = 4;
+  optional string group_name = 5;
+  optional string description = 18;
+  optional string question = 19;
+  optional string announcement = 30;
+}
+
+message FetchGroupsResponseCustomInfo {
+  optional int64 last_speak_time = 1;
+  optional uint32 lastest_seq = 5;
+}
+
+message FetchGroupsResponseMember {
+  optional string remark = 3;
+}
+
+message FetchStrangerByUidRequest {
+  optional string uid = 1;
+  repeated FetchStrangerRequestKey keys = 3;
+}
+
+message FetchStrangerByUinRequest {
+  optional int64 uin = 1;
+  repeated FetchStrangerRequestKey keys = 3;
+}
+
+message FetchStrangerRequestKey {
+  optional uint64 key = 1;
+}
+
+message FetchStrangerResponse {
+  optional FetchStrangerResponseBody body = 1;
+}
+
+message FetchStrangerResponseBody {
+  optional FetchStrangerResponseProperties properties = 2;
+  optional uint32 uin = 3;
+}
+
+message FetchStrangerResponseProperties {
+  repeated FetchStrangerResponseNumberProperties number_properties = 1;
+  repeated FetchStrangerResponseBytesProperties bytes_properties = 2;
+}
+
+message FetchStrangerResponseNumberProperties {
+  optional uint64 key = 1;
+  optional uint64 value = 2;
+}
+
+message FetchStrangerResponseBytesProperties {
+  optional uint64 key = 1;
+  optional bytes value = 2;
+}
+
+message FileUploadExt {
+  optional int32 unknown1 = 1;
+  optional int32 unknown2 = 2;
+  optional int32 unknown3 = 3;
+  optional FileUploadEntry entry = 100;
+  optional int32 unknown200 = 200;
+}
+
+message FileUploadEntry {
+  optional ExcitingBusiInfo busi_buff = 100;
+  optional ExcitingFileEntry file_entry = 200;
+  optional ExcitingClientInfo client_info = 300;
+  optional ExcitingFileNameInfo file_name_info = 400;
+  optional ExcitingHostConfig host = 500;
+}
+
+message ExcitingBusiInfo {
+  optional int32 bus_id = 1;
+  optional int64 sender_uin = 100;
+  optional int64 receiver_uin = 200;
+  optional int64 group_code = 400;
+}
+
+message ExcitingFileEntry {
+  optional int64 file_size = 100;
+  optional bytes md5 = 200;
+  optional bytes check_key = 300;
+  optional bytes md510_m = 400;
+  optional bytes sha3 = 500;
+  optional string file_id = 600;
+  optional bytes upload_key = 700;
+}
+
+message ExcitingClientInfo {
+  optional int32 client_type = 100;
+  optional string app_id = 200;
+  optional int32 terminal_type = 300;
+  optional string client_ver = 400;
+  optional int32 unknown = 600;
+}
+
+message ExcitingFileNameInfo {
+  optional string file_name = 100;
+}
+
+message ExcitingHostConfig {
+  repeated ExcitingHostInfo hosts = 200;
+}
+
+message ExcitingHostInfo {
+  optional ExcitingUrlInfo url = 1;
+  optional uint32 port = 2;
+}
+
+message ExcitingUrlInfo {
+  optional int32 unknown = 1;
+  optional string host = 2;
+}
+
+message FlashTransferUploadReq {
+  optional uint32 fie_id1 = 1;
+  optional uint32 app_id = 2;
+  optional uint32 file_id3 = 3;
+  optional FlashTransferUploadBody body = 107;
+}
+
+message FlashTransferUploadBody {
+  optional bytes fie_id1 = 1;
+  optional string u_key = 2;
+  optional uint32 start = 3;
+  optional uint32 end = 4;
+  optional bytes sha1 = 5;
+  optional FlashTransferSha1StateV sha1_state_v = 6;
+  optional bytes body = 7;
+}
+
+message FlashTransferSha1StateV {
+  repeated bytes state = 1;
+}
+
+message FlashTransferUploadResp {
+  optional string status = 5;
+}
+
+message ReqDataHighwayHead {
+  optional DataHighwayHead msg_base_head = 1;
+  optional SegHead msg_seg_head = 2;
+  optional bytes bytes_req_extend_info = 3;
+  optional uint64 timestamp = 4;
+  optional LoginSigHead msg_login_sig_head = 5;
+}
+
+message RespDataHighwayHead {
+  optional DataHighwayHead msg_base_head = 1;
+  optional SegHead msg_seg_head = 2;
+  optional uint32 error_code = 3;
+  optional uint32 allow_retry = 4;
+  optional uint32 cache_cost = 5;
+  optional uint32 ht_cost = 6;
+  optional bytes bytes_rsp_extend_info = 7;
+  optional uint64 timestamp = 8;
+  optional uint64 range = 9;
+  optional uint32 is_reset = 10;
+}
+
+message DataHighwayHead {
+  optional uint32 version = 1;
+  optional string uin = 2;
+  optional string command = 3;
+  optional uint32 seq = 4;
+  optional uint32 retry_times = 5;
+  optional uint32 app_id = 6;
+  optional uint32 data_flag = 7;
+  optional uint32 command_id = 8;
+  optional bytes build_ver = 9;
+}
+
+message LoginSigHead {
+  optional uint32 uint32_login_sig_type = 1;
+  optional bytes bytes_login_sig = 2;
+  optional uint32 app_id = 3;
+}
+
+message SegHead {
+  optional uint32 service_id = 1;
+  optional uint64 filesize = 2;
+  optional uint64 data_offset = 3;
+  optional uint32 data_length = 4;
+  optional uint32 ret_code = 5;
+  optional bytes service_ticket = 6;
+  optional bytes md5 = 8;
+  optional bytes file_md5 = 9;
+  optional uint32 cache_addr = 10;
+  optional uint32 cache_port = 13;
+}
+
+message IncPullRequest {
+  optional uint32 req_count = 2;
+  optional int64 time = 3;
+  optional uint32 local_seq = 4;
+  optional bytes cookie = 5;
+  optional int32 flag = 6;
+  optional uint32 proxy_seq = 7;
+  repeated IncPullRequestBiz request_biz = 10001;
+  repeated uint32 ext_sns_flag_key = 10002;
+  repeated uint32 ext_private_id_list_key = 10003;
+}
+
+message IncPullRequestBiz {
+  optional int32 biz_type = 1;
+  optional IncPullRequestBizBusi biz_data = 2;
+}
+
+message IncPullRequestBizBusi {
+  repeated int32 ext_busi = 1;
+}
+
+message IncPullResponse {
+  optional uint32 seq = 1;
+  optional bytes cookie = 2;
+  optional bool is_end = 3;
+  optional int64 time = 6;
+  optional int64 self_uin = 7;
+  optional uint32 small_seq = 8;
+  repeated IncPullResponseFriend friend_list = 101;
+  repeated IncPullResponseCategory category = 102;
+}
+
+message IncPullResponseFriend {
+  optional string uid = 1;
+  optional int32 category_id = 2;
+  optional int64 uin = 3;
+  map<int32, IncPullResponseSubBiz> sub_biz = 10001;
+}
+
+message IncPullResponseSubBiz {
+  map<int32, int32> num_data = 1;
+  map<int32, string> data = 2;
+}
+
+message IncPullResponseCategory {
+  optional int32 category_id = 1;
+  optional string category_name = 2;
+  optional int32 category_member_count = 3;
+  optional int32 catogory_sort_id = 4;
+}
+
+message NTV2RichMediaHighwayExt {
+  optional string file_uuid = 1;
+  optional string u_key = 2;
+  optional NTHighwayNetwork network = 5;
+  repeated MsgInfoBody msg_info_body = 6;
+  optional uint32 block_size = 10;
+  optional NTHighwayHash hash = 11;
+}
+
+message NTHighwayHash {
+  repeated bytes file_sha1 = 1;
+}
+
+message NTHighwayNetwork {
+  repeated NTHighwayIPv4 i_pv4s = 1;
+}
+
+message NTHighwayIPv4 {
+  optional NTHighwayDomain domain = 1;
+  optional uint32 port = 2;
+}
+
+message NTHighwayDomain {
+  optional bool is_enable = 1;
+  optional string ip = 2;
+}
+
+message NTV2RichMediaReq {
+  optional MultiMediaReqHead req_head = 1;
+  optional UploadReq upload = 2;
+  optional DownloadReq download = 3;
+  optional DownloadRKeyReq download_r_key = 4;
+  optional DeleteReq delete = 5;
+  optional UploadCompletedReq upload_completed = 6;
+  optional MsgInfoAuthReq msg_info_auth = 7;
+  optional UploadKeyRenewalReq upload_key_renewal = 8;
+  optional DownloadSafeReq download_safe = 9;
+  optional bytes extension = 99;
+}
+
+message MultiMediaReqHead {
+  optional CommonHead common = 1;
+  optional SceneInfo scene = 2;
+  optional ClientMeta client = 3;
+}
+
+message CommonHead {
+  optional uint32 request_id = 1;
+  optional uint32 command = 2;
+}
+
+message SceneInfo {
+  optional uint32 request_type = 101;
+  optional uint32 business_type = 102;
+  optional uint32 scene_type = 200;
+  optional C2CUserInfo c2_c = 201;
+  optional GroupInfo group = 202;
+}
+
+message C2CUserInfo {
+  optional uint32 account_type = 1;
+  optional string target_uid = 2;
+}
+
+message GroupInfo {
+  optional int64 group_uin = 1;
+}
+
+message ClientMeta {
+  optional uint32 agent_type = 1;
+}
+
+message DownloadReq {
+  optional IndexNode node = 1;
+  optional DownloadExt download = 2;
+}
+
+message IndexNode {
+  optional FileInfo info = 1;
+  optional string file_uuid = 2;
+  optional uint32 store_id = 3;
+  optional uint32 upload_time = 4;
+  optional uint32 ttl = 5;
+  optional uint32 sub_type = 6;
+}
+
+message FileInfo {
+  optional uint32 file_size = 1;
+  optional string file_hash = 2;
+  optional string file_sha1 = 3;
+  optional string file_name = 4;
+  optional FileType type = 5;
+  optional uint32 width = 6;
+  optional uint32 height = 7;
+  optional uint32 time = 8;
+  optional uint32 original = 9;
+}
+
+message FileType {
+  optional uint32 type = 1;
+  optional uint32 pic_format = 2;
+  optional uint32 video_format = 3;
+  optional uint32 voice_format = 4;
+}
+
+message DownloadExt {
+  optional PicDownloadExt pic = 1;
+  optional VideoDownloadExt video = 2;
+  optional PttDownloadExt ptt = 3;
+}
+
+message VideoDownloadExt {
+  optional uint32 busi_type = 1;
+  optional uint32 scene_type = 2;
+  optional uint32 sub_busi_type = 3;
+}
+
+message PicDownloadExt {}
+
+message PttDownloadExt {}
+
+message PicUrlExtInfo {
+  optional string original_parameter = 1;
+  optional string big_parameter = 2;
+  optional string thumb_parameter = 3;
+}
+
+message VideoExtInfo {
+  optional uint32 video_codec_format = 1;
+}
+
+message MsgInfo {
+  repeated MsgInfoBody msg_info_body = 1;
+  optional ExtBizInfo ext_biz_info = 2;
+}
+
+message MsgInfoBody {
+  optional IndexNode index = 1;
+  optional PictureInfo picture = 2;
+  optional VideoInfo video = 3;
+  optional AudioInfo audio = 4;
+  optional bool file_exist = 5;
+  optional HashSum hash_sum = 6;
+}
+
+message HashSum {
+  optional C2cSource bytes_pb_reserve_c2c = 201;
+  optional TroopSource troop_source = 202;
+}
+
+message C2cSource {
+  optional string friend_uid = 2;
+}
+
+message TroopSource {
+  optional uint32 group_uin = 1;
+}
+
+message VideoInfo {}
+
+message AudioInfo {}
+
+message PictureInfo {
+  optional string url_path = 1;
+  optional PicUrlExtInfo ext = 2;
+  optional string domain = 3;
+}
+
+message ExtBizInfo {
+  optional PicExtBizInfo pic = 1;
+  optional VideoExtBizInfo video = 2;
+  optional PttExtBizInfo ptt = 3;
+  optional uint32 busi_type = 10;
+}
+
+message PttExtBizInfo {
+  optional uint64 src_uin = 1;
+  optional uint32 ptt_scene = 2;
+  optional uint32 ptt_type = 3;
+  optional uint32 change_voice = 4;
+  optional bytes waveform = 5;
+  optional uint32 auto_convert_text = 6;
+  optional bytes bytes_reserve = 11;
+  optional bytes bytes_pb_reserve = 12;
+  optional bytes bytes_general_flags = 13;
+}
+
+message VideoExtBizInfo {
+  optional uint32 from_scene = 1;
+  optional uint32 to_scene = 2;
+  optional bytes bytes_pb_reserve = 3;
+}
+
+message PicExtBizInfo {
+  optional uint32 biz_type = 1;
+  optional string text_summary = 2;
+  optional bytes bytes_pb_reserve_c2c = 11;
+  optional bytes bytes_pb_reserve_troop = 12;
+  optional uint32 from_scene = 1001;
+  optional uint32 to_scene = 1002;
+  optional uint32 old_file_id = 1003;
+}
+
+message DownloadSafeReq {
+  optional IndexNode index = 1;
+}
+
+message UploadKeyRenewalReq {
+  optional string old_u_key = 1;
+  optional uint32 sub_type = 2;
+}
+
+message MsgInfoAuthReq {
+  optional bytes msg = 1;
+  optional uint64 auth_time = 2;
+}
+
+message UploadCompletedReq {
+  optional bool srv_send_msg = 1;
+  optional uint64 client_random_id = 2;
+  optional MsgInfo msg_info = 3;
+  optional uint32 client_seq = 4;
+}
+
+message DeleteReq {
+  repeated IndexNode index = 1;
+  optional bool need_recall_msg = 2;
+  optional uint64 msg_seq = 3;
+  optional uint64 msg_random = 4;
+  optional uint64 msg_time = 5;
+}
+
+message DownloadRKeyReq {
+  repeated int32 types = 1;
+}
+
+message UploadInfo {
+  optional FileInfo file_info = 1;
+  optional uint32 sub_file_type = 2;
+}
+
+message UploadReq {
+  repeated UploadInfo upload_info = 1;
+  optional bool try_fast_upload_completed = 2;
+  optional bool srv_send_msg = 3;
+  optional uint64 client_random_id = 4;
+  optional uint32 compat_q_msg_scene_type = 5;
+  optional ExtBizInfo ext_biz_info = 6;
+  optional uint32 client_seq = 7;
+  optional bool no_need_compat_msg = 8;
+}
+
+message NTV2RichMediaResp {
+  optional MultiMediaRespHead resp_head = 1;
+  optional UploadResp upload = 2;
+  optional DownloadResp download = 3;
+  optional DownloadRKeyResp download_r_key = 4;
+  optional DeleteResp delete = 5;
+  optional UploadCompletedResp upload_completed = 6;
+  optional MsgInfoAuthResp msg_info_auth = 7;
+  optional UploadKeyRenewalResp upload_key_renewal = 8;
+  optional DownloadSafeResp download_safe = 9;
+  optional bytes extension = 99;
+}
+
+message MultiMediaRespHead {
+  optional CommonHead common = 1;
+  optional uint32 ret_code = 2;
+  optional string message = 3;
+}
+
+message DownloadResp {
+  optional string r_key_param = 1;
+  optional uint32 r_key_ttl_second = 2;
+  optional DownloadInfo info = 3;
+  optional uint32 r_key_create_time = 4;
+}
+
+message DownloadInfo {
+  optional string domain = 1;
+  optional string url_path = 2;
+  optional uint32 https_port = 3;
+  repeated IPv4 i_pv4s = 4;
+  repeated IPv6 i_pv6s = 5;
+  optional PicUrlExtInfo pic_url_ext_info = 6;
+  optional VideoExtInfo video_ext_info = 7;
+}
+
+message IPv4 {
+  optional uint32 out_ip = 1;
+  optional uint32 out_port = 2;
+  optional uint32 in_ip = 3;
+  optional uint32 in_port = 4;
+  optional uint32 ip_type = 5;
+}
+
+message IPv6 {
+  optional bytes out_ip = 1;
+  optional uint32 out_port = 2;
+  optional bytes in_ip = 3;
+  optional uint32 in_port = 4;
+  optional uint32 ip_type = 5;
+}
+
+message UploadResp {
+  optional string u_key = 1;
+  optional uint32 u_key_ttl_second = 2;
+  repeated IPv4 i_pv4s = 3;
+  repeated IPv6 i_pv6s = 4;
+  optional uint64 msg_seq = 5;
+  optional MsgInfo msg_info = 6;
+  repeated RichMediaStorageTransInfo ext = 7;
+  optional bytes compat_q_msg = 8;
+  repeated SubFileInfo sub_file_infos = 10;
+}
+
+message RichMediaStorageTransInfo {
+  optional uint32 sub_type = 1;
+  optional uint32 ext_type = 2;
+  optional bytes ext_value = 3;
+}
+
+message SubFileInfo {
+  optional uint32 sub_type = 1;
+  optional string u_key = 2;
+  optional uint32 u_key_ttl_second = 3;
+  repeated IPv4 i_pv4s = 4;
+  repeated IPv6 i_pv6s = 5;
+}
+
+message DownloadSafeResp {}
+
+message UploadKeyRenewalResp {
+  optional string ukey = 1;
+  optional uint64 ukey_ttl_sec = 2;
+}
+
+message MsgInfoAuthResp {
+  optional uint32 auth_code = 1;
+  optional bytes msg = 2;
+  optional uint64 result_time = 3;
+}
+
+message UploadCompletedResp {
+  optional uint64 msg_seq = 1;
+}
+
+message DeleteResp {}
+
+message DownloadRKeyResp {
+  repeated RKeyInfo r_keys = 1;
+}
+
+message RKeyInfo {
+  optional string rkey = 1;
+  optional uint64 rkey_ttl_sec = 2;
+  optional uint32 store_id = 3;
+  optional uint32 rkey_create_time = 4;
+  optional uint32 type = 5;
+}
+
+message OfflineFileUploadRequest {
+  optional uint32 command = 1;
+  optional int32 seq = 2;
+  optional ApplyUploadReqV3 upload = 19;
+  optional int32 business_id = 101;
+  optional int32 client_type = 102;
+  optional int32 flag_support_media_platform = 200;
+}
+
+message ApplyUploadReqV3 {
+  optional string sender_uid = 10;
+  optional string receiver_uid = 20;
+  optional uint32 file_size = 30;
+  optional string file_name = 40;
+  optional bytes md510_m_check_sum = 50;
+  optional bytes sha1_check_sum = 60;
+  optional string local_path = 70;
+  optional bytes md5_check_sum = 110;
+  optional bytes sha3_check_sum = 120;
+}
+
+message OfflineFileUploadResponse {
+  optional uint32 command = 1;
+  optional int32 seq = 2;
+  optional ApplyUploadRespV3 upload = 19;
+  optional int32 business_id = 101;
+  optional int32 client_type = 102;
+  optional int32 flag_support_media_platform = 200;
+}
+
+message ApplyUploadRespV3 {
+  optional int32 ret_code = 10;
+  optional string ret_msg = 20;
+  optional int64 total_space = 30;
+  optional int64 used_space = 40;
+  optional int64 uploaded_size = 50;
+  optional string upload_ip = 60;
+  optional string upload_domain = 70;
+  optional uint32 upload_port = 80;
+  optional string uuid = 90;
+  optional bytes upload_key = 100;
+  optional bool bool_file_exist = 110;
+  optional int32 pack_size = 120;
+  repeated string upload_ip_list = 130;
+  optional int32 upload_https_port = 140;
+  optional string upload_https_domain = 150;
+  optional string upload_dns = 160;
+  optional string upload_lanip = 170;
+  optional string file_id_crc = 200;
+  repeated Addr rtp_media_platform_upload_address = 210;
+  optional bytes media_platform_upload_key = 220;
+}
+
+message Addr {
+  optional uint32 out_ip = 1;
+  optional uint32 out_port = 2;
+  optional uint32 inner_ip = 3;
+  optional uint32 inner_port = 4;
+  optional uint32 ip_type = 5;
+}
+
+message Oidb {
+  optional uint32 command = 1;
+  optional uint32 service = 2;
+  optional uint32 result = 3;
+  optional bytes body = 4;
+  optional string message = 5;
+  optional uint32 reserved = 12;
+}
+
+message D102AReqBody {
+  repeated string domain = 1;
+}
+
+message D102ARspBody {
+  map<string, string> ps_keys = 1;
+  optional int32 key_type = 2;
+  optional string client_key = 3;
+  optional uint32 expiration = 4;
+}
+
+message D1097ReqBody {
+  optional int64 group_code = 1;
+}
+
+message D1097RspBody {}
+
+message D5D6ReqBody {
+  optional uint32 uint32_seq = 1;
+  repeated SnsUpdateBuffer rpt_msg_update_buffer = 2;
+  optional uint32 uint32_domain = 3;
+}
+
+message D5D6RspBody {
+  optional uint32 uint32_seq = 1;
+  optional string str_wording = 2;
+}
+
+message SnsUpdateBuffer {
+  optional string uid = 1;
+  optional uint64 group_uin = 2;
+  repeated SnsUpdateItem rpt_msg_sns_update_item = 400;
+  repeated uint32 rpt_uint32_id_list = 401;
+}
+
+message SnsUpdateItem {
+  optional uint32 uint32_update_sns_type = 1;
+  optional bytes bytes_value = 2;
+  optional uint32 uint32_value_offset = 3;
+}
+
+message DeleteFileReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_parent_folder_id = 4;
+  optional string str_file_id = 5;
+  optional uint32 uint32_msgdb_seq = 6;
+  optional uint32 uint32_msg_rand = 7;
+}
+
+message DeleteFileRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+}
+
+message DownloadFileReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional bool bool_thumbnail_req = 5;
+  optional uint32 uint32_url_type = 6;
+  optional bool bool_preview_req = 7;
+  optional uint32 uint32_src = 8;
+}
+
+message DownloadFileRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional string str_download_ip = 4;
+  optional string str_download_dns = 5;
+  optional bytes bytes_download_url = 6;
+  optional bytes bytes_sha = 7;
+  optional bytes bytes_sha3 = 8;
+  optional bytes bytes_md5 = 9;
+  optional bytes bytes_cookie_val = 10;
+  optional string str_save_file_name = 11;
+  optional uint32 uint32_preview_port = 12;
+  optional string str_download_dns_https = 13;
+  optional uint32 uint32_preview_port_https = 14;
+}
+
+message MoveFileReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional string str_parent_folder_id = 5;
+  optional string str_dest_folder_id = 6;
+}
+
+message MoveFileRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional string str_parent_folder_id = 4;
+}
+
+message RenameFileReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional string str_parent_folder_id = 5;
+  optional string str_new_file_name = 6;
+}
+
+message RenameFileRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+}
+
+message D6D6ReqBody {
+  optional UploadFileReqBody upload_file_req = 1;
+  optional ResendReqBody resend_file_req = 2;
+  optional DownloadFileReqBody download_file_req = 3;
+  optional DeleteFileReqBody delete_file_req = 4;
+  optional RenameFileReqBody rename_file_req = 5;
+  optional MoveFileReqBody move_file_req = 6;
+}
+
+message ResendReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional bytes bytes_sha = 5;
+}
+
+message ResendRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional string str_upload_ip = 4;
+  optional bytes bytes_file_key = 5;
+  optional bytes bytes_check_key = 6;
+}
+
+message D6D6RspBody {
+  optional UploadFileRspBody upload_file_rsp = 1;
+  optional ResendRspBody resend_file_rsp = 2;
+  optional DownloadFileRspBody download_file_rsp = 3;
+  optional DeleteFileRspBody delete_file_rsp = 4;
+  optional RenameFileRspBody rename_file_rsp = 5;
+  optional MoveFileRspBody move_file_rsp = 6;
+}
+
+message UploadFileReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional uint32 uint32_entrance = 4;
+  optional string str_parent_folder_id = 5;
+  optional string str_file_name = 6;
+  optional string str_local_path = 7;
+  optional uint64 uint64_file_size = 8;
+  optional bytes bytes_sha = 9;
+  optional bytes bytes_sha3 = 10;
+  optional bytes bytes_md5 = 11;
+  optional bool bool_support_multi_upload = 12;
+}
+
+message UploadFileRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional string str_upload_ip = 4;
+  optional string str_server_dns = 5;
+  optional uint32 uint32_bus_id = 6;
+  optional string str_file_id = 7;
+  optional bytes bytes_file_key = 8;
+  optional bytes bytes_check_key = 9;
+  optional bool bool_file_exist = 10;
+  repeated string str_upload_ip_lan_v4 = 12;
+  repeated string str_upload_ip_lan_v6 = 13;
+  optional uint32 uint32_upload_port = 14;
+}
+
+message CreateFolderReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional string str_parent_folder_id = 3;
+  optional string str_folder_name = 4;
+}
+
+message CreateFolderRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional message.v2.FolderInfo folder_info = 4;
+}
+
+message DeleteFolderReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional string str_folder_id = 3;
+}
+
+message DeleteFolderRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+}
+
+message MoveFolderReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional string str_folder_id = 3;
+  optional string str_parent_folder_id = 4;
+  optional string str_dest_folder_id = 5;
+}
+
+message MoveFolderRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional message.v2.FolderInfo folder_info = 4;
+}
+
+message RenameFolderReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional string str_folder_id = 3;
+  optional string str_new_folder_name = 4;
+}
+
+message RenameFolderRspBody {
+  optional int64 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional message.v2.FolderInfo folder_info = 4;
+}
+
+message D6D7ReqBody {
+  optional CreateFolderReqBody create_folder_req = 1;
+  optional DeleteFolderReqBody delete_folder_req = 2;
+  optional RenameFolderReqBody rename_folder_req = 3;
+  optional MoveFolderReqBody move_folder_req = 4;
+}
+
+message D6D7RspBody {
+  optional CreateFolderRspBody create_folder_rsp = 1;
+  optional DeleteFolderRspBody delete_folder_rsp = 2;
+  optional RenameFolderRspBody rename_folder_rsp = 3;
+  optional MoveFolderRspBody move_folder_rsp = 4;
+}
+
+message D6D8ReqBody {
+  optional GetFileInfoReqBody file_info_req = 1;
+  optional GetFileListReqBody file_list_info_req = 2;
+  optional GetFileCountReqBody group_file_cnt_req = 3;
+  optional GetSpaceReqBody group_space_req = 4;
+  optional GetFilePreviewReqBody file_preview_req = 5;
+}
+
+message D6D8RspBody {
+  optional GetFileInfoRspBody file_info_rsp = 1;
+  optional GetFileListRspBody file_list_info_rsp = 2;
+  optional GetFileCountRspBody group_file_cnt_rsp = 3;
+  optional GetSpaceRspBody group_space_rsp = 4;
+  optional GetFilePreviewRspBody file_preview_rsp = 5;
+}
+
+message FileTimeStamp {
+  optional uint32 uint32_upload_time = 1;
+  optional string str_file_id = 2;
+}
+
+message GetFileInfoReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+  optional uint32 uint32_field_flag = 5;
+}
+
+message GetFileInfoRspBody {
+  optional int32 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional message.v2.FileInfo file_info = 4;
+}
+
+message GetFileListReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional string str_folder_id = 3;
+  optional FileTimeStamp start_timestamp = 4;
+  optional uint32 uint32_file_count = 5;
+  optional FileTimeStamp max_timestamp = 6;
+  optional uint32 uint32_all_file_count = 7;
+  optional uint32 uint32_req_from = 8;
+  optional uint32 uint32_sort_by = 9;
+  optional uint32 uint32_filter_code = 10;
+  optional uint64 uint64_uin = 11;
+  optional uint32 uint32_field_flag = 12;
+  optional uint32 uint32_start_index = 13;
+  optional bytes bytes_context = 14;
+  optional uint32 uint32_client_version = 15;
+  optional uint32 uint32_white_list = 16;
+  optional uint32 uint32_sort_order = 17;
+  optional uint32 uint32_show_onlinedoc_folder = 18;
+}
+
+message GetFileListRspBody {
+  optional int32 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional bool bool_is_end = 4;
+  repeated GetFileListRspBodyItem rpt_item_list = 5;
+  optional FileTimeStamp msg_max_timestamp = 6;
+  optional uint32 uint32_all_file_count = 7;
+  optional uint32 uint32_filter_code = 8;
+  optional bool bool_safe_check_flag = 11;
+  optional uint32 uint32_safe_check_res = 12;
+  optional uint32 uint32_next_index = 13;
+  optional bytes bytes_context = 14;
+  optional uint32 uint32_role = 15;
+  optional uint32 uint32_open_flag = 16;
+}
+
+message GetFileCountReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+}
+
+message GetFileCountRspBody {
+  optional int32 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional uint32 uint32_all_file_count = 4;
+  optional bool bool_file_too_many = 5;
+  optional uint32 uint32_limit_count = 6;
+  optional bool bool_is_full = 7;
+}
+
+message GetSpaceReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+}
+
+message GetSpaceRspBody {
+  optional int32 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional uint64 uint64_total_space = 4;
+  optional uint64 uint64_used_space = 5;
+  optional bool bool_all_upload = 6;
+}
+
+message GetFilePreviewReqBody {
+  optional uint64 uint64_group_code = 1;
+  optional uint32 uint32_app_id = 2;
+  optional uint32 uint32_bus_id = 3;
+  optional string str_file_id = 4;
+}
+
+message GetFilePreviewRspBody {
+  optional int32 int32_ret_code = 1;
+  optional string str_ret_msg = 2;
+  optional string str_client_wording = 3;
+  optional uint32 int32_server_ip = 4;
+  optional uint32 int32_server_port = 5;
+  optional string str_download_dns = 6;
+  optional bytes bytes_download_url = 7;
+  optional string str_cookie_val = 8;
+  optional bytes bytes_reserved_field = 9;
+  optional bytes str_download_dns_https = 10;
+  optional uint32 uint32_preview_port_https = 11;
+}
+
+message CopyFromReqBody {
+  optional uint64 group_code = 1;
+  optional uint32 app_id = 2;
+  optional uint32 src_bus_id = 3;
+  optional bytes src_parent_folder = 4;
+  optional bytes src_file_path = 5;
+  optional uint32 dst_bus_id = 6;
+  optional bytes dst_folder_id = 7;
+  optional uint64 file_size = 8;
+  optional string local_path = 9;
+  optional string file_name = 10;
+  optional uint64 src_uin = 11;
+  optional bytes md5 = 12;
+}
+
+message CopyFromRspBody {
+  optional int64 ret_code = 1;
+  optional string ret_msg = 2;
+  optional string client_wording = 3;
+  optional bytes save_file_path = 4;
+  optional uint32 bus_id = 5;
+}
+
+message CopyToReqBody {
+  optional uint64 group_code = 1;
+  optional uint32 app_id = 2;
+  optional uint32 src_bus_id = 3;
+  optional string src_file_id = 4;
+  optional uint32 dst_bus_id = 5;
+  optional uint64 dst_uin = 6;
+  optional string new_file_name = 40;
+  optional bytes tim_cloud_pdir_key = 100;
+  optional bytes tim_cloud_ppdir_key = 101;
+  optional bytes tim_cloud_extension_info = 102;
+  optional uint32 tim_file_exist_option = 103;
+}
+
+message CopyToRspBody {
+  optional int64 ret_code = 1;
+  optional string ret_msg = 2;
+  optional string client_wording = 3;
+  optional string save_file_path = 4;
+  optional uint32 bus_id = 5;
+  optional string file_name = 40;
+}
+
+message FeedsReqBody {
+  optional uint64 group_code = 1;
+  optional uint32 app_id = 2;
+  repeated message.v2.FeedsInfo feeds_info_list = 3;
+  optional uint32 multi_send_seq = 4;
+}
+
+message FeedsRspBody {
+  optional int64 ret_code = 1;
+  optional string ret_msg = 2;
+  optional string client_wording = 3;
+  repeated message.v2.FeedsResult feeds_result_list = 4;
+  optional uint32 svr_busy_wait_time = 5;
+}
+
+message D6D9ReqBody {
+  optional TransFileReqBody trans_file_req = 1;
+  optional CopyFromReqBody copy_from_req = 2;
+  optional CopyToReqBody copy_to_req = 3;
+  optional FeedsReqBody feeds_info_req = 5;
+}
+
+message D6D9RspBody {
+  optional TransFileRspBody trans_file_rsp = 1;
+  optional CopyFromRspBody copy_from_rsp = 2;
+  optional CopyToRspBody copy_to_rsp = 3;
+  optional FeedsRspBody feeds_info_rsp = 5;
+}
+
+message TransFileReqBody {
+  optional uint64 group_code = 1;
+  optional uint32 app_id = 2;
+  optional uint32 bus_id = 3;
+  optional string file_id = 4;
+}
+
+message TransFileRspBody {
+  optional int64 ret_code = 1;
+  optional string ret_msg = 2;
+  optional string client_wording = 3;
+  optional uint32 save_bus_id = 4;
+  optional string save_file_path = 5;
+}
+
+message D89AReqBody {
+  optional int64 group_code = 1;
+  optional D89AReqBodyGroupInfo group = 2;
+  optional int64 original_operator_uin = 3;
+  optional uint32 req_group_open_appid = 4;
+}
+
+message D89ARspBody {
+  optional int64 group_code = 1;
+  optional string error_info = 2;
+}
+
+message D8A0ReqBody {
+  optional uint64 opt_uint64_group_code = 1;
+  repeated KickMemberInfo rpt_msg_kick_list = 2;
+  repeated uint64 rpt_kick_list = 3;
+  optional uint32 uint32_kick_flag = 4;
+  optional bytes bytes_kick_msg = 5;
+}
+
+message D8A0RspBody {
+  optional uint64 opt_uint64_group_code = 1;
+  repeated KickResult rpt_msg_kick_result = 2;
+}
+
+message KickMemberInfo {
+  optional uint32 opt_uint32_operate = 1;
+  optional uint64 opt_uint64_member_uin = 2;
+  optional uint32 opt_uint32_flag = 3;
+  optional bytes opt_bytes_msg = 4;
+}
+
+message KickResult {
+  optional uint32 opt_uint32_result = 1;
+  optional uint64 opt_uint64_member_uin = 2;
+}
+
+message D8A01ReqBody {
+  optional uint64 group_uin = 1;
+  optional string target_uid = 3;
+  optional bool reject_add_request = 4;
+  optional string reason = 5;
+}
+
+message D8A01RspBody {
+  optional uint64 group_uin = 1;
+  optional string error_msg = 2;
+}
+
+message D8FCReqBody {
+  optional int64 group_code = 1;
+  optional uint32 show_flag = 2;
+  repeated D8FCReqBodyMemberInfo mem_level_info = 3;
+  repeated D8FCReqBodyLevelName level_names = 4;
+  optional uint32 update_time = 5;
+  optional uint32 office_mode = 6;
+  optional uint32 group_open_appid = 7;
+  optional D8FCReqBodyClientInfo client = 8;
+  optional bytes auth_key = 9;
+  repeated D8FCReqBodyLevelName level_names_new = 10;
+}
+
+message D8FCRspBody {
+  optional int64 group_code = 1;
+  optional string err_info = 2;
+  optional bytes cool_group_card_rsp = 3;
+}
+
+message EACReqBody {
+  optional uint64 group_uin = 1;
+  optional uint64 sequence = 2;
+  optional uint32 random = 3;
+}
+
+message EACRspBody {
+  optional string wording = 1;
+  optional uint64 digest_uin = 2;
+  optional uint32 digest_time = 3;
+  optional uint32 error_code = 10;
+}
+
+message DED3ReqBody {
+  optional int64 to_uin = 1;
+  optional int64 group_code = 2;
+  optional uint32 msg_seq = 3;
+  optional uint32 msg_rand = 4;
+  optional int64 aio_uin = 5;
+  optional uint32 nudge_type = 6;
+}
+
+message DED3RspBody {}
+
+message F90ReqBody {
+  optional uint64 group_code = 1;
+  optional uint64 seq = 2;
+  optional uint64 random = 3;
+  optional uint64 app_id = 4;
+}
+
+message F90RspBody {
+  optional F90Info info = 1;
+}
+
+message F90Info {
+  optional uint64 group_code = 1;
+  optional uint64 seq = 2;
+  optional uint32 random = 3;
+  optional uint64 uin = 4;
+  optional string nickname = 5;
+  optional string title = 6;
+  optional string jump_url = 7;
+  optional string icon_url = 8;
+  optional uint32 create_time = 9;
+  optional string app_name = 10;
+  optional uint64 app_id = 11;
+  optional uint32 msg_type = 12;
+}
+
+message SetGroupNotificationRequest {
+  optional uint64 operate = 1;
+  optional SetGroupNotificationRequestBody body = 2;
+}
+
+message SetGroupNotificationRequestBody {
+  optional uint64 sequence = 1;
+  optional uint64 type = 2;
+  optional int64 group_uin = 3;
+  optional string message = 4;
+}
+
+message SetGroupNotificationResponse {}
+
+message SetGroupReactionRequest {
+  optional int64 group_uin = 2;
+  optional uint64 sequence = 3;
+  optional string code = 4;
+  optional uint64 type = 5;
+}
+
+message SetGroupReactionResponse {}
+
+message KickNTReq {
+  optional int64 uin = 1;
+  optional bool is_same_device = 2;
+  optional string tips_info = 3;
+  optional string tips_title = 4;
+}
+
+message SetStatusReq {
+  optional int32 status = 1;
+  optional int32 ext_status = 2;
+  optional int32 battery_status = 3;
+  optional SetStatusCustomExt custom_ext = 4;
+}
+
+message SetStatusCustomExt {
+  optional uint64 face_id = 1;
+  optional string wording = 2;
+  optional uint64 face_type = 3;
+}
+
+message SetStatusResp {
+  optional int32 err_code = 1;
+  optional string err_msg = 2;
+}
+
+message C501ReqBody {
+  optional SubCmd0x501ReqBody req_body = 1281;
+}
+
+message C501RspBody {
+  optional SubCmd0x501RspBody rsp_body = 1281;
+}
+
+message SubCmd0x501ReqBody {
+  optional uint64 uin = 1;
+  optional uint32 idc_id = 2;
+  optional uint32 appid = 3;
+  optional uint32 login_sig_type = 4;
+  optional bytes login_sig_ticket = 5;
+  optional uint32 request_flag = 6;
+  repeated uint32 service_types = 7;
+  optional uint32 bid = 8;
+  optional int32 field9 = 9;
+  optional int32 field10 = 10;
+  optional int32 field11 = 11;
+  optional string version = 15;
+}
+
+message SubCmd0x501RspBody {
+  optional bytes sig_session = 1;
+  optional bytes session_key = 2;
+  repeated SrvAddrs addrs = 3;
+}
+
+message SrvAddrs {
+  optional uint32 service_type = 1;
+  repeated IpAddr addrs = 2;
+}
+
+message IpAddr {
+  optional uint32 type = 1;
+  optional fixed32 ip = 2;
+  optional uint32 port = 3;
+  optional uint32 area = 4;
+}
+
+message GetFileListRspBodyItem {
+  optional uint32 uint32_type = 1;
+  optional message.v2.FolderInfo folder_info = 2;
+  optional message.v2.FileInfo file_info = 3;
+}
+
+message D89AReqBodyGroupExInfoOnly {
+  optional uint32 tribe_id = 1;
+  optional uint32 money_for_add_group = 2;
+}
+
+message D89AReqBodyGroupGeoInfo {
+  optional uint32 city_id = 1;
+  optional uint64 longitude = 2;
+  optional uint64 latitude = 3;
+  optional string geo_content = 4;
+  optional uint64 poi_id = 5;
+}
+
+message D89AReqBodyGroupNewGuidelinesInfo {
+  optional bool enabled = 1;
+  optional string content = 2;
+}
+
+message D89AReqBodyGroupInfo {
+  optional uint32 group_ext_adm_num = 1;
+  optional uint32 flag = 2;
+  optional string group_name = 3;
+  optional string group_memo = 4;
+  optional string group_finger_memo = 5;
+  optional string group_aio_skin_url = 6;
+  optional string group_board_skin_url = 7;
+  optional string group_cover_skin_url = 8;
+  optional uint32 group_grade = 9;
+  optional uint32 active_member_num = 10;
+  optional uint32 certification_type = 11;
+  optional string certification_text = 12;
+  optional string group_rich_finger_memo = 13;
+  optional D89AReqBodyGroupNewGuidelinesInfo group_new_guidelines = 14;
+  optional uint32 group_face = 15;
+  optional uint32 add_option = 16;
+  optional uint32 shutup_time = 17;
+  optional uint32 group_type_flag = 18;
+  repeated string group_tag = 19;
+  optional D89AReqBodyGroupGeoInfo group_geo = 20;
+  optional uint32 group_class_ext = 21;
+  optional string group_class_text = 22;
+  optional uint32 app_privilege_flag = 23;
+  optional uint32 app_privilege_mask = 24;
+  optional D89AReqBodyGroupExInfoOnly group_ex_info = 25;
+  optional uint32 group_sec_level = 26;
+  optional uint32 group_sec_level_info = 27;
+  optional int64 subscription_uin = 28;
+  optional uint32 allow_member_invite = 29;
+  optional string group_question = 30;
+  optional string group_answer = 31;
+  optional uint32 group_flag_ext3 = 32;
+  optional uint32 group_flag_ext3_mask = 33;
+  optional uint32 group_open_appid = 34;
+  optional uint32 no_finger_open_flag = 35;
+  optional uint32 no_code_finger_open_flag = 36;
+  optional int64 root_id = 37;
+  optional uint32 msg_limit_frequency = 38;
+  optional uint32 hl_guild_appid = 39;
+  optional uint32 hl_guild_sub_type = 40;
+  optional uint32 hl_guild_orgid = 41;
+  optional uint32 group_flag_ext4 = 42;
+  optional uint32 group_flag_ext4_mask = 43;
+}
+
+message D8FCReqBodyCardNameElem {
+  optional D8FCReqBodyCardNameElemCardType type = 1;
+  optional bytes value = 2;
+}
+
+message D8FCReqBodyClientInfo {
+  optional uint32 implat = 1;
+  optional string client_ver = 2;
+}
+
+message D8FCReqBodyLevelName {
+  optional uint32 level = 1;
+  optional string name = 2;
+}
+
+message D8FCReqBodyRichCardNameElem {
+  optional bytes ctrl = 1;
+  optional bytes text = 2;
+}
+
+message D8FCReqBodyCommCardNameBuf {
+  repeated D8FCReqBodyRichCardNameElem rich_card_name = 1;
+  optional uint32 cool_id = 2;
+}
+
+message D8FCReqBodyMemberInfo {
+  optional string uid = 1;
+  optional uint32 point = 2;
+  optional uint32 active_key = 3;
+  optional uint32 level = 4;
+  optional bytes special_title = 5;
+  optional uint32 special_title_expire_time = 6;
+  optional bytes uin_name = 7;
+  optional bytes member_card_name = 8;
+  optional bytes phone = 9;
+  optional bytes email = 10;
+  optional bytes remark = 11;
+  optional uint32 gender = 12;
+  optional bytes job = 13;
+  optional uint32 tribe_level = 14;
+  optional uint32 tribe_point = 15;
+  repeated D8FCReqBodyCardNameElem rich_card_name = 16;
+  optional bytes comm_rich_card_name = 17;
+  optional uint32 ringtone_id = 18;
+  optional bytes group_honor = 19;
+  optional uint32 cmduin_flag_ex3_grocery = 20;
+  optional uint32 cmduin_flag_ex3_mask = 21;
+}
