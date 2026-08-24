@@ -399,7 +399,7 @@ message CommonGroup {
   optional int32 group_card_type = 5;
   optional int32 group_level = 6;
   optional string group_name = 7;
-  optional string ext_group_key_info = 8;
+  optional bytes ext_group_key_info = 8;
   optional int32 msg_flag = 9;
 }
 
