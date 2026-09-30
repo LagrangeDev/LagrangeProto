@@ -1668,3 +1668,24 @@ message D8FCReqBodyMemberInfo {
   optional uint32 cmduin_flag_ex3_grocery = 20;
   optional uint32 cmduin_flag_ex3_mask = 21;
 }
+
+message RobotUinRangeReq {
+  optional uint32 just_fetch_msg_config = 5;
+  optional uint32 type = 6;
+  optional uint32 version = 7;
+  optional uint32 aio_keyword_version = 8;
+}
+
+message RobotUinRangeResp {
+  optional RobotConfig robot_config = 5;
+}
+
+message RobotConfig {
+  optional uint32 version = 1;
+  repeated RobotUinRange robot_uin_ranges = 2;
+}
+
+message RobotUinRange {
+  optional uint64 min_uin = 1;
+  optional uint64 max_uin = 2;
+}
